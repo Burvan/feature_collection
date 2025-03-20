@@ -1,23 +1,21 @@
 import 'package:logger/logger.dart';
 
-class AppLogger {
-  final Logger _logger;
+final class AppLogger {
+  static final Logger _logger = Logger();
 
-  AppLogger() : _logger = Logger();
-
-  void debug(String message) {
+  static void debug(String message) {
     _logger.d(message);
   }
 
-  void info(String message) {
+  static void info(String message) {
     _logger.i(message);
   }
 
-  void warning(String message) {
+  static void warning(String message) {
     _logger.w(message);
   }
 
-  void error(
+  static void error(
     String message, {
     dynamic error,
     StackTrace? stackTrace,

@@ -5,4 +5,4 @@ library domain;
 ///Repositories
 
 ///Use_cases
-export 'use_cases/use_case.dart';
+export 'src/use_cases/use_case.dart';
