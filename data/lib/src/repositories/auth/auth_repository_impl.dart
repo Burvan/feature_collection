@@ -1,24 +1,24 @@
 import 'package:core/core.dart';
-import 'package:data/data.dart' as data;
-import 'package:domain/domain.dart' as domain;
+import 'package:data/data.dart';
+import 'package:domain/domain.dart';
 
-class AuthRepositoryImpl implements domain.AuthRepository {
-  final data.AuthProvider _authProvider;
-  final data.MapperFactory mapper;
+class AuthRepositoryImpl implements AuthRepository {
+  final AuthProvider _authProvider;
+  final MapperFactory mapper;
 
   AuthRepositoryImpl({
-    required data.AuthProvider authProvider,
+    required AuthProvider authProvider,
     required this.mapper,
   }) : _authProvider = authProvider;
 
   @override
-  Future<domain.User> signIn(domain.SignInPayload payload) async {
+  Future<User> signIn(SignInPayload payload) async {
     final UserCredential userCredential = await _authProvider.signIn(
       email: payload.email,
       password: payload.password,
     );
 
-    final data.UserEntity? userEntity =
+    final UserEntity? userEntity =
         await _authProvider.fetchUserData(userId: userCredential.user!.uid);
 
     if (userEntity == null) {
@@ -34,13 +34,13 @@ class AuthRepositoryImpl implements domain.AuthRepository {
   }
 
   @override
-  Future<domain.User> signUp(domain.SignUpPayload payload) async {
+  Future<User> signUp(SignUpPayload payload) async {
     final UserCredential userCredential = await _authProvider.signUp(
       email: payload.email,
       password: payload.password,
     );
 
-    final data.UserEntity userEntity = data.UserEntity(
+    final UserEntity userEntity = UserEntity(
       id: userCredential.user!.uid,
       firstName: payload.firstName,
       lastName: payload.lastName,

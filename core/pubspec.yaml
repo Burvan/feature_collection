@@ -9,6 +9,11 @@ dependencies:
   flutter:
     sdk: flutter
 
+  data:
+    path: ../data
+  domain:
+    path: ../domain
+
   injectable: ^2.5.0
   get_it: ^8.0.3
   logger: ^2.5.0
