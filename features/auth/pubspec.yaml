@@ -1,4 +1,4 @@
-name: home_page
+name: auth
 version: 0.0.1
 
 environment:
@@ -9,8 +9,14 @@ dependencies:
   flutter:
     sdk: flutter
 
+  domain:
+    path: ../../domain
   navigation:
     path: ../../navigation
+  core:
+    path: ../../core
+  core_ui:
+    path: ../../core_ui
 
 dev_dependencies:
   flutter_test:

@@ -13,6 +13,8 @@ dependencies:
     path: ../data
   domain:
     path: ../domain
+  navigation:
+    path: ../navigation
 
   injectable: ^2.5.0
   get_it: ^8.0.3
