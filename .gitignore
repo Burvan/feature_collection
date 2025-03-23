@@ -5,6 +5,7 @@ injection.config.dart
 *.inject.dart
 *.g.dart
 *.gr.dart
+*.freezed.dart
 **/pubspec.lock
 *.class
 *.log

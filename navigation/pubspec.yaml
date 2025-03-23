@@ -11,9 +11,12 @@ dependencies:
 
   core:
     path: ../core
+  home_page:
+    path: ../features/home_page
+  auth:
+    path: ../features/auth
 
-  auto_route: ^10.0.1
-
+  auto_route: ^9.3.0+1
 
 dev_dependencies:
   flutter_test:
