@@ -11,6 +11,12 @@ dependencies:
 
   navigation:
     path: ../../navigation
+  auth:
+    path: ../../features/auth
+  core:
+    path: ../../core
+  core_ui:
+    path: ../../core_ui
 
 dev_dependencies:
   flutter_test:

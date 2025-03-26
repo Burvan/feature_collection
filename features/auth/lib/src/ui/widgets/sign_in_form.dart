@@ -14,24 +14,7 @@ class SignInForm extends ConsumerStatefulWidget {
 }
 
 class _SignInFormState extends ConsumerState<SignInForm> {
-  late final TextEditingController _emailController;
-  late final TextEditingController _passwordController;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  @override
-  void initState() {
-    super.initState();
-    final AuthFormState initial = ref.read(formNotifierProvider);
-    _emailController = TextEditingController(text: initial.email);
-    _passwordController = TextEditingController(text: initial.password);
-  }
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
