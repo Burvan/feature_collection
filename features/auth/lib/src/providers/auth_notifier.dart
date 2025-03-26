@@ -26,8 +26,10 @@ class AuthNotifier extends StateNotifier<AuthState> {
         ),
       );
       state = const AuthState.success();
+    } on AppException catch (e) {
+      state = AuthState.failure(e);
     } catch (e) {
-      state = AuthState.failure(e.toString());
+      state = const AuthState.failure(UnknownException());
     }
   }
 
@@ -54,8 +56,10 @@ class AuthNotifier extends StateNotifier<AuthState> {
         ),
       );
       state = const AuthState.success();
+    } on AppException catch (e) {
+      state = AuthState.failure(e);
     } catch (e) {
-      state = AuthState.failure(e.toString());
+      state = const AuthState.failure(UnknownException());
     }
   }
 
@@ -64,8 +68,10 @@ class AuthNotifier extends StateNotifier<AuthState> {
     try {
       await signOutUseCase.execute(const NoParams());
       state = const AuthState.success();
+    } on AppException catch (e) {
+      state = AuthState.failure(e);
     } catch (e) {
-      state = AuthState.failure(e.toString());
+      state = const AuthState.failure(UnknownException());
     }
   }
 }

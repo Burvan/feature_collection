@@ -27,10 +27,6 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
       }
     });
 
-    if (authState is Loading) {
-      return const Center(child: CircularProgressIndicator());
-    }
-
     return Container(
       width: mediaQuery.size.width / AppScale.scaleOne2,
       decoration: BoxDecoration(
@@ -66,7 +62,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
                     Padding(
                       padding: const EdgeInsets.only(top: AppPadding.padding10),
                       child: Text(
-                        authState.message,
+                        authState.error.message ?? 'Unknown error',
                         style:
                             AppTextTheme.font16.copyWith(color: AppColors.red),
                       ),
