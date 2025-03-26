@@ -8,5 +8,9 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   configureDependencies();
-  runApp(const FeatureCollectionApp());
+  runApp(
+    const ProviderScope(
+      child: FeatureCollectionApp(),
+    ),
+  );
 }

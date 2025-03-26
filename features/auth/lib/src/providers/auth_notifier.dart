@@ -11,7 +11,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     required this.signInUseCase,
     required this.signUpUseCase,
     required this.signOutUseCase,
-  })  : super(const AuthState.initial());
+  }) : super(const AuthState.initial());
 
   Future<void> signIn(
     String email,
@@ -31,15 +31,15 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
-  Future<void> signUp(
-    String firstName,
-    String lastName,
-    DateTime dateOfBirth,
-    String gender,
-    String phoneNumber,
-    String email,
-    String password,
-  ) async {
+  Future<void> signUp({
+    required String firstName,
+    required String lastName,
+    required DateTime dateOfBirth,
+    required String gender,
+    required String phoneNumber,
+    required String email,
+    required String password,
+  }) async {
     state = const AuthState.loading();
     try {
       await signUpUseCase.execute(
