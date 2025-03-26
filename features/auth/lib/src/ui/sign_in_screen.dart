@@ -1,3 +1,6 @@
+import 'package:auth/src/ui/widgets/auth_widgets.dart';
+import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
 
@@ -7,9 +10,40 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Sign In screen',
+    final MediaQueryData mediaQuery = MediaQuery.of(context);
+
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
+          height: mediaQuery.size.height,
+          width: mediaQuery.size.width,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: <Color>[
+                AppColors.brightPink,
+                AppColors.gentlyPink,
+                AppColors.pinkSherbet,
+                AppColors.skyBlue,
+              ],
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                height: mediaQuery.size.height * AppScale.scaleZero2,
+              ),
+              Text(
+                AppConstants.featureCollection,
+                style: AppTextTheme.font25Bold.copyWith(color: AppColors.white),
+              ),
+              const SizedBox(height: AppSize.size25),
+              const SignInForm(),
+            ],
+          ),
+        ),
       ),
     );
   }
