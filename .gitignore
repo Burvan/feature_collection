@@ -19,7 +19,7 @@ injection.config.dart
 .svn/
 .swiftpm/
 migrate_working_dir/
-prebuild_script.sh
+
 
 # IntelliJ related
 *.iml
