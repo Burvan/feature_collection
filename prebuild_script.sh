@@ -1,6 +1,6 @@
-#!/bin/bash
-# run function in all dirs
-# expects a function name
+##!/bin/bash
+## run function in all dirs
+## expects a function name
 allDirs() {
   dirs=()
   while IFS='' read -r line; do dirs+=("$line"); done < <(find . -maxdepth 2 -type d)
@@ -24,6 +24,13 @@ allDirs "runGet"
 # generate localization keys
 cd "core" || exit
 dart run easy_localization:generate -f keys -o locale_keys.g.dart -O lib/src/localization/generated -S languages
+
+# generate DI files (injectable)
+cd "../core" || exit
+if grep -q "injectable" pubspec.yaml; then
+  echo "Generating injectable files in core"
+  dart run build_runner build --delete-conflicting-outputs
+fi
 
 # generate data layer files
 cd "../data" || exit

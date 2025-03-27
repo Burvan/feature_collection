@@ -23,7 +23,14 @@ allDirs
 (
     cd "core" || exit
     echo_styled "Generating localization keys in core" 33
-dart run easy_localization:generate -f keys -o locale_keys.g.dart -O lib/src/localization/generated -S languages
+    dart run easy_localization:generate -f keys -o locale_keys.g.dart -O lib/src/localization/generated -S languages
+)
+
+# Generate DI files in core
+(
+    cd "core" || exit
+    echo_styled "Generating injectable files in core" 33
+    dart run build_runner build --delete-conflicting-outputs
 )
 
 # Generate data layer files
