@@ -34,7 +34,7 @@ class SignUpScreen extends StatelessWidget {
               height: mediaQuery.size.height * AppScale.scaleZero2,
             ),
             Text(
-              AppConstants.featureCollection,
+              LocaleKeys.auth_featureCollection.watchTr(context),
               style: AppTextTheme.font25Bold.copyWith(color: AppColors.white),
             ),
             const SizedBox(height: AppSize.size25),

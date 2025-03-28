@@ -53,45 +53,30 @@ class _SignUpFormFieldsState extends ConsumerState<SignUpFormFields> {
     final AuthFormState authFormState = ref.watch(formNotifierProvider);
     final FormNotifier formNotifier = ref.watch(formNotifierProvider.notifier);
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (_firstNameController.text != authFormState.firstName) {
-        _firstNameController.text = authFormState.firstName;
-      }
-      if (_lastNameController.text != authFormState.lastName) {
-        _lastNameController.text = authFormState.lastName;
-      }
-      if (_emailController.text != authFormState.email) {
-        _emailController.text = authFormState.email;
-      }
-      if (_phoneNumberController.text != authFormState.phoneNumber) {
-        _phoneNumberController.text = authFormState.phoneNumber;
-      }
-      if (_passwordController.text != authFormState.password) {
-        _passwordController.text = authFormState.password;
-      }
-      if (_confirmPasswordController.text != authFormState.confirmPassword) {
-        _confirmPasswordController.text = authFormState.confirmPassword;
-      }
-    });
-
     return Column(
       children: <Widget>[
         AuthTextField(
           controller: _firstNameController,
-          labelText: AppConstants.firstName,
+          labelText: LocaleKeys.auth_firstName.watchTr(context),
           obscureText: false,
           icon: const Icon(Icons.person_outline),
-          validator: FieldValidator.nameValidator,
-          onChanged: (String value) => formNotifier.update(firstName: value),
+          validator: (String? value) => Validators.nameValidator(
+            value,
+            context,
+          ),
+          onChanged: (String? value) => formNotifier.update(firstName: value),
         ),
         const SizedBox(height: AppSize.size25),
         AuthTextField(
           controller: _lastNameController,
-          labelText: AppConstants.lastName,
+          labelText: LocaleKeys.auth_lastName.watchTr(context),
           obscureText: false,
           icon: const Icon(Icons.person_outline),
-          validator: FieldValidator.nameValidator,
-          onChanged: (String value) => formNotifier.update(lastName: value),
+          validator: (String? value) => Validators.nameValidator(
+            value,
+            context,
+          ),
+          onChanged: (String? value) => formNotifier.update(lastName: value),
         ),
         const SizedBox(height: AppSize.size25),
         InkWell(
@@ -109,38 +94,44 @@ class _SignUpFormFieldsState extends ConsumerState<SignUpFormFields> {
             }
           },
           child: InputDecorator(
-            decoration: const InputDecoration(
-              labelText: AppConstants.dateOfBirth,
-              suffixIcon: Icon(Icons.calendar_today),
+            decoration: InputDecoration(
+              labelText: LocaleKeys.auth_dateOfBirth.watchTr(context),
+              suffixIcon: const Icon(Icons.calendar_today),
             ),
             child: Text(_dateOfBirthController.text),
           ),
         ),
         AuthTextField(
           controller: _phoneNumberController,
-          labelText: AppConstants.phoneNumber,
+          labelText: LocaleKeys.auth_phoneNumber.watchTr(context),
           obscureText: false,
           icon: const Icon(Icons.phone_outlined),
           keyBoardType: TextInputType.phone,
-          validator: FieldValidator.phoneValidator,
-          onChanged: (String value) => formNotifier.update(phoneNumber: value),
+          validator: (String? value) => Validators.phoneValidator(
+            value,
+            context,
+          ),
+          onChanged: (String? value) => formNotifier.update(phoneNumber: value),
         ),
         const SizedBox(height: AppSize.size25),
         const GenderSelector(),
         const SizedBox(height: AppSize.size25),
         AuthTextField(
           controller: _emailController,
-          labelText: AppConstants.emailAddress,
+          labelText: LocaleKeys.auth_emailAddress.watchTr(context),
           obscureText: false,
           icon: const Icon(Icons.email_outlined),
           keyBoardType: TextInputType.emailAddress,
-          validator: FieldValidator.emailValidator,
-          onChanged: (String value) => formNotifier.update(email: value),
+          validator: (String? value) => Validators.emailValidator(
+            value,
+            context,
+          ),
+          onChanged: (String? value) => formNotifier.update(email: value),
         ),
         const SizedBox(height: AppSize.size25),
         AuthTextField(
           controller: _passwordController,
-          labelText: AppConstants.password,
+          labelText: LocaleKeys.auth_password.watchTr(context),
           obscureText: !authFormState.showPassword,
           icon: IconButton(
             onPressed: formNotifier.togglePasswordVisibility,
@@ -150,13 +141,17 @@ class _SignUpFormFieldsState extends ConsumerState<SignUpFormFields> {
                   : Icons.visibility_off_outlined,
             ),
           ),
-          validator: FieldValidator.passwordValidator,
-          onChanged: (String value) => formNotifier.update(password: value),
+          validator: (String? value) => Validators.passwordValidator(
+            value,
+            context,
+          ),
+          onChanged: (String? value) => formNotifier.update(password: value),
         ),
         const SizedBox(height: AppSize.size25),
         AuthTextField(
           controller: _confirmPasswordController,
-          labelText: AppConstants.confirmPassword,
+          labelText:
+              LocaleKeys.validationErrors_confirmPassword.watchTr(context),
           obscureText: !authFormState.showPassword,
           icon: IconButton(
             onPressed: formNotifier.togglePasswordVisibility,
@@ -166,13 +161,15 @@ class _SignUpFormFieldsState extends ConsumerState<SignUpFormFields> {
                   : Icons.visibility_off_outlined,
             ),
           ),
-          validator: (String? value) => FieldValidator.confirmPasswordValidator(
+          validator: (String? value) => Validators.confirmPasswordValidator(
             value,
             authFormState.password,
+            context,
           ),
-          onChanged: (String value) => formNotifier.update(confirmPassword: value),
+          onChanged: (String? value) =>
+              formNotifier.update(confirmPassword: value),
         ),
-        const SizedBox(height: AppSize.size40),
+        const SizedBox(height: AppSize.size25),
       ],
     );
   }

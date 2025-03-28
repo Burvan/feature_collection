@@ -48,17 +48,20 @@ class _SignInFormFieldsState extends ConsumerState<SignInFormFields> {
       children: <Widget>[
         AuthTextField(
           controller: _emailController,
-          labelText: AppConstants.emailAddress,
+          labelText: LocaleKeys.auth_emailAddress.watchTr(context),
           obscureText: false,
           icon: const Icon(Icons.email_outlined),
           keyBoardType: TextInputType.emailAddress,
-          validator: FieldValidator.emailValidator,
-          onChanged: (String value) => formNotifier.update(email: value),
+          validator: (String? value) => Validators.emailValidator(
+            value,
+            context,
+          ),
+          onChanged: (String? value) => formNotifier.update(email: value),
         ),
         const SizedBox(height: AppSize.size25),
         AuthTextField(
           controller: _passwordController,
-          labelText: AppConstants.password,
+          labelText: LocaleKeys.auth_password.watchTr(context),
           obscureText: !authFormState.showPassword,
           icon: IconButton(
             onPressed: formNotifier.togglePasswordVisibility,
@@ -68,8 +71,11 @@ class _SignInFormFieldsState extends ConsumerState<SignInFormFields> {
                   : Icons.visibility_off_outlined,
             ),
           ),
-          validator: FieldValidator.passwordValidator,
-          onChanged: (String value) => formNotifier.update(password: value),
+          validator: (String? value) => Validators.passwordValidator(
+            value,
+            context,
+          ),
+          onChanged: (String? value) => formNotifier.update(password: value),
         ),
         const SizedBox(height: AppSize.size25),
       ],

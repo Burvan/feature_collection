@@ -38,12 +38,12 @@ class _SignInFormState extends ConsumerState<SignInForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              AppConstants.hello,
+            Text(
+              LocaleKeys.auth_hello.watchTr(context),
               style: AppTextTheme.font30Bold,
             ),
             Text(
-              AppConstants.pleaseLogin,
+              LocaleKeys.auth_pleaseLogin.watchTr(context),
               style: AppTextTheme.font20.copyWith(color: AppColors.lightGrey),
             ),
             Form(
@@ -57,19 +57,18 @@ class _SignInFormState extends ConsumerState<SignInForm> {
                 children: <Widget>[
                   CustomElevatedButton(
                     onPressed: () => _submit(ref),
-                    buttonText: AppConstants.signIn,
+                    buttonText: LocaleKeys.auth_signIn.watchTr(context),
                   ),
                   if (authState is Failure)
                     Text(
                       authState.error.message ?? 'Unknown error',
-                      style:
-                          AppTextTheme.font16.copyWith(color: AppColors.red),
+                      style: AppTextTheme.font16.copyWith(color: AppColors.red),
                     ),
                 ],
               ),
-            OfferAnotherScreen(
-              question: AppConstants.noAccount,
-              buttonText: AppConstants.signUp,
+            AuthSwitchPrompt(
+              question: LocaleKeys.auth_noAccount.watchTr(context),
+              buttonText: LocaleKeys.auth_signUp.watchTr(context),
               onPressed: () {
                 context.navigateTo(const SignUpRoute());
               },

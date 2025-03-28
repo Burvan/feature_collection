@@ -39,7 +39,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
           children: <Widget>[
             const SizedBox(height: AppSize.size10),
             Text(
-              AppConstants.pleaseSignUp,
+              LocaleKeys.auth_pleaseSignUp.watchTr(context),
               style: AppTextTheme.font20.copyWith(color: AppColors.lightGrey),
             ),
             Padding(
@@ -56,22 +56,22 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
                 children: <Widget>[
                   CustomElevatedButton(
                     onPressed: () => _submit(ref),
-                    buttonText: AppConstants.signUp,
+                    buttonText: LocaleKeys.auth_signUp.watchTr(context),
                   ),
                   if (authState is Failure)
                     Padding(
                       padding: const EdgeInsets.only(top: AppPadding.padding10),
                       child: Text(
-                        authState.error.message ?? 'Unknown error',
+                        authState.error.message ?? LocaleKeys.errors_unknown.watchTr(context),
                         style:
                             AppTextTheme.font16.copyWith(color: AppColors.red),
                       ),
                     ),
                 ],
               ),
-            OfferAnotherScreen(
-              question: AppConstants.alreadyHaveAccount,
-              buttonText: AppConstants.signIn,
+            AuthSwitchPrompt(
+              question: LocaleKeys.auth_alreadyHaveAccount.watchTr(context),
+              buttonText: LocaleKeys.auth_signIn.watchTr(context),
               onPressed: () {
                 context.navigateTo(const SignInRoute());
               },

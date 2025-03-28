@@ -15,8 +15,8 @@ class HomeScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          AppConstants.featureCollection,
+        title: Text(
+          LocaleKeys.auth_featureCollection.watchTr(context),
           style: AppTextTheme.font16WhiteBold,
         ),
         centerTitle: true,
