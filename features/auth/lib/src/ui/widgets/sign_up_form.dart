@@ -62,7 +62,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
                     Padding(
                       padding: const EdgeInsets.only(top: AppPadding.padding10),
                       child: Text(
-                        authState.error.message ?? LocaleKeys.errors_unknown.watchTr(context),
+                        authState.error.toLocalizedText(),
                         style:
                             AppTextTheme.font16.copyWith(color: AppColors.red),
                       ),

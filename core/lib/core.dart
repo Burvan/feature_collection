@@ -11,7 +11,7 @@ export 'package:injectable/injectable.dart';
 
 export 'src/di/app_di.dart';
 export 'src/enums/gender.dart';
-export 'src/errors/errors.dart';
+export 'src/errors/app_exception.dart';
 export 'src/extensions/locale_extension.dart';
 export 'src/firebase_options/firebase_options.dart';
 export 'src/local_logging/app_logger.dart';

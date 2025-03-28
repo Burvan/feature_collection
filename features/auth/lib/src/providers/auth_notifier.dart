@@ -29,7 +29,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     } on AppException catch (e) {
       state = AuthState.failure(e);
     } catch (e) {
-      state = const AuthState.failure(UnknownException());
+      state = AuthState.failure(AppException.unknown(message: e.toString()));
     }
   }
 
@@ -59,7 +59,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     } on AppException catch (e) {
       state = AuthState.failure(e);
     } catch (e) {
-      state = const AuthState.failure(UnknownException());
+      state = AuthState.failure(AppException.unknown(message: e.toString()));
     }
   }
 
@@ -71,7 +71,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     } on AppException catch (e) {
       state = AuthState.failure(e);
     } catch (e) {
-      state = const AuthState.failure(UnknownException());
+      state = AuthState.failure(AppException.unknown(message: e.toString()));
     }
   }
 }

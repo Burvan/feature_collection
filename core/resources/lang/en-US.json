@@ -20,6 +20,8 @@
     "unknown": "Unknown error",
     "emailAlreadyInUse": "Email is already in use",
     "invalidCredential": "Invalid email or password",
+    "wrongPassword": "Wrong password",
+    "invalidEmail": "Invalid email",
     "noInternet": "No internet connection",
     "noSuchUser": "User data not found"
   },

@@ -22,7 +22,10 @@ class AuthRepositoryImpl implements AuthRepository {
         await _authProvider.fetchUserData(userId: userCredential.user!.uid);
 
     if (userEntity == null) {
-      throw FirestoreException(message: 'User data not found');
+      throw AppException(
+        type: AppExceptionType.firebaseAuthCodeError,
+        message: FirebaseCodeErrorMessage.userNotFound,
+      );
     }
 
     return mapper.userMapper.fromEntity(userEntity);

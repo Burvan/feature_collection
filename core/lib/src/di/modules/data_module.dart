@@ -14,18 +14,13 @@ abstract class DataModule {
   MapperFactory get mapperFactory => MapperFactory();
 
   @lazySingleton
-  AuthErrorHandler get authErrorHandler => AuthErrorHandler();
-
-  @lazySingleton
   AuthProvider authProvider(
       FirebaseAuth firebaseAuth,
       FirebaseFirestore firebaseFirestore,
-      AuthErrorHandler errorHandler,
       ) =>
       AuthProvider(
         firebaseAuth: firebaseAuth,
         firebaseFirestore: firebaseFirestore,
-        errorHandler: errorHandler,
       );
 
   @lazySingleton

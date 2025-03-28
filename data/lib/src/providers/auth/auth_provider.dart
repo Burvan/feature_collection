@@ -4,15 +4,12 @@ import 'package:data/data.dart';
 class AuthProvider {
   final FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firebaseFirestore;
-  final ErrorHandler _errorHandler;
 
-  AuthProvider({
+  const AuthProvider({
     required FirebaseAuth firebaseAuth,
     required FirebaseFirestore firebaseFirestore,
-    required ErrorHandler errorHandler,
   })  : _firebaseAuth = firebaseAuth,
-        _firebaseFirestore = firebaseFirestore,
-        _errorHandler = errorHandler;
+        _firebaseFirestore = firebaseFirestore;
 
   Future<UserCredential> signIn({
     required String email,
@@ -23,8 +20,13 @@ class AuthProvider {
         email: email,
         password: password,
       );
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        type: AppExceptionType.firebaseAuthCodeError,
+        message: e.code,
+      );
     } catch (e) {
-      throw _errorHandler.handle(e);
+      throw AppException.unknown(message: e.toString());
     }
   }
 
@@ -37,19 +39,29 @@ class AuthProvider {
         email: email,
         password: password,
       );
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        type: AppExceptionType.firebaseAuthCodeError,
+        message: e.code,
+      );
     } catch (e) {
-      throw _errorHandler.handle(e);
+      throw AppException.unknown(message: e.toString());
     }
   }
 
   Future<void> saveUserData(UserEntity user) async {
     try {
       await _firebaseFirestore
-          .collection('users')
+          .collection(DataConstants.userCollection)
           .doc(user.id)
           .set(user.toJson());
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        type: AppExceptionType.firebaseAuthCodeError,
+        message: e.code,
+      );
     } catch (e) {
-      throw _errorHandler.handle(e);
+      throw AppException.unknown(message: e.toString());
     }
   }
 
@@ -57,16 +69,23 @@ class AuthProvider {
     required String userId,
   }) async {
     try {
-      final DocumentSnapshot snapshot =
-          await _firebaseFirestore.collection('users').doc(userId).get();
+      final DocumentSnapshot snapshot = await _firebaseFirestore
+          .collection(DataConstants.userCollection)
+          .doc(userId)
+          .get();
 
       if (snapshot.exists) {
-        return UserEntity.fromJson(snapshot.data() as Map<String, dynamic>);
+        return UserEntity.fromJson(snapshot.data()! as Map<String, dynamic>);
       }
 
       return null;
+    } on FirebaseAuthException catch (e) {
+      throw AppException(
+        type: AppExceptionType.firebaseAuthCodeError,
+        message: e.code,
+      );
     } catch (e) {
-      throw _errorHandler.handle(e);
+      throw AppException.unknown(message: e.toString());
     }
   }
 
@@ -74,7 +93,7 @@ class AuthProvider {
     try {
       await _firebaseAuth.signOut();
     } catch (e) {
-      throw _errorHandler.handle(e);
+      throw AppException.unknown(message: e.toString());
     }
   }
 }

@@ -61,7 +61,7 @@ class _SignInFormState extends ConsumerState<SignInForm> {
                   ),
                   if (authState is Failure)
                     Text(
-                      authState.error.message ?? 'Unknown error',
+                      authState.error.toLocalizedText(),
                       style: AppTextTheme.font16.copyWith(color: AppColors.red),
                     ),
                 ],
