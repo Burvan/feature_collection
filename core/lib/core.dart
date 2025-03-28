@@ -10,7 +10,6 @@ export 'package:get_it/get_it.dart';
 export 'package:injectable/injectable.dart';
 
 export 'src/di/app_di.dart';
-export 'src/enums/gender.dart';
 export 'src/errors/app_exception.dart';
 export 'src/extensions/locale_extension.dart';
 export 'src/firebase_options/firebase_options.dart';

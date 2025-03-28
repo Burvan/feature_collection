@@ -91,7 +91,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
           firstName: formState.firstName,
           lastName: formState.lastName,
           dateOfBirth: formState.dateOfBirth!,
-          gender: formState.gender!,
+          gender: formState.gender!.label,
           phoneNumber: formState.phoneNumber,
           email: formState.email,
           password: formState.password,

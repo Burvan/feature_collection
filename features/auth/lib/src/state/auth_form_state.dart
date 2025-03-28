@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:domain/domain.dart';
 
 part 'auth_form_state.freezed.dart';
 
@@ -9,7 +10,7 @@ abstract class AuthFormState with _$AuthFormState {
     required String lastName,
     required String email,
     required DateTime? dateOfBirth,
-    required String? gender,
+    required Gender? gender,
     required String? customGender,
     required String phoneNumber,
     required String password,

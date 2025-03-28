@@ -8,7 +8,13 @@ class UserMapper extends Mapper<UserEntity, domain.User> {
       firstName: entity.firstName,
       lastName: entity.lastName,
       dateOfBirth: entity.dateOfBirth,
-      gender: entity.gender,
+      gender: domain.Gender.values.firstWhere(
+        (domain.Gender gender) => gender.label == entity.gender,
+        orElse: () => domain.Gender.other,
+      ),
+      customGender: entity.gender == DataConstants.genderOther
+          ? entity.customGender
+          : null,
       phoneNumber: entity.phoneNumber,
       email: entity.email,
       password: entity.password,
@@ -22,7 +28,10 @@ class UserMapper extends Mapper<UserEntity, domain.User> {
       firstName: item.firstName,
       lastName: item.lastName,
       dateOfBirth: item.dateOfBirth,
-      gender: item.gender,
+      gender: item.gender.label,
+      customGender: item.gender == domain.Gender.other
+          ? item.customGender
+          : null,
       phoneNumber: item.phoneNumber,
       email: item.email,
       password: item.password,

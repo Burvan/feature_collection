@@ -9,6 +9,7 @@ class UserEntity {
   final String lastName;
   final DateTime dateOfBirth;
   final String gender;
+  final String? customGender;
   final String phoneNumber;
   final String email;
   final String password;
@@ -19,6 +20,7 @@ class UserEntity {
     required this.lastName,
     required this.dateOfBirth,
     required this.gender,
+    this.customGender,
     required this.phoneNumber,
     required this.email,
     required this.password,

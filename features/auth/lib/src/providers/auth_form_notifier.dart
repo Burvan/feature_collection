@@ -1,5 +1,6 @@
 import 'package:auth/auth.dart';
 import 'package:core/core.dart';
+import 'package:domain/domain.dart';
 
 class FormNotifier extends StateNotifier<AuthFormState> {
   FormNotifier() : super(AuthFormState.empty());
@@ -9,7 +10,7 @@ class FormNotifier extends StateNotifier<AuthFormState> {
     String? lastName,
     String? email,
     DateTime? dateOfBirth,
-    String? gender,
+    Gender? gender,
     String? customGender,
     String? phoneNumber,
     String? password,

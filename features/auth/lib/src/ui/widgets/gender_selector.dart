@@ -2,6 +2,7 @@ import 'package:auth/auth.dart';
 import 'package:auth/src/ui/widgets/auth_widgets.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
 class GenderSelector extends ConsumerStatefulWidget {
@@ -32,19 +33,13 @@ class _GenderSelectorState extends ConsumerState<GenderSelector> {
     final AuthFormState formState = ref.watch(formNotifierProvider);
     final FormNotifier formNotifier = ref.read(formNotifierProvider.notifier);
 
-    if (_customGenderController.text != formState.customGender) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _customGenderController.text = formState.customGender ?? '';
-      });
-    }
-
     return Column(
       children: <Widget>[
         DropdownButtonFormField(
           value: formState.gender,
           items: Gender.values.map((Gender gender) {
-            return DropdownMenuItem<String>(
-              value: gender.label,
+            return DropdownMenuItem<Gender>(
+              value: gender,
               child: Row(
                 children: <Widget>[
                   Icon(gender.icon),
@@ -54,20 +49,18 @@ class _GenderSelectorState extends ConsumerState<GenderSelector> {
               ),
             );
           }).toList(),
-
-          onChanged: (String? value) {
+          onChanged: (Gender? value) {
             if (value != null) {
               formNotifier.update(
                 gender: value,
-                showCustomGenderField: value == Gender.other.label,
-                customGender: value == Gender.other.label
-                    ? formState.customGender
-                    : null,
+                showCustomGenderField: value == Gender.other,
+                customGender:
+                    value == Gender.other ? formState.customGender : null,
               );
             }
           },
           decoration: InputDecoration(
-            labelText: AppConstants.gender,
+            labelText: LocaleKeys.auth_gender.watchTr(context),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
             ),
@@ -78,11 +71,15 @@ class _GenderSelectorState extends ConsumerState<GenderSelector> {
           const SizedBox(height: AppSize.size25),
           AuthTextField(
             controller: _customGenderController,
-            labelText: AppConstants.gender,
+            labelText: LocaleKeys.auth_gender.watchTr(context),
             obscureText: false,
             icon: const Icon(Icons.edit),
-            validator: FieldValidator.genderValidator,
-            onChanged: (String value) => formNotifier.update(customGender: value),
+            validator: (String? value) => Validators.genderValidator(
+              value,
+              context,
+            ),
+            onChanged: (String? value) =>
+                formNotifier.update(customGender: value),
           ),
         ],
       ],
