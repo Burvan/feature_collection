@@ -4,11 +4,9 @@ import 'package:domain/domain.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthProvider _authProvider;
-  final MapperFactory mapper;
 
   AuthRepositoryImpl({
     required AuthProvider authProvider,
-    required this.mapper,
   }) : _authProvider = authProvider;
 
   @override
@@ -28,7 +26,7 @@ class AuthRepositoryImpl implements AuthRepository {
       );
     }
 
-    return mapper.userMapper.fromEntity(userEntity);
+    return MapperFactory.userMapper.fromEntity(userEntity);
   }
 
   @override
@@ -55,6 +53,6 @@ class AuthRepositoryImpl implements AuthRepository {
     );
 
     await _authProvider.saveUserData(userEntity);
-    return mapper.userMapper.fromEntity(userEntity);
+    return MapperFactory.userMapper.fromEntity(userEntity);
   }
 }

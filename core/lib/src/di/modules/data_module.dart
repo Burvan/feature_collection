@@ -11,9 +11,6 @@ abstract class DataModule {
   FirebaseFirestore get firebaseFirestore => FirebaseFirestore.instance;
 
   @lazySingleton
-  MapperFactory get mapperFactory => MapperFactory();
-
-  @lazySingleton
   AuthProvider authProvider(
       FirebaseAuth firebaseAuth,
       FirebaseFirestore firebaseFirestore,
@@ -25,11 +22,9 @@ abstract class DataModule {
 
   @lazySingleton
   AuthRepository authRepository(
-      MapperFactory mapper,
       AuthProvider authProvider,
       ) =>
       AuthRepositoryImpl(
         authProvider: authProvider,
-        mapper: mapper,
       );
 }
