@@ -13,6 +13,8 @@ class CustomElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final MediaQueryData mediaQuery = MediaQuery.of(context);
+
     return Container(
       decoration: BoxDecoration(
         gradient: const LinearGradient(
@@ -30,9 +32,9 @@ class CustomElevatedButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
-          padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(
+          padding: WidgetStatePropertyAll<EdgeInsetsGeometry>(
             EdgeInsets.symmetric(
-              horizontal: AppPadding.padding40,
+              horizontal: mediaQuery.size.width * AppScale.scaleZero1,
               vertical: AppPadding.padding10,
             ),
           ),

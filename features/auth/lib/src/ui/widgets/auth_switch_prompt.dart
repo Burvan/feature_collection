@@ -1,12 +1,12 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
-class OfferAnotherScreen extends StatelessWidget {
+class AuthSwitchPrompt extends StatelessWidget {
   final VoidCallback onPressed;
   final String buttonText;
   final String question;
 
-  const OfferAnotherScreen({
+  const AuthSwitchPrompt({
     required this.onPressed,
     required this.buttonText,
     required this.question,
