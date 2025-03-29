@@ -23,7 +23,7 @@ allDirs "runGet"
 
 # generate localization keys
 cd "core" || exit
-dart run easy_localization:generate -f keys -o locale_keys.g.dart -O lib/src/localization/generated -S languages
+dart run easy_localization:generate -f keys -o locale_keys.g.dart -O lib/src/localization/generated -S resources/lang
 
 # generate DI files (injectable)
 cd "../core" || exit
