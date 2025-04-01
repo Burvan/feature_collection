@@ -1,5 +1,4 @@
 import 'package:auth/auth.dart';
-import 'package:auth/src/ui/widgets/auth_widgets.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
@@ -18,8 +17,9 @@ class _GenderSelectorState extends ConsumerState<GenderSelector> {
   @override
   void initState() {
     super.initState();
-    final String? initialGender = ref.read(formNotifierProvider).customGender;
-    _customGenderController = TextEditingController(text: initialGender);
+    _customGenderController = TextEditingController(
+      text: ref.read(authFormControllerProvider).customGender,
+    );
   }
 
   @override
@@ -30,8 +30,8 @@ class _GenderSelectorState extends ConsumerState<GenderSelector> {
 
   @override
   Widget build(BuildContext context) {
-    final AuthFormState formState = ref.watch(formNotifierProvider);
-    final FormNotifier formNotifier = ref.read(formNotifierProvider.notifier);
+    final AuthFormState formState = ref.watch(authFormControllerProvider);
+    final AuthFormController formController = ref.read(authFormControllerProvider.notifier);
 
     return Column(
       children: <Widget>[
@@ -51,7 +51,7 @@ class _GenderSelectorState extends ConsumerState<GenderSelector> {
           }).toList(),
           onChanged: (Gender? value) {
             if (value != null) {
-              formNotifier.update(
+              formController.update(
                 gender: value,
                 showCustomGenderField: value == Gender.other,
                 customGender:
@@ -69,17 +69,16 @@ class _GenderSelectorState extends ConsumerState<GenderSelector> {
         ),
         if (formState.showCustomGenderField) ...<Widget>[
           const SizedBox(height: AppSize.size25),
-          AuthTextField(
+          CustomTextField(
             controller: _customGenderController,
             labelText: LocaleKeys.auth_gender.watchTr(context),
-            obscureText: false,
             icon: const Icon(Icons.edit),
             validator: (String? value) => Validators.genderValidator(
               value,
               context,
             ),
             onChanged: (String? value) =>
-                formNotifier.update(customGender: value),
+                formController.update(customGender: value),
           ),
         ],
       ],

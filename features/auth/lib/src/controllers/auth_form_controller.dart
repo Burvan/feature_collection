@@ -2,8 +2,14 @@ import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 
-class FormNotifier extends StateNotifier<AuthFormState> {
-  FormNotifier() : super(AuthFormState.empty());
+part 'auth_form_controller.g.dart';
+
+@riverpod
+class AuthFormController extends _$AuthFormController {
+  @override
+  AuthFormState build() {
+    return AuthFormState.empty();
+  }
 
   void update({
     String? firstName,

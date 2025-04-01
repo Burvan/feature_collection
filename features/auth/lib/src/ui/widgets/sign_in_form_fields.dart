@@ -1,5 +1,4 @@
 import 'package:auth/auth.dart';
-import 'package:auth/src/ui/widgets/auth_widgets.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +13,13 @@ class SignInFormFields extends ConsumerStatefulWidget {
 class _SignInFormFieldsState extends ConsumerState<SignInFormFields> {
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
+  late final AuthFormController _formController;
 
   @override
   void initState() {
     super.initState();
-    final AuthFormState initial = ref.read(formNotifierProvider);
+    final AuthFormState initial = ref.read(authFormControllerProvider);
+    _formController = ref.read(authFormControllerProvider.notifier);
     _emailController = TextEditingController(text: initial.email);
     _passwordController = TextEditingController(text: initial.password);
   }
@@ -32,41 +33,30 @@ class _SignInFormFieldsState extends ConsumerState<SignInFormFields> {
 
   @override
   Widget build(BuildContext context) {
-    final AuthFormState authFormState = ref.watch(formNotifierProvider);
-    final FormNotifier formNotifier = ref.watch(formNotifierProvider.notifier);
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (_emailController.text != authFormState.email) {
-        _emailController.text = authFormState.email;
-      }
-      if (_passwordController.text != authFormState.password) {
-        _passwordController.text = authFormState.password;
-      }
-    });
+    final AuthFormState formState = ref.watch(authFormControllerProvider);
 
     return Column(
       children: <Widget>[
-        AuthTextField(
+        CustomTextField(
           controller: _emailController,
           labelText: LocaleKeys.auth_emailAddress.watchTr(context),
-          obscureText: false,
           icon: const Icon(Icons.email_outlined),
           keyBoardType: TextInputType.emailAddress,
           validator: (String? value) => Validators.emailValidator(
             value,
             context,
           ),
-          onChanged: (String? value) => formNotifier.update(email: value),
+          onChanged: (String? value) => _formController.update(email: value),
         ),
         const SizedBox(height: AppSize.size25),
-        AuthTextField(
+        CustomTextField(
           controller: _passwordController,
           labelText: LocaleKeys.auth_password.watchTr(context),
-          obscureText: !authFormState.showPassword,
+          obscureText: formState.showPassword,
           icon: IconButton(
-            onPressed: formNotifier.togglePasswordVisibility,
+            onPressed: _formController.togglePasswordVisibility,
             icon: Icon(
-              authFormState.showPassword
+              formState.showPassword
                   ? Icons.visibility_outlined
                   : Icons.visibility_off_outlined,
             ),
@@ -75,7 +65,7 @@ class _SignInFormFieldsState extends ConsumerState<SignInFormFields> {
             value,
             context,
           ),
-          onChanged: (String? value) => formNotifier.update(password: value),
+          onChanged: (String? value) => _formController.update(password: value),
         ),
         const SizedBox(height: AppSize.size25),
       ],

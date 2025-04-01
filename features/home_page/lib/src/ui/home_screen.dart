@@ -10,8 +10,8 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final AuthNotifier authNotifier = ref.read(authNotifierProvider.notifier);
-    final FormNotifier formNotifier = ref.read(formNotifierProvider.notifier);
+    final AuthController authController = ref.read(authControllerProvider.notifier);
+    final AuthFormController formController = ref.read(authFormControllerProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(
@@ -25,9 +25,8 @@ class HomeScreen extends ConsumerWidget {
         actions: <Widget>[
           IconButton(
             onPressed: () async {
-              await authNotifier.signOut();
-              formNotifier.reset();
-              context.navigateTo(const SignInRoute());
+              await authController.signOut();
+              formController.reset();
             },
             icon: const Icon(
               Icons.logout,

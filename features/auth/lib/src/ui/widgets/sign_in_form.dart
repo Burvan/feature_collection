@@ -3,8 +3,6 @@ import 'package:auth/src/ui/widgets/auth_widgets.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:home_page/home_page.dart';
-import 'package:navigation/navigation.dart';
 
 class SignInForm extends ConsumerStatefulWidget {
   const SignInForm({super.key});
@@ -19,13 +17,8 @@ class _SignInFormState extends ConsumerState<SignInForm> {
   @override
   Widget build(BuildContext context) {
     final MediaQueryData mediaQuery = MediaQuery.of(context);
-    final AuthState authState = ref.watch(authNotifierProvider);
-
-    ref.listen<AuthState>(authNotifierProvider, (_, AuthState state) {
-      if (state is Success) {
-        context.navigateTo(const HomeRoute());
-      }
-    });
+    final AsyncValue<AuthState> authState = ref.watch(authControllerProvider);
+    final AuthFormState formState = ref.watch(authFormControllerProvider);
 
     return Container(
       width: mediaQuery.size.width / AppScale.scaleOne2,
@@ -50,27 +43,25 @@ class _SignInFormState extends ConsumerState<SignInForm> {
               key: _formKey,
               child: const SignInFormFields(),
             ),
-            if (authState is Loading)
-              const CircularProgressIndicator()
-            else
-              Column(
+            authState.when(
+              loading: () => const CircularProgressIndicator(),
+              error: (Object error, StackTrace stackTrace) => Column(
                 children: <Widget>[
-                  CustomElevatedButton(
-                    onPressed: () => _submit(ref),
-                    buttonText: LocaleKeys.auth_signIn.watchTr(context),
+                  _buildAuthButton(),
+                  const SizedBox(height: AppSize.size10),
+                  Text(
+                    (error as AppException).toLocalizedText(),
+                    style: AppTextTheme.font16.copyWith(color: AppColors.red),
                   ),
-                  if (authState is Failure)
-                    Text(
-                      authState.error.toLocalizedText(),
-                      style: AppTextTheme.font16.copyWith(color: AppColors.red),
-                    ),
                 ],
               ),
+              data: (AuthState state) => _buildAuthButton(),
+            ),
             AuthSwitchPrompt(
               question: LocaleKeys.auth_noAccount.watchTr(context),
               buttonText: LocaleKeys.auth_signUp.watchTr(context),
               onPressed: () {
-                context.navigateTo(const SignUpRoute());
+                ref.read(authControllerProvider.notifier).navigateToSignUp();
               },
             ),
           ],
@@ -79,14 +70,20 @@ class _SignInFormState extends ConsumerState<SignInForm> {
     );
   }
 
-  void _submit(WidgetRef ref) {
+  Widget _buildAuthButton() {
+    return CustomElevatedButton(
+      onPressed: _submit,
+      buttonText: LocaleKeys.auth_signIn.watchTr(context),
+    );
+  }
+
+  void _submit() {
     if (!_formKey.currentState!.validate()) return;
 
-    final AuthFormState formState = ref.read(formNotifierProvider);
-
-    ref.read(authNotifierProvider.notifier).signIn(
-          formState.email,
-          formState.password,
-        );
+    final AuthFormState formState = ref.read(authFormControllerProvider);
+    ref.read(authControllerProvider.notifier).signIn(
+      formState.email,
+      formState.password,
+    );
   }
 }

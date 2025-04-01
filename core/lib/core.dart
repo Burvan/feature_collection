@@ -8,6 +8,7 @@ export 'package:flutter_riverpod/flutter_riverpod.dart';
 export 'package:freezed_annotation/freezed_annotation.dart';
 export 'package:get_it/get_it.dart';
 export 'package:injectable/injectable.dart';
+export 'package:riverpod_annotation/riverpod_annotation.dart';
 
 export 'src/di/app_di.dart';
 export 'src/errors/app_exception.dart';
