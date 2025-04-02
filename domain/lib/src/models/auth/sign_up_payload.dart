@@ -1,8 +1,10 @@
+import 'package:domain/domain.dart';
+
 final class SignUpPayload {
   final String firstName;
   final String lastName;
   final DateTime dateOfBirth;
-  final String gender;
+  final Gender gender;
   final String phoneNumber;
   final String email;
   final String password;

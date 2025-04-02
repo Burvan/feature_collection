@@ -46,7 +46,7 @@ class AuthRepositoryImpl implements AuthRepository {
       firstName: payload.firstName,
       lastName: payload.lastName,
       dateOfBirth: payload.dateOfBirth,
-      gender: payload.gender,
+      gender: payload.gender.label,
       phoneNumber: payload.phoneNumber,
       email: payload.email,
       password: payload.password,

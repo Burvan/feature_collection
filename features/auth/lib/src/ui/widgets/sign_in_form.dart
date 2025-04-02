@@ -18,7 +18,6 @@ class _SignInFormState extends ConsumerState<SignInForm> {
   Widget build(BuildContext context) {
     final MediaQueryData mediaQuery = MediaQuery.of(context);
     final AsyncValue<AuthState> authState = ref.watch(authControllerProvider);
-    final AuthFormState formState = ref.watch(authFormControllerProvider);
 
     return Container(
       width: mediaQuery.size.width / AppScale.scaleOne2,
@@ -79,11 +78,6 @@ class _SignInFormState extends ConsumerState<SignInForm> {
 
   void _submit() {
     if (!_formKey.currentState!.validate()) return;
-
-    final AuthFormState formState = ref.read(authFormControllerProvider);
-    ref.read(authControllerProvider.notifier).signIn(
-      formState.email,
-      formState.password,
-    );
+    ref.read(authControllerProvider.notifier).signIn();
   }
 }

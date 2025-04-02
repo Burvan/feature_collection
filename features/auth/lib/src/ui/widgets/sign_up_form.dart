@@ -18,8 +18,6 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
   Widget build(BuildContext context) {
     final MediaQueryData mediaQuery = MediaQuery.of(context);
     final AsyncValue<AuthState> authState = ref.watch(authControllerProvider);
-    final AuthFormState formState = ref.watch(authFormControllerProvider);
-
 
     return Container(
       width: mediaQuery.size.width / AppScale.scaleOne2,
@@ -79,17 +77,6 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
 
   void _submit() {
     if (!_formKey.currentState!.validate()) return;
-
-    final AuthFormState formState = ref.read(authFormControllerProvider);
-
-    ref.read(authControllerProvider.notifier).signUp(
-          firstName: formState.firstName,
-          lastName: formState.lastName,
-          dateOfBirth: formState.dateOfBirth!,
-          gender: formState.gender!.label,
-          phoneNumber: formState.phoneNumber,
-          email: formState.email,
-          password: formState.password,
-        );
+    ref.read(authControllerProvider.notifier).signUp();
   }
 }

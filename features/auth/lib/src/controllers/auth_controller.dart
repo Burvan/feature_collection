@@ -23,14 +23,15 @@ class AuthController extends _$AuthController {
     return const AuthState.initial();
   }
 
-  Future<void> signIn(String email, String password) async {
+  Future<void> signIn() async {
+    final AuthFormState formState = ref.read(authFormControllerProvider);
     state = const AsyncValue<AuthState>.loading();
 
     try {
       await _signInUseCase.execute(
         SignInPayload(
-          email: email,
-          password: password,
+          email: formState.email,
+          password: formState.password,
         ),
       );
       state = const AsyncValue<AuthState>.data(AuthState.success());
@@ -48,27 +49,20 @@ class AuthController extends _$AuthController {
     }
   }
 
-  Future<void> signUp({
-    required String firstName,
-    required String lastName,
-    required DateTime dateOfBirth,
-    required String gender,
-    required String phoneNumber,
-    required String email,
-    required String password,
-  }) async {
+  Future<void> signUp() async {
+    final AuthFormState formState = ref.read(authFormControllerProvider);
     state = const AsyncValue<AuthState>.loading();
 
     try {
       await _signUpUseCase.execute(
         SignUpPayload(
-          firstName: firstName,
-          lastName: lastName,
-          dateOfBirth: dateOfBirth,
-          gender: gender,
-          phoneNumber: phoneNumber,
-          email: email,
-          password: password,
+          firstName: formState.firstName,
+          lastName: formState.lastName,
+          dateOfBirth: formState.dateOfBirth!,
+          gender: formState.gender!,
+          phoneNumber: formState.phoneNumber,
+          email: formState.email,
+          password: formState.password,
         ),
       );
       state = const AsyncValue<AuthState>.data(AuthState.success());
