@@ -8,5 +8,10 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   configureDependencies();
-  runApp(const FeatureCollectionApp());
+  await EasyLocalization.ensureInitialized();
+  runApp(
+    const ProviderScope(
+      child: FeatureCollectionApp(),
+    ),
+  );
 }

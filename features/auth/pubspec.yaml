@@ -1,0 +1,31 @@
+name: auth
+version: 0.0.1
+
+environment:
+  sdk: ^3.6.0
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  domain:
+    path: ../../domain
+  navigation:
+    path: ../../navigation
+  core:
+    path: ../../core
+  core_ui:
+    path: ../../core_ui
+  home_page:
+    path: ../../features/home_page
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.15
+  auto_route_generator: ^9.3.1
+  riverpod_generator: ^2.6.5
+  freezed: ^3.0.4
