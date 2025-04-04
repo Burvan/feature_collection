@@ -23,7 +23,9 @@
     "wrongPassword": "Wrong password",
     "invalidEmail": "Invalid email",
     "noInternet": "No internet connection",
-    "noSuchUser": "User data not found"
+    "noSuchUser": "User data not found",
+    "channelCreationFailed": "Notification channel creation failed",
+    "notificationPermissionDenied": "Notification permission denied"
   },
   "validationErrors": {
     "nameIsRequired": "Name is required",

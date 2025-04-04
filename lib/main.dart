@@ -7,7 +7,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  configureDependencies();
+  await configureDependencies();
   await EasyLocalization.ensureInitialized();
   runApp(
     const ProviderScope(
