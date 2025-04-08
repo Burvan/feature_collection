@@ -40,6 +40,12 @@ class NotificationsRepositoryImpl implements NotificationsRepository {
       ),
     );
 
+    FirebaseMessaging.instance.onTokenRefresh.listen(
+      (String newToken) async {
+        await updateToken();
+      },
+    );
+
     FirebaseMessaging.onMessage.listen(
       (RemoteMessage message) {
         if (Platform.isIOS) return;
@@ -90,7 +96,8 @@ class NotificationsRepositoryImpl implements NotificationsRepository {
 
     if (!await _isFCMSupported) return;
 
-    await _fcm!.deleteToken();
+
+    await _fcm?.deleteToken();
   }
 
   @override
@@ -101,7 +108,7 @@ class NotificationsRepositoryImpl implements NotificationsRepository {
     );
 
     if (!await _isFCMSupported) return null;
-    return _fcm!.getToken();
+    return _fcm?.getToken();
   }
 
   Future<void> _showNotification(RemoteNotification notification) async {
@@ -124,5 +131,17 @@ class NotificationsRepositoryImpl implements NotificationsRepository {
         ),
       ),
     );
+  }
+
+  @override
+  Future<void> updateToken() async {
+    try {
+      final String? token = await getFcmToken();
+      if (token == null) return;
+
+      // await _apiProvider.updateFirebaseToken(
+      //   token: token,
+      // );
+    } on AppException catch (_) {}
   }
 }
