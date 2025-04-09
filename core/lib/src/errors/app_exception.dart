@@ -28,7 +28,7 @@ final class AppException implements Exception {
       AppExceptionType.firebaseAuthCodeError => switch (_message) {
           FirebaseCodeErrorMessage.emailInUse =>
             LocaleKeys.errors_emailAlreadyInUse.tr(),
-        FirebaseCodeErrorMessage.invalidCredential =>
+          FirebaseCodeErrorMessage.invalidCredential =>
             LocaleKeys.errors_invalidCredential.tr(),
           FirebaseCodeErrorMessage.invalidEmail =>
             LocaleKeys.errors_invalidEmail.tr(),
@@ -40,6 +40,13 @@ final class AppException implements Exception {
             LocaleKeys.errors_noSuchUser.tr(),
           _ => LocaleKeys.errors_unknown.tr(),
         },
+      AppExceptionType.notificationError => switch (_message) {
+          FirebaseCodeErrorMessage.channelCreationFailed =>
+            LocaleKeys.errors_channelCreationFailed.tr(),
+          FirebaseCodeErrorMessage.notificationPermissionDenied =>
+            LocaleKeys.errors_notificationPermissionDenied.tr(),
+          _ => LocaleKeys.errors_unknown,
+        }
     };
   }
 
@@ -50,6 +57,7 @@ final class AppException implements Exception {
 enum AppExceptionType {
   unknown,
   firebaseAuthCodeError,
+  notificationError,
 }
 
 final class FirebaseCodeErrorMessage {
@@ -59,4 +67,6 @@ final class FirebaseCodeErrorMessage {
   static const String emailInUse = 'email-already-in-use';
   static const String networkFailed = 'network-request-failed';
   static const String userNotFound = 'user-not-found';
+  static const String notificationPermissionDenied = 'permission-denied';
+  static const String channelCreationFailed = 'channel-creation-failed';
 }

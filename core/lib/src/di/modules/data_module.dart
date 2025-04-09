@@ -12,9 +12,9 @@ abstract class DataModule {
 
   @lazySingleton
   AuthProvider authProvider(
-      FirebaseAuth firebaseAuth,
-      FirebaseFirestore firebaseFirestore,
-      ) =>
+    FirebaseAuth firebaseAuth,
+    FirebaseFirestore firebaseFirestore,
+  ) =>
       AuthProvider(
         firebaseAuth: firebaseAuth,
         firebaseFirestore: firebaseFirestore,
@@ -22,9 +22,13 @@ abstract class DataModule {
 
   @lazySingleton
   AuthRepository authRepository(
-      AuthProvider authProvider,
-      ) =>
+    AuthProvider authProvider,
+  ) =>
       AuthRepositoryImpl(
         authProvider: authProvider,
       );
+
+  @singleton
+  NotificationsRepository notificationsRepository() =>
+      NotificationsRepositoryImpl();
 }
