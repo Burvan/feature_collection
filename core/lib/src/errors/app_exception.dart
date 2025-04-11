@@ -43,8 +43,17 @@ final class AppException implements Exception {
       AppExceptionType.notificationError => switch (_message) {
           FirebaseCodeErrorMessage.channelCreationFailed =>
             LocaleKeys.errors_channelCreationFailed.tr(),
-          FirebaseCodeErrorMessage.notificationPermissionDenied =>
+          FirebaseCodeErrorMessage.permissionDenied =>
             LocaleKeys.errors_notificationPermissionDenied.tr(),
+          _ => LocaleKeys.errors_unknown,
+        },
+      AppExceptionType.firestoreCodeError => switch (_message) {
+          FirebaseCodeErrorMessage.permissionDenied =>
+            LocaleKeys.errors_firestorePermissionDenied.tr(),
+          FirebaseCodeErrorMessage.documentNotFound =>
+            LocaleKeys.errors_documentNotFound.tr(),
+          FirebaseCodeErrorMessage.unavailable =>
+            LocaleKeys.errors_firestoreUnavailable.tr(),
           _ => LocaleKeys.errors_unknown,
         }
     };
@@ -58,6 +67,7 @@ enum AppExceptionType {
   unknown,
   firebaseAuthCodeError,
   notificationError,
+  firestoreCodeError,
 }
 
 final class FirebaseCodeErrorMessage {
@@ -67,6 +77,8 @@ final class FirebaseCodeErrorMessage {
   static const String emailInUse = 'email-already-in-use';
   static const String networkFailed = 'network-request-failed';
   static const String userNotFound = 'user-not-found';
-  static const String notificationPermissionDenied = 'permission-denied';
+  static const String permissionDenied = 'permission-denied';
   static const String channelCreationFailed = 'channel-creation-failed';
+  static const String documentNotFound = 'not-found';
+  static const String unavailable = 'unavailable';
 }

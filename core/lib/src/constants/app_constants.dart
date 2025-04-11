@@ -8,4 +8,8 @@ class AppConstants {
 
   static const String fcmNotInitializedError =
       'NotificationsRepository.initialize() should be called before using FCM';
+
+  static const String characterCollection = 'characters';
+  static const String name = 'name';
+  static const String idKey = 'id';
 }

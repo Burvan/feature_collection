@@ -25,7 +25,10 @@
     "noInternet": "No internet connection",
     "noSuchUser": "User data not found",
     "channelCreationFailed": "Notification channel creation failed",
-    "notificationPermissionDenied": "Notification permission denied"
+    "notificationPermissionDenied": "Notification permission denied",
+    "firestorePermissionDenied": "Firestore permission denied",
+    "documentNotFound": "Document not found",
+    "firestoreUnavailable": "Firestore unavailable"
   },
   "validationErrors": {
     "nameIsRequired": "Name is required",

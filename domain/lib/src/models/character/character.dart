@@ -11,7 +11,7 @@ final class Character {
     required this.name,
     required this.description,
     required this.imagePath,
-    required this.house,
+    this.house,
     required this.status,
   });
 }
