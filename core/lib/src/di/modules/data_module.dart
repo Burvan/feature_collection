@@ -21,6 +21,12 @@ abstract class DataModule {
       );
 
   @lazySingleton
+  FirebaseProvider firebaseProvider(
+      FirebaseFirestore firebaseFirestore,
+      ) =>
+      FirebaseProvider(firebaseFirestore: firebaseFirestore);
+
+  @lazySingleton
   AuthRepository authRepository(
     AuthProvider authProvider,
   ) =>
@@ -31,4 +37,12 @@ abstract class DataModule {
   @singleton
   NotificationsRepository notificationsRepository() =>
       NotificationsRepositoryImpl();
+
+  @lazySingleton
+  CharacterRepository characterRepository(
+      FirebaseProvider firebaseProvider,
+      ) =>
+      CharacterRepositoryImpl(
+        firebaseProvider: firebaseProvider,
+      );
 }

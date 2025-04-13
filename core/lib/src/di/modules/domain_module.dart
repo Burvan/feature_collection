@@ -14,4 +14,12 @@ abstract class DomainModule {
   @lazySingleton
   SignOutUseCase signOutUseCase(AuthRepository authRepository) =>
       SignOutUseCase(authRepository: authRepository);
+
+  @lazySingleton
+  FetchCharactersUseCase fetchCharactersUseCase(CharacterRepository characterRepository) =>
+      FetchCharactersUseCase(characterRepository: characterRepository);
+
+  @lazySingleton
+  AddCharacterUseCase addCharacterUseCase(CharacterRepository characterRepository) =>
+      AddCharacterUseCase(characterRepository: characterRepository);
 }

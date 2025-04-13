@@ -2,23 +2,23 @@ import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 
 class CharacterRepositoryImpl implements CharacterRepository {
-  final FirebaseProvider _provider;
+  final FirebaseProvider _firebaseProvider;
 
   CharacterRepositoryImpl({
-    required FirebaseProvider provider,
-  }) : _provider = provider;
+    required FirebaseProvider firebaseProvider,
+  }) : _firebaseProvider = firebaseProvider;
 
   @override
   Future<void> addCharacter(Character character) async {
     final CharacterEntity entity =
         MapperFactory.characterMapper.toEntity(character);
-    await _provider.addCharacter(entity);
+    await _firebaseProvider.addCharacter(entity);
   }
 
   @override
   Future<List<Character>> fetchCharacters(FetchCharactersParams params) async {
     final List<CharacterEntity> entities =
-        await _provider.fetchCharacters(params);
+        await _firebaseProvider.fetchCharacters(params);
 
     return entities
         .map((CharacterEntity entity) =>
