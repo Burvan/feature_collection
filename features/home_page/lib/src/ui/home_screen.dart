@@ -2,6 +2,7 @@ import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:home_page/src/ui/widgets/feature_tile.dart';
 import 'package:navigation/navigation.dart';
 
 @RoutePage()
@@ -10,8 +11,10 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final AuthController authController = ref.read(authControllerProvider.notifier);
-    final AuthFormController formController = ref.read(authFormControllerProvider.notifier);
+    final AuthController authController =
+        ref.read(authControllerProvider.notifier);
+    final AuthFormController formController =
+        ref.read(authFormControllerProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(
@@ -35,8 +38,16 @@ class HomeScreen extends ConsumerWidget {
           ),
         ],
       ),
-      body: const Center(
-        child: Text('Home screen'),
+      body: ListView.builder(
+        itemCount: AppFeatures.values.length,
+        itemBuilder: (BuildContext context, int index) {
+          final AppFeatures feature = AppFeatures.values[index];
+          final AppRouter appRouter = appLocator.get<AppRouter>();
+          return FeatureTile(
+            featureName: feature.featureName.watchTr(context),
+            onTap: () => appRouter.push(feature.route),
+          );
+        },
       ),
     );
   }

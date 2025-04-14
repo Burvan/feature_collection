@@ -16,6 +16,9 @@
     "signUp": "Sign Up",
     "noAccount": "No account?"
   },
+  "home": {
+    "paginationFeature": "Pagination mechanism with search and adding of elements"
+  },
   "errors": {
     "unknown": "Unknown error",
     "emailAlreadyInUse": "Email is already in use",
