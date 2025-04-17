@@ -36,6 +36,10 @@ class FirebaseProvider {
 
       final QuerySnapshot<Map<String, dynamic>> snapshot = await queryRef.get();
 
+      if (snapshot.docs.isEmpty) {
+        throw AppException(type: AppExceptionType.noSuchCharactersError);
+      }
+
       return snapshot.docs
           .map((QueryDocumentSnapshot<Map<String, dynamic>> doc) {
         final Map<String, dynamic> data = doc.data();
@@ -50,6 +54,8 @@ class FirebaseProvider {
         type: AppExceptionType.firestoreCodeError,
         message: e.code,
       );
+    } on AppException catch (e) {
+      rethrow;
     } catch (e) {
       throw AppException.unknown(message: e.toString());
     }
