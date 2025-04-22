@@ -1,10 +1,10 @@
-import 'package:domain/domain.dart';
+part of use_cases;
 
 final class FetchCharactersUseCase
-    extends FutureUseCase<List<Character>, FetchCharactersParams> {
+    implements FutureUseCase<List<Character>, FetchCharactersParams> {
   final CharacterRepository _characterRepository;
 
-  FetchCharactersUseCase({
+  const FetchCharactersUseCase({
     required CharacterRepository characterRepository,
   }) : _characterRepository = characterRepository;
 

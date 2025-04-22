@@ -1,7 +1,6 @@
-import 'package:core/core.dart';
-import 'package:data/data.dart';
+part of providers;
 
-class AuthProvider {
+final class AuthProvider {
   final FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firebaseFirestore;
 

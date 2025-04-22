@@ -1,4 +1,4 @@
-import 'package:domain/domain.dart';
+part of repositories;
 
 abstract interface class AuthRepository {
   Future<User> signUp(SignUpPayload payload);

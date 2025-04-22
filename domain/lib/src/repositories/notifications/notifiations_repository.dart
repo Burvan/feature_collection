@@ -1,3 +1,5 @@
+part of repositories;
+
 abstract interface class NotificationsRepository {
   Future<void> initialize();
   Future<String?> getFcmToken();

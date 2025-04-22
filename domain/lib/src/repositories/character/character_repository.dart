@@ -1,4 +1,4 @@
-import 'package:domain/domain.dart';
+part of repositories;
 
 abstract interface class CharacterRepository {
   Future<List<Character>> fetchCharacters(FetchCharactersParams params);

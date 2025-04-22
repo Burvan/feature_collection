@@ -1,4 +1,4 @@
-import 'package:domain/domain.dart';
+part of models;
 
 final class SignUpPayload {
   final String firstName;

@@ -1,10 +1,9 @@
-import 'package:data/data.dart';
-import 'package:domain/domain.dart';
+part of repositories;
 
-class CharacterRepositoryImpl implements CharacterRepository {
+final class CharacterRepositoryImpl implements CharacterRepository {
   final FirebaseProvider _firebaseProvider;
 
-  CharacterRepositoryImpl({
+  const CharacterRepositoryImpl({
     required FirebaseProvider firebaseProvider,
   }) : _firebaseProvider = firebaseProvider;
 

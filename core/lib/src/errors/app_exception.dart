@@ -45,7 +45,7 @@ final class AppException implements Exception {
             LocaleKeys.errors_channelCreationFailed.tr(),
           FirebaseCodeErrorMessage.permissionDenied =>
             LocaleKeys.errors_notificationPermissionDenied.tr(),
-          _ => LocaleKeys.errors_unknown,
+          _ => LocaleKeys.errors_unknown.tr(),
         },
       AppExceptionType.firestoreCodeError => switch (_message) {
           FirebaseCodeErrorMessage.permissionDenied =>
@@ -56,7 +56,7 @@ final class AppException implements Exception {
             LocaleKeys.errors_noInternet.tr(),
           FirebaseCodeErrorMessage.unavailable =>
             LocaleKeys.errors_firestoreUnavailable.tr(),
-          _ => LocaleKeys.errors_unknown,
+          _ => LocaleKeys.errors_unknown.tr(),
         },
       AppExceptionType.noSuchCharactersError =>
         LocaleKeys.errors_noSuchCharacters.tr(),

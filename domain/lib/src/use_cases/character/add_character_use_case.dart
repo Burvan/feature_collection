@@ -1,9 +1,9 @@
-import 'package:domain/domain.dart';
+part of use_cases;
 
-final class AddCharacterUseCase extends FutureUseCase<void, Character> {
+final class AddCharacterUseCase implements FutureUseCase<void, Character> {
   final CharacterRepository _characterRepository;
 
-  AddCharacterUseCase({
+  const AddCharacterUseCase({
     required CharacterRepository characterRepository,
   }) : _characterRepository = characterRepository;
 

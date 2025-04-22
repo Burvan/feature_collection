@@ -1,3 +1,5 @@
+part of models;
+
 final class SignInPayload {
   final String email;
   final String password;

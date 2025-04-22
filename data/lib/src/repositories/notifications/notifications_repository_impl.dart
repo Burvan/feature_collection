@@ -1,9 +1,6 @@
-import 'dart:io';
-import 'package:core/core.dart';
-import 'package:domain/domain.dart';
-import 'package:flutter/services.dart';
+part of repositories;
 
-class NotificationsRepositoryImpl implements NotificationsRepository {
+final class NotificationsRepositoryImpl implements NotificationsRepository {
   static const AndroidNotificationChannel _androidChannel =
       AndroidNotificationChannel(
     AppConstants.channelId,

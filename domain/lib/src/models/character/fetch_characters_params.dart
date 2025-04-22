@@ -1,3 +1,5 @@
+part of models;
+
 final class FetchCharactersParams {
   final int limit;
   final String? paginationCursor;

@@ -1,3 +1,5 @@
+part of models;
+
 final class Character {
   final int id;
   final String name;

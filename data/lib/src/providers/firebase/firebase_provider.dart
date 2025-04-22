@@ -1,8 +1,6 @@
-import 'package:core/core.dart';
-import 'package:data/data.dart';
-import 'package:domain/domain.dart';
+part of providers;
 
-class FirebaseProvider {
+final class FirebaseProvider {
   final FirebaseFirestore _firebaseFirestore;
 
   const FirebaseProvider({
