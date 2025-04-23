@@ -12,15 +12,15 @@ final class FirebaseProvider {
   ) async {
     try {
       Query<Map<String, dynamic>> queryRef = _firebaseFirestore
-          .collection(AppConstants.characterCollection)
-          .orderBy(AppConstants.name)
+          .collection(DataConstants.characterCollection)
+          .orderBy(DataConstants.name)
           .limit(params.limit);
 
       if (params.paginationCursor != null) {
         final DocumentSnapshot<Map<String, dynamic>> lastDoc =
             await _firebaseFirestore
                 .doc(
-                  '${AppConstants.characterCollection}/${params.paginationCursor}',
+                  '${DataConstants.characterCollection}/${params.paginationCursor}',
                 )
                 .get();
         queryRef = queryRef.startAfterDocument(lastDoc);
@@ -28,8 +28,8 @@ final class FirebaseProvider {
 
       if (params.query != null) {
         queryRef = queryRef
-            .where(AppConstants.name, isGreaterThanOrEqualTo: params.query)
-            .where(AppConstants.name, isLessThan: '${params.query}z');
+            .where(DataConstants.name, isGreaterThanOrEqualTo: params.query)
+            .where(DataConstants.name, isLessThan: '${params.query}z');
       }
 
       final QuerySnapshot<Map<String, dynamic>> snapshot = await queryRef.get();
@@ -41,12 +41,11 @@ final class FirebaseProvider {
       return snapshot.docs
           .map((QueryDocumentSnapshot<Map<String, dynamic>> doc) {
         final Map<String, dynamic> data = doc.data();
-        if (!data.containsKey(AppConstants.idKey)) {
-          data[AppConstants.idKey] = int.parse(doc.id);
+        if (!data.containsKey(DataConstants.idKey)) {
+          data[DataConstants.idKey] = int.parse(doc.id);
         }
         return CharacterEntity.fromJson(data);
       }).toList();
-
     } on FirebaseException catch (e) {
       throw AppException(
         type: AppExceptionType.firestoreCodeError,
@@ -62,9 +61,8 @@ final class FirebaseProvider {
   Future<void> addCharacter(CharacterEntity entity) async {
     try {
       await _firebaseFirestore
-          .collection(AppConstants.characterCollection)
+          .collection(DataConstants.characterCollection)
           .add(entity.toJson());
-
     } on FirebaseException catch (e) {
       throw AppException(
         type: AppExceptionType.firestoreCodeError,

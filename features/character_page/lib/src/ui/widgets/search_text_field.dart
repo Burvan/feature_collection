@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class SearchField extends StatelessWidget {
   final TextEditingController controller;
   final ValueChanged<String> onSubmitted;
+  final ValueChanged<String> onChanged;
   final FocusNode focusNode;
   final VoidCallback onPressed;
   final VoidCallback onClear;
@@ -13,6 +14,7 @@ class SearchField extends StatelessWidget {
     super.key,
     required this.controller,
     required this.onSubmitted,
+    required this.onChanged,
     required this.focusNode,
     required this.onPressed,
     required this.onClear,
@@ -21,27 +23,25 @@ class SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(AppPadding.padding20),
+      padding: const EdgeInsets.all(20),
       child: TextField(
         controller: controller,
         focusNode: focusNode,
         textCapitalization: TextCapitalization.sentences,
         decoration: InputDecoration(
-          contentPadding: const EdgeInsets.only(left: AppPadding.padding20),
+          contentPadding: const EdgeInsets.only(left: 20),
           label: Text(LocaleKeys.character_search.watchTr(context)),
           border: OutlineInputBorder(
             borderSide: const BorderSide(
               color: AppColors.lightGrey,
-              width: AppSize.size2,
+              width: 2,
             ),
-            borderRadius: BorderRadius.circular(
-              AppBorderRadius.borderRadius30,
-            ),
+            borderRadius: BorderRadius.circular(30),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(
               color: AppColors.black,
-              width: AppSize.size2,
+              width: 2,
             ),
             borderRadius: BorderRadius.circular(
               AppBorderRadius.borderRadius30,
@@ -81,6 +81,7 @@ class SearchField extends StatelessWidget {
           ),
         ),
         onSubmitted: onSubmitted,
+        onChanged: onChanged,
       ),
     );
   }

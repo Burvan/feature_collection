@@ -17,19 +17,19 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
   })  : _fetchCharactersUseCase = fetchCharactersUseCase,
         _addCharacterUseCase = addCharacterUseCase,
         _appRouter = appRouter,
-        super(const CharacterState.empty()) {
-    on<InitEvent>(_onInit);
-    on<FetchCharactersEvent>(_onFetchCharacters);
-    on<SearchCharactersEvent>(_onSearchCharacters);
-    on<AddCharacterEvent>(_onAddCharacter);
-    on<ResetSearchEvent>(_onResetSearch);
-    on<NavigateToPreviousScreenEvent>(_onNavigateToPreviousScreen);
+        super(const CharacterState.initial()) {
+    on<Init>(_onInit);
+    on<LoadMore>(_onLoadMore);
+    on<SearchCharacters>(_onSearchCharacters);
+    on<AddCharacter>(_onAddCharacter);
+    on<ResetSearch>(_onResetSearch);
+    on<NavigateToPreviousScreen>(_onNavigateToPreviousScreen);
 
-    add(const InitEvent());
+    add(const Init());
   }
 
   Future<void> _onInit(
-    InitEvent event,
+    Init event,
     Emitter<CharacterState> emit,
   ) async {
     emit(
@@ -42,13 +42,12 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
 
     try {
       final List<Character> characters = await _fetchCharactersUseCase.execute(
-        FetchCharactersParams(query: state.query),
+        FetchCharactersParams.initial(query: state.query),
       );
 
       emit(
         state.copyWith(
           characters: characters,
-          isLoading: false,
           paginationCursor:
               characters.isNotEmpty ? characters.last.id.toString() : null,
         ),
@@ -56,7 +55,6 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     } on AppException catch (e) {
       emit(
         state.copyWith(
-          isLoading: false,
           errorMessage: e.toLocalizedText(),
           characters: e.type == AppExceptionType.noSuchCharactersError
               ? const <Character>[]
@@ -67,17 +65,18 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     } catch (e) {
       emit(
         state.copyWith(
-          isLoading: false,
           errorMessage: AppException.unknown(
             message: e.toString(),
           ).toLocalizedText(),
         ),
       );
+    } finally {
+      emit(state.copyWith(isLoading: false));
     }
   }
 
-  Future<void> _onFetchCharacters(
-    FetchCharactersEvent event,
+  Future<void> _onLoadMore(
+    LoadMore event,
     Emitter<CharacterState> emit,
   ) async {
     if (state.isEndOfList || state.isLoading) return;
@@ -86,7 +85,7 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     try {
       final List<Character> newCharacters =
           await _fetchCharactersUseCase.execute(
-        FetchCharactersParams(
+        FetchCharactersParams.initial(
           query: state.query,
           paginationCursor: state.paginationCursor,
         ),
@@ -96,7 +95,6 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
         state.copyWith(
           characters: List<Character>.of(state.characters)
             ..addAll(newCharacters),
-          isLoading: false,
           isEndOfList: newCharacters.isEmpty,
           paginationCursor: newCharacters.isNotEmpty
               ? newCharacters.last.id.toString()
@@ -106,7 +104,6 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     } on AppException catch (e) {
       emit(
         state.copyWith(
-          isLoading: false,
           errorMessage: e.toLocalizedText(),
           isEndOfList: e.type == AppExceptionType.noSuchCharactersError,
         ),
@@ -114,17 +111,18 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     } catch (e) {
       emit(
         state.copyWith(
-          isLoading: false,
           errorMessage: AppException.unknown(
             message: e.toString(),
           ).toLocalizedText(),
         ),
       );
+    } finally {
+      emit(state.copyWith(isLoading: false));
     }
   }
 
   Future<void> _onSearchCharacters(
-    SearchCharactersEvent event,
+    SearchCharacters event,
     Emitter<CharacterState> emit,
   ) async {
     if (event.query == state.query) return;
@@ -138,18 +136,18 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
       ),
     );
 
-    add(const InitEvent());
+    add(const Init());
   }
 
   Future<void> _onResetSearch(
-    ResetSearchEvent event,
+    ResetSearch event,
     Emitter<CharacterState> emit,
   ) async {
-    emit(const CharacterState.empty());
+    emit(const CharacterState.initial());
   }
 
   Future<void> _onAddCharacter(
-    AddCharacterEvent event,
+    AddCharacter event,
     Emitter<CharacterState> emit,
   ) async {
     emit(state.copyWith(isLoading: true));
@@ -158,31 +156,30 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
       await _addCharacterUseCase.execute(event.character);
       emit(
         state.copyWith(
-          isLoading: false,
           characters: <Character>[event.character, ...state.characters],
         ),
       );
     } on AppException catch (e) {
       emit(
         state.copyWith(
-          isLoading: false,
           errorMessage: e.toLocalizedText(),
         ),
       );
     } catch (e) {
       emit(
         state.copyWith(
-          isLoading: false,
           errorMessage: AppException.unknown(
             message: e.toString(),
           ).toLocalizedText(),
         ),
       );
+    } finally {
+      emit(state.copyWith(isLoading: false));
     }
   }
 
   Future<void> _onNavigateToPreviousScreen(
-    NavigateToPreviousScreenEvent event,
+    NavigateToPreviousScreen event,
     Emitter<CharacterState> emit,
   ) async {
     await _appRouter.maybePop();

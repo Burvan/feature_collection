@@ -117,7 +117,7 @@ final class Validators {
     return null;
   }
 
-  static String? newCharacterValidator(
+  static String? notEmptyValidator(
       String? value,
       BuildContext context,
       ) {

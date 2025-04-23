@@ -14,35 +14,40 @@ abstract class DataModule {
   AuthProvider authProvider(
     FirebaseAuth firebaseAuth,
     FirebaseFirestore firebaseFirestore,
-  ) =>
-      AuthProvider(
-        firebaseAuth: firebaseAuth,
-        firebaseFirestore: firebaseFirestore,
-      );
+  ) {
+    return AuthProvider(
+      firebaseAuth: firebaseAuth,
+      firebaseFirestore: firebaseFirestore,
+    );
+  }
 
   @lazySingleton
   FirebaseProvider firebaseProvider(
-      FirebaseFirestore firebaseFirestore,
-      ) =>
-      FirebaseProvider(firebaseFirestore: firebaseFirestore);
+    FirebaseFirestore firebaseFirestore,
+  ) {
+    return FirebaseProvider(firebaseFirestore: firebaseFirestore);
+  }
 
   @lazySingleton
   AuthRepository authRepository(
     AuthProvider authProvider,
-  ) =>
-      AuthRepositoryImpl(
-        authProvider: authProvider,
-      );
+  ) {
+    return AuthRepositoryImpl(
+      authProvider: authProvider,
+    );
+  }
 
   @singleton
-  NotificationsRepository notificationsRepository() =>
-      NotificationsRepositoryImpl();
+  NotificationsRepository notificationsRepository() {
+    return NotificationsRepositoryImpl();
+  }
 
   @lazySingleton
   CharacterRepository characterRepository(
-      FirebaseProvider firebaseProvider,
-      ) =>
-      CharacterRepositoryImpl(
-        firebaseProvider: firebaseProvider,
-      );
+    FirebaseProvider firebaseProvider,
+  ) {
+    return CharacterRepositoryImpl(
+      firebaseProvider: firebaseProvider,
+    );
+  }
 }

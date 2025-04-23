@@ -17,7 +17,7 @@ class CharacterState extends Equatable {
     this.paginationCursor,
   });
 
-  const CharacterState.empty()
+  const CharacterState.initial()
       : characters = const <Character>[],
         isLoading = false,
         isEndOfList = false,

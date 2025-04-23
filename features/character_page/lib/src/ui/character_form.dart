@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:character_page/src/bloc/character_bloc.dart';
 import 'package:character_page/src/ui/widgets/add_character_dialog.dart';
 import 'package:character_page/src/ui/widgets/search_text_field.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:domain/src/models/models.dart';
 import 'package:flutter/material.dart';
 
 class CharacterForm extends StatefulWidget {
@@ -16,11 +19,12 @@ class _CharacterFormState extends State<CharacterForm> {
   final ScrollController _scrollController = ScrollController();
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _searchFocusNode = FocusNode();
+  Timer? _debounce;
 
   @override
   void initState() {
-    _scrollController.addListener(_onScroll);
     super.initState();
+    _scrollController.addListener(_onScroll);
   }
 
   @override
@@ -42,7 +46,7 @@ class _CharacterFormState extends State<CharacterForm> {
   void _onScroll() {
     if (_isBottom) {
       context.read<CharacterBloc>().add(
-            const FetchCharactersEvent(),
+            const LoadMore(),
           );
     }
   }
@@ -71,15 +75,15 @@ class _CharacterFormState extends State<CharacterForm> {
                     SearchField(
                       controller: _searchController,
                       onClear: () {
-                        bloc.add(const ResetSearchEvent());
-                        bloc.add(const InitEvent());
+                        bloc.add(const ResetSearch());
+                        bloc.add(const Init());
                       },
                       onSubmitted: (String query) {
                         query = _searchController.text;
 
                         if (query.isNotEmpty) {
                           bloc.add(
-                            SearchCharactersEvent(query: query),
+                            SearchCharacters(query: query),
                           );
                         }
                       },
@@ -89,13 +93,25 @@ class _CharacterFormState extends State<CharacterForm> {
 
                         if (query.isNotEmpty) {
                           bloc.add(
-                            SearchCharactersEvent(query: query),
+                            SearchCharacters(query: query),
                           );
                         }
                       },
+                      onChanged: (String query) {
+                        if (_debounce?.isActive ?? false) _debounce!.cancel();
+                        _debounce = Timer(
+                          const Duration(milliseconds: 300),
+                          () {
+                            if (query.isNotEmpty) {
+                              bloc.add(SearchCharacters(query: query));
+                            }
+                          },
+                        );
+                      },
                     ),
                     Expanded(
-                      child: (state.errorMessage != null && state.characters.isEmpty)
+                      child: (state.errorMessage != null &&
+                              state.characters.isEmpty)
                           ? Center(
                               child: Text(
                                 state.errorMessage!,
@@ -133,7 +149,17 @@ class _CharacterFormState extends State<CharacterForm> {
         onPressed: () {
           showDialog(
             context: context,
-            builder: (BuildContext context) => AddCharacterDialog(bloc: bloc),
+            builder: (BuildContext context) => AddCharacterDialog(
+              onCancel: () => bloc.add(const NavigateToPreviousScreen()),
+              onAdd: (Character character) {
+                bloc.add(
+                  AddCharacter(character: character),
+                );
+              },
+              addButtonChild: bloc.state.isLoading
+                  ? const CircularProgressIndicator()
+                  : Text(LocaleKeys.character_add.watchTr(context)),
+            ),
           );
         },
         child: const Icon(Icons.add),

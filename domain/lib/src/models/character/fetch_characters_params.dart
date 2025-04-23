@@ -6,8 +6,13 @@ final class FetchCharactersParams {
   final String? query;
 
   const FetchCharactersParams({
-    this.limit = 10,
+    required this.limit,
     this.paginationCursor,
     this.query,
   });
+
+  const FetchCharactersParams.initial({
+    this.paginationCursor,
+    this.query,
+  }) : limit = 10;
 }

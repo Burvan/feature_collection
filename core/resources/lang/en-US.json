@@ -32,6 +32,7 @@
     "add": "Add",
     "alive": "Alive",
     "dead": "Dead",
+    "unknown": "Unknown",
     "notHogwartsStudent": "Not a Hogwarts student"
   },
   "errors": {

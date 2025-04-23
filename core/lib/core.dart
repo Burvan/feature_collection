@@ -19,7 +19,7 @@ export 'src/constants/app_constants.dart';
 export 'src/di/app_di.dart';
 export 'src/enums/app_features.dart';
 export 'src/errors/app_exception.dart';
-export 'src/extensions/locale_extension.dart';
+export 'src/extensions/extensions.dart';
 export 'src/firebase_options/firebase_options.dart';
 export 'src/local_logging/app_logger.dart';
 export 'src/localization/localization.dart';

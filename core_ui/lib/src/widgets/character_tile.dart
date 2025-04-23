@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
@@ -13,6 +14,8 @@ class CharacterTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.sizeOf(context);
+
     return Padding(
       padding: const EdgeInsets.all(AppPadding.padding10),
       child: Container(
@@ -30,7 +33,12 @@ class CharacterTile extends StatelessWidget {
         ),
         child: Row(
           children: <Widget>[
-            CharacterImage(imagePath: character.imagePath),
+            CachedNetworkImage(
+              imageUrl: character.imagePath,
+              fit: BoxFit.cover,
+              height: size.height / 5,
+              width: size.width / 3,
+            ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(left: AppPadding.padding10),
@@ -45,18 +53,12 @@ class CharacterTile extends StatelessWidget {
                       children: <Widget>[
                         Icon(
                           Icons.circle,
-                          size: AppSize.size10,
-                          color: character.status ==
-                                  LocaleKeys.character_alive.watchTr(context)
-                              ? AppColors.green
-                              : (character.status ==
-                                      LocaleKeys.character_dead.watchTr(context)
-                                  ? AppColors.red
-                                  : AppColors.black),
+                          size: 10,
+                          color: character.status.color,
                         ),
-                        const SizedBox(width: AppSize.size2),
+                        const SizedBox(width: 2),
                         Text(
-                          character.status,
+                          character.status.localized(context),
                           style: AppTextTheme.font18Bold,
                         ),
                       ],

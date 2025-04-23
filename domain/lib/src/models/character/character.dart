@@ -6,14 +6,14 @@ final class Character {
   final String description;
   final String imagePath;
   final String? house;
-  final String status;
+  final Status status;
 
   const Character({
     required this.id,
     required this.name,
     required this.description,
     required this.imagePath,
-    this.house,
     required this.status,
+    this.house,
   });
 }

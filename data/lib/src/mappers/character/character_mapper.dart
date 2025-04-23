@@ -9,7 +9,10 @@ class CharacterMapper extends Mapper<CharacterEntity, domain.Character> {
       description: entity.description,
       imagePath: entity.imagePath,
       house: entity.house,
-      status: entity.status,
+      status: domain.Status.values.firstWhere(
+        (domain.Status status) => status.name == entity.status,
+        orElse: () => domain.Status.unknown,
+      ),
     );
   }
 
@@ -21,7 +24,7 @@ class CharacterMapper extends Mapper<CharacterEntity, domain.Character> {
       description: item.description,
       imagePath: item.imagePath,
       house: item.house,
-      status: item.status,
+      status: item.status.name,
     );
   }
 }

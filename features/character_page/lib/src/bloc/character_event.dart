@@ -4,30 +4,30 @@ abstract class CharacterEvent {
   const CharacterEvent();
 }
 
-class InitEvent extends CharacterEvent {
-  const InitEvent();
+class Init extends CharacterEvent {
+  const Init();
 }
 
-class FetchCharactersEvent extends CharacterEvent {
-  const FetchCharactersEvent();
+class LoadMore extends CharacterEvent {
+  const LoadMore();
 }
 
-class SearchCharactersEvent extends CharacterEvent {
+class SearchCharacters extends CharacterEvent {
   final String query;
 
-  const SearchCharactersEvent({required this.query});
+  const SearchCharacters({required this.query});
 }
 
-class ResetSearchEvent extends CharacterEvent {
-  const ResetSearchEvent();
+class ResetSearch extends CharacterEvent {
+  const ResetSearch();
 }
 
-class AddCharacterEvent extends CharacterEvent {
+class AddCharacter extends CharacterEvent {
   final Character character;
 
-  const AddCharacterEvent({required this.character});
+  const AddCharacter({required this.character});
 }
 
-class NavigateToPreviousScreenEvent extends CharacterEvent {
-  const NavigateToPreviousScreenEvent();
+class NavigateToPreviousScreen extends CharacterEvent {
+  const NavigateToPreviousScreen();
 }

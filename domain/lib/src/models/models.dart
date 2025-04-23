@@ -9,3 +9,4 @@ part 'auth/user.dart';
 
 part 'character/character.dart';
 part 'character/fetch_characters_params.dart';
+part 'character/status.dart';

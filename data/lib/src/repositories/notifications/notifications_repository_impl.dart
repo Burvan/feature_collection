@@ -3,15 +3,15 @@ part of repositories;
 final class NotificationsRepositoryImpl implements NotificationsRepository {
   static const AndroidNotificationChannel _androidChannel =
       AndroidNotificationChannel(
-    AppConstants.channelId,
-    AppConstants.channelName,
-    description: AppConstants.channelDescription,
+    DataConstants.channelId,
+    DataConstants.channelName,
+    description: DataConstants.channelDescription,
     importance: Importance.max,
     playSound: true,
   );
 
   final AndroidInitializationSettings _androidSettings =
-      const AndroidInitializationSettings(AppConstants.launcherIcon);
+      const AndroidInitializationSettings(DataConstants.launcherIcon);
 
   FirebaseMessaging? _fcm;
   FlutterLocalNotificationsPlugin? _flutterLocalNotificationsPlugin;
@@ -88,7 +88,7 @@ final class NotificationsRepositoryImpl implements NotificationsRepository {
   Future<void> deactivateToken() async {
     assert(
       _fcm != null,
-      AppConstants.fcmNotInitializedError,
+      DataConstants.fcmNotInitializedError,
     );
 
     if (!await _isFCMSupported) return;
@@ -101,7 +101,7 @@ final class NotificationsRepositoryImpl implements NotificationsRepository {
   Future<String?> getFcmToken() async {
     assert(
       _fcm != null,
-      AppConstants.fcmNotInitializedError,
+      DataConstants.fcmNotInitializedError,
     );
 
     if (!await _isFCMSupported) return null;
@@ -124,7 +124,7 @@ final class NotificationsRepositoryImpl implements NotificationsRepository {
           channelDescription: _androidChannel.description,
           importance: _androidChannel.importance,
           playSound: _androidChannel.playSound,
-          icon: AppConstants.launcherIcon,
+          icon: DataConstants.launcherIcon,
         ),
       ),
     );
