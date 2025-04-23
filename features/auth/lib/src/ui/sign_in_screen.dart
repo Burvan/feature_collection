@@ -10,13 +10,13 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MediaQueryData mediaQuery = MediaQuery.of(context);
+    final Size size = MediaQuery.sizeOf(context);
 
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          height: mediaQuery.size.height,
-          width: mediaQuery.size.width,
+          height: size.height,
+          width: size.width,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
@@ -33,13 +33,13 @@ class SignInScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               SizedBox(
-                height: mediaQuery.size.height * AppScale.scaleZero2,
+                height: size.height / 5,
               ),
               Text(
                 LocaleKeys.auth_featureCollection.watchTr(context),
                 style: AppTextTheme.font25Bold.copyWith(color: AppColors.white),
               ),
-              const SizedBox(height: AppSize.size25),
+              const SizedBox(height: 25),
               const SignInForm(),
             ],
           ),

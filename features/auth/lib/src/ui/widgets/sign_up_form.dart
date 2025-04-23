@@ -16,26 +16,26 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
-    final MediaQueryData mediaQuery = MediaQuery.of(context);
+    final Size size = MediaQuery.sizeOf(context);
     final AsyncValue<AuthState> authState = ref.watch(authControllerProvider);
 
     return Container(
-      width: mediaQuery.size.width / AppScale.scaleOne2,
+      width: size.width / 1.2,
       decoration: BoxDecoration(
         color: AppColors.white,
-        borderRadius: BorderRadius.circular(AppBorderRadius.borderRadius12),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            const SizedBox(height: AppSize.size10),
+            const SizedBox(height: 10),
             Text(
               LocaleKeys.auth_pleaseSignUp.watchTr(context),
               style: AppTextTheme.font20.copyWith(color: AppColors.lightGrey),
             ),
             Padding(
-              padding: const EdgeInsets.all(AppPadding.padding10),
+              padding: const EdgeInsets.all(10),
               child: Form(
                 key: _formKey,
                 child: const SignUpFormFields(),
@@ -46,7 +46,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
               error: (Object error, StackTrace stackTrace) => Column(
                 children: <Widget>[
                   _buildAuthButton(),
-                  const SizedBox(height: AppSize.size10),
+                  const SizedBox(height: 10),
                   Text(
                     (error as AppException).toLocalizedText(),
                     style: AppTextTheme.font16.copyWith(color: AppColors.red),

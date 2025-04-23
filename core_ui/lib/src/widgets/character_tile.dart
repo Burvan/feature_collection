@@ -17,15 +17,15 @@ class CharacterTile extends StatelessWidget {
     final Size size = MediaQuery.sizeOf(context);
 
     return Padding(
-      padding: const EdgeInsets.all(AppPadding.padding10),
+      padding: const EdgeInsets.all(10),
       child: Container(
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(AppBorderRadius.borderRadius18),
+          borderRadius: BorderRadius.circular(18),
           color: AppColors.lightGrey,
           boxShadow: const <BoxShadow>[
             BoxShadow(
-              blurRadius: AppBorderRadius.borderRadius12,
+              blurRadius: 12,
               color: AppColors.black,
               offset: Offset(0, 2),
             ),
@@ -41,7 +41,7 @@ class CharacterTile extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.only(left: AppPadding.padding10),
+                padding: const EdgeInsets.only(left: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[

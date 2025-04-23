@@ -43,7 +43,7 @@ class _GenderSelectorState extends ConsumerState<GenderSelector> {
               child: Row(
                 children: <Widget>[
                   Icon(gender.icon),
-                  const SizedBox(width: AppSize.size10),
+                  const SizedBox(width: 10),
                   Text(gender.label),
                 ],
               ),
@@ -68,7 +68,7 @@ class _GenderSelectorState extends ConsumerState<GenderSelector> {
           ),
         ),
         if (formState.showCustomGenderField) ...<Widget>[
-          const SizedBox(height: AppSize.size25),
+          const SizedBox(height: 25),
           CustomTextField(
             controller: _customGenderController,
             labelText: LocaleKeys.auth_gender.watchTr(context),

@@ -16,17 +16,17 @@ class _SignInFormState extends ConsumerState<SignInForm> {
 
   @override
   Widget build(BuildContext context) {
-    final MediaQueryData mediaQuery = MediaQuery.of(context);
+    final Size size = MediaQuery.sizeOf(context);
     final AsyncValue<AuthState> authState = ref.watch(authControllerProvider);
 
     return Container(
-      width: mediaQuery.size.width / AppScale.scaleOne2,
+      width: size.width / 1.2,
       decoration: BoxDecoration(
         color: AppColors.white,
-        borderRadius: BorderRadius.circular(AppBorderRadius.borderRadius12),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(AppPadding.padding10),
+        padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -47,7 +47,7 @@ class _SignInFormState extends ConsumerState<SignInForm> {
               error: (Object error, StackTrace stackTrace) => Column(
                 children: <Widget>[
                   _buildAuthButton(),
-                  const SizedBox(height: AppSize.size10),
+                  const SizedBox(height: 10),
                   Text(
                     (error as AppException).toLocalizedText(),
                     style: AppTextTheme.font16.copyWith(color: AppColors.red),

@@ -10,11 +10,11 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MediaQueryData mediaQuery = MediaQuery.of(context);
+    final Size size = MediaQuery.sizeOf(context);
 
     return Scaffold(
       body: Container(
-        width: mediaQuery.size.height,
+        width: size.height,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
@@ -31,17 +31,17 @@ class SignUpScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SizedBox(
-              height: mediaQuery.size.height * AppScale.scaleZero2,
+              height: size.height / 5,
             ),
             Text(
               LocaleKeys.auth_featureCollection.watchTr(context),
               style: AppTextTheme.font25Bold.copyWith(color: AppColors.white),
             ),
-            const SizedBox(height: AppSize.size25),
+            const SizedBox(height: 25),
             const Expanded(
               child: SignUpForm(),
             ),
-            const SizedBox(height: AppSize.size25),
+            const SizedBox(height: 25),
           ],
         ),
       ),

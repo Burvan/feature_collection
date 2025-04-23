@@ -43,9 +43,7 @@ class SearchField extends StatelessWidget {
               color: AppColors.black,
               width: 2,
             ),
-            borderRadius: BorderRadius.circular(
-              AppBorderRadius.borderRadius30,
-            ),
+            borderRadius: BorderRadius.circular(30),
           ),
           suffixIcon: ValueListenableBuilder<TextEditingValue>(
             valueListenable: controller,

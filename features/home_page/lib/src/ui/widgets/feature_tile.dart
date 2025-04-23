@@ -14,18 +14,18 @@ class FeatureTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(AppPadding.padding10),
+      padding: const EdgeInsets.all(10),
       child: Material(
         color: AppColors.transparent,
         child: InkWell(
-          borderRadius: BorderRadius.circular(AppBorderRadius.borderRadius12),
+          borderRadius: BorderRadius.circular(12),
           onTap: onTap,
           child: Ink(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppBorderRadius.borderRadius12),
+              borderRadius: BorderRadius.circular(12),
               color: AppColors.gentlyPink,
             ),
-            padding: const EdgeInsets.all(AppPadding.padding10),
+            padding: const EdgeInsets.all(10),
             child: Text(
               featureName,
               textAlign: TextAlign.center,
