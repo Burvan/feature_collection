@@ -11,13 +11,18 @@ abstract class DataModule {
   FirebaseFirestore get firebaseFirestore => FirebaseFirestore.instance;
 
   @lazySingleton
+  ErrorHandler get errorHandler => ErrorHandler();
+
+  @lazySingleton
   AuthProvider authProvider(
     FirebaseAuth firebaseAuth,
     FirebaseFirestore firebaseFirestore,
+    ErrorHandler errorHandler,
   ) {
     return AuthProvider(
       firebaseAuth: firebaseAuth,
       firebaseFirestore: firebaseFirestore,
+      errorHandler: errorHandler,
     );
   }
 
@@ -25,7 +30,10 @@ abstract class DataModule {
   FirebaseProvider firebaseProvider(
     FirebaseFirestore firebaseFirestore,
   ) {
-    return FirebaseProvider(firebaseFirestore: firebaseFirestore);
+    return FirebaseProvider(
+      firebaseFirestore: firebaseFirestore,
+      errorHandler: errorHandler,
+    );
   }
 
   @lazySingleton

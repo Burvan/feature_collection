@@ -110,11 +110,11 @@ class _CharacterFormState extends State<CharacterForm> {
                       },
                     ),
                     Expanded(
-                      child: (state.errorMessage != null &&
+                      child: (state.hasException &&
                               state.characters.isEmpty)
                           ? Center(
                               child: Text(
-                                state.errorMessage!,
+                                state.exception!.toLocalizedText(),
                                 style: AppTextTheme.font20Bold,
                                 textAlign: TextAlign.center,
                               ),

@@ -35,7 +35,7 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     emit(
       state.copyWith(
         isLoading: true,
-        errorMessage: null,
+        exception: () => null,
         characters: const <Character>[],
       ),
     );
@@ -48,26 +48,15 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
       emit(
         state.copyWith(
           characters: characters,
-          paginationCursor:
+          paginationCursor: () =>
               characters.isNotEmpty ? characters.last.id.toString() : null,
         ),
       );
     } on AppException catch (e) {
       emit(
         state.copyWith(
-          errorMessage: e.toLocalizedText(),
-          characters: e.type == AppExceptionType.noSuchCharactersError
-              ? const <Character>[]
-              : state.characters,
-          isEndOfList: e.type == AppExceptionType.noSuchCharactersError,
-        ),
-      );
-    } catch (e) {
-      emit(
-        state.copyWith(
-          errorMessage: AppException.unknown(
-            message: e.toString(),
-          ).toLocalizedText(),
+          exception: () => e,
+          characters: const <Character>[],
         ),
       );
     } finally {
@@ -96,7 +85,7 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
           characters: List<Character>.of(state.characters)
             ..addAll(newCharacters),
           isEndOfList: newCharacters.isEmpty,
-          paginationCursor: newCharacters.isNotEmpty
+          paginationCursor: () => newCharacters.isNotEmpty
               ? newCharacters.last.id.toString()
               : null,
         ),
@@ -104,16 +93,7 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     } on AppException catch (e) {
       emit(
         state.copyWith(
-          errorMessage: e.toLocalizedText(),
-          isEndOfList: e.type == AppExceptionType.noSuchCharactersError,
-        ),
-      );
-    } catch (e) {
-      emit(
-        state.copyWith(
-          errorMessage: AppException.unknown(
-            message: e.toString(),
-          ).toLocalizedText(),
+          exception: () => e,
         ),
       );
     } finally {
@@ -129,9 +109,9 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
 
     emit(
       state.copyWith(
-        query: event.query,
-        paginationCursor: null,
-        errorMessage: null,
+        query: () => event.query,
+        paginationCursor: () => null,
+        exception: () => null,
         isEndOfList: false,
       ),
     );
@@ -162,15 +142,7 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     } on AppException catch (e) {
       emit(
         state.copyWith(
-          errorMessage: e.toLocalizedText(),
-        ),
-      );
-    } catch (e) {
-      emit(
-        state.copyWith(
-          errorMessage: AppException.unknown(
-            message: e.toString(),
-          ).toLocalizedText(),
+          exception: () => e,
         ),
       );
     } finally {

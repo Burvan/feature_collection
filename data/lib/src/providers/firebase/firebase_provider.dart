@@ -2,10 +2,13 @@ part of providers;
 
 final class FirebaseProvider {
   final FirebaseFirestore _firebaseFirestore;
+  final ErrorHandler _errorHandler;
 
   const FirebaseProvider({
     required FirebaseFirestore firebaseFirestore,
-  }) : _firebaseFirestore = firebaseFirestore;
+    required ErrorHandler errorHandler,
+  })  : _firebaseFirestore = firebaseFirestore,
+        _errorHandler = errorHandler;
 
   Future<List<CharacterEntity>> fetchCharacters(
     FetchCharactersParams params,
@@ -46,15 +49,8 @@ final class FirebaseProvider {
         }
         return CharacterEntity.fromJson(data);
       }).toList();
-    } on FirebaseException catch (e) {
-      throw AppException(
-        type: AppExceptionType.firestoreCodeError,
-        message: e.code,
-      );
-    } on AppException catch (e) {
-      rethrow;
     } catch (e) {
-      throw AppException.unknown(message: e.toString());
+      throw _errorHandler.handleError(e);
     }
   }
 
@@ -63,13 +59,8 @@ final class FirebaseProvider {
       await _firebaseFirestore
           .collection(DataConstants.characterCollection)
           .add(entity.toJson());
-    } on FirebaseException catch (e) {
-      throw AppException(
-        type: AppExceptionType.firestoreCodeError,
-        message: e.code,
-      );
     } catch (e) {
-      throw AppException.unknown(message: e.toString());
+      throw _errorHandler.handleError(e);
     }
   }
 }

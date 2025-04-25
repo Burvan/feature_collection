@@ -34,8 +34,6 @@ final class AppException implements Exception {
             LocaleKeys.errors_invalidEmail.tr(),
           FirebaseCodeErrorMessage.wrongPassword =>
             LocaleKeys.errors_wrongPassword.tr(),
-          FirebaseCodeErrorMessage.networkFailed =>
-            LocaleKeys.errors_noInternet.tr(),
           FirebaseCodeErrorMessage.userNotFound =>
             LocaleKeys.errors_noSuchUser.tr(),
           _ => LocaleKeys.errors_unknown.tr(),
@@ -43,21 +41,17 @@ final class AppException implements Exception {
       AppExceptionType.notificationError => switch (_message) {
           FirebaseCodeErrorMessage.channelCreationFailed =>
             LocaleKeys.errors_channelCreationFailed.tr(),
-          FirebaseCodeErrorMessage.permissionDenied =>
-            LocaleKeys.errors_notificationPermissionDenied.tr(),
           _ => LocaleKeys.errors_unknown.tr(),
         },
       AppExceptionType.firestoreCodeError => switch (_message) {
-          FirebaseCodeErrorMessage.permissionDenied =>
-            LocaleKeys.errors_firestorePermissionDenied.tr(),
           FirebaseCodeErrorMessage.documentNotFound =>
             LocaleKeys.errors_documentNotFound.tr(),
-          FirebaseCodeErrorMessage.networkFailed =>
-            LocaleKeys.errors_noInternet.tr(),
           FirebaseCodeErrorMessage.unavailable =>
             LocaleKeys.errors_firestoreUnavailable.tr(),
           _ => LocaleKeys.errors_unknown.tr(),
         },
+      AppExceptionType.networkError => LocaleKeys.errors_noInternet.tr(),
+      AppExceptionType.permissionDeniedError => LocaleKeys.errors_permissionDenied.tr(),
       AppExceptionType.noSuchCharactersError =>
         LocaleKeys.errors_noSuchCharacters.tr(),
     };
@@ -72,6 +66,8 @@ enum AppExceptionType {
   firebaseAuthCodeError,
   notificationError,
   firestoreCodeError,
+  networkError,
+  permissionDeniedError,
   noSuchCharactersError,
 }
 

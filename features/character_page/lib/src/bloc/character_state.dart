@@ -4,7 +4,7 @@ class CharacterState extends Equatable {
   final List<Character> characters;
   final bool isLoading;
   final bool isEndOfList;
-  final String? errorMessage;
+  final AppException? exception;
   final String? query;
   final String? paginationCursor;
 
@@ -12,7 +12,7 @@ class CharacterState extends Equatable {
     required this.characters,
     required this.isLoading,
     required this.isEndOfList,
-    this.errorMessage,
+    this.exception,
     this.query,
     this.paginationCursor,
   });
@@ -21,25 +21,28 @@ class CharacterState extends Equatable {
       : characters = const <Character>[],
         isLoading = false,
         isEndOfList = false,
-        errorMessage = null,
+        exception = null,
         query = null,
         paginationCursor = null;
+
+  bool get hasException => exception != null;
 
   CharacterState copyWith({
     List<Character>? characters,
     bool? isLoading,
     bool? isEndOfList,
-    String? errorMessage,
-    String? query,
-    String? paginationCursor,
+    AppException? Function()? exception,
+    String? Function()? query,
+    String? Function()? paginationCursor,
   }) {
     return CharacterState(
       characters: characters ?? this.characters,
       isLoading: isLoading ?? this.isLoading,
       isEndOfList: isEndOfList ?? this.isEndOfList,
-      errorMessage: errorMessage ?? this.errorMessage,
-      query: query ?? this.query,
-      paginationCursor: paginationCursor ?? this.paginationCursor,
+      exception: exception != null ? exception() : this.exception,
+      query: query != null ? query() : this.query,
+      paginationCursor:
+          paginationCursor != null ? paginationCursor() : this.paginationCursor,
     );
   }
 
@@ -48,7 +51,7 @@ class CharacterState extends Equatable {
         characters,
         isLoading,
         isEndOfList,
-        errorMessage,
+        exception,
         query,
         paginationCursor,
       ];

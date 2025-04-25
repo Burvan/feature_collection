@@ -44,8 +44,7 @@
     "noInternet": "No internet connection",
     "noSuchUser": "User data not found",
     "channelCreationFailed": "Notification channel creation failed",
-    "notificationPermissionDenied": "Notification permission denied",
-    "firestorePermissionDenied": "Firestore permission denied",
+    "permissionDenied": "Permission denied",
     "documentNotFound": "Document not found",
     "firestoreUnavailable": "Firestore unavailable",
     "noSuchCharacters": "No such characters"
