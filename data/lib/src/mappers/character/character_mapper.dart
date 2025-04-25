@@ -10,7 +10,7 @@ class CharacterMapper extends Mapper<CharacterEntity, domain.Character> {
       imagePath: entity.imagePath,
       house: entity.house,
       status: domain.Status.values.firstWhere(
-        (domain.Status status) => status.name == entity.status,
+        (domain.Status status) => status.name == entity.status.toLowerCase(),
         orElse: () => domain.Status.unknown,
       ),
     );
