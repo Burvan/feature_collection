@@ -28,6 +28,12 @@ class AddCharacter extends CharacterEvent {
   const AddCharacter({required this.character});
 }
 
+class SetCharacterStatus extends CharacterEvent {
+  final Status status;
+
+  SetCharacterStatus({required this.status});
+}
+
 class NavigateToPreviousScreen extends CharacterEvent {
   const NavigateToPreviousScreen();
 }

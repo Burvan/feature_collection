@@ -20,7 +20,7 @@
     "paginationFeature": "Pagination mechanism with search and adding of elements"
   },
   "character": {
-    "HPCharacters": "Harry Potter Characters",
+    "hpCharacters": "Harry Potter Characters",
     "search": "Search",
     "addNewCharacter": "Add new character",
     "name": "Name",
@@ -33,7 +33,8 @@
     "alive": "Alive",
     "dead": "Dead",
     "unknown": "Unknown",
-    "notHogwartsStudent": "Not a Hogwarts student"
+    "notHogwartsStudent": "Not a Hogwarts student",
+    "noCharacters": "No characters"
   },
   "errors": {
     "unknown": "Unknown error",
@@ -46,8 +47,7 @@
     "channelCreationFailed": "Notification channel creation failed",
     "permissionDenied": "Permission denied",
     "documentNotFound": "Document not found",
-    "firestoreUnavailable": "Firestore unavailable",
-    "noSuchCharacters": "No such characters"
+    "firestoreUnavailable": "Firestore unavailable"
   },
   "validationErrors": {
     "nameIsRequired": "Name is required",

@@ -1,32 +1,43 @@
+import 'dart:async';
+
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
-class SearchField extends StatelessWidget {
+class SearchField extends StatefulWidget {
   final TextEditingController controller;
-  final ValueChanged<String> onSubmitted;
   final ValueChanged<String> onChanged;
   final FocusNode focusNode;
-  final VoidCallback onPressed;
   final VoidCallback onClear;
 
   const SearchField({
     super.key,
     required this.controller,
-    required this.onSubmitted,
     required this.onChanged,
     required this.focusNode,
-    required this.onPressed,
     required this.onClear,
   });
+
+  @override
+  State<SearchField> createState() => _SearchFieldState();
+}
+
+class _SearchFieldState extends State<SearchField> {
+  Timer? _debounce;
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: TextField(
-        controller: controller,
-        focusNode: focusNode,
+        controller: widget.controller,
+        focusNode: widget.focusNode,
         textCapitalization: TextCapitalization.sentences,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.only(left: 20),
@@ -46,7 +57,7 @@ class SearchField extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
           ),
           suffixIcon: ValueListenableBuilder<TextEditingValue>(
-            valueListenable: controller,
+            valueListenable: widget.controller,
             builder: (
               BuildContext context,
               TextEditingValue value,
@@ -59,27 +70,28 @@ class SearchField extends StatelessWidget {
                     IconButton(
                       icon: const Icon(Icons.clear),
                       onPressed: () {
-                        controller.clear();
-                        focusNode.unfocus();
-                        onClear();
+                        widget.controller.clear();
+                        widget.focusNode.unfocus();
+                        widget.onClear();
                       },
                     ),
-                  IconButton(
-                    onPressed: () {
-                      onPressed();
-                      focusNode.unfocus();
-                    },
-                    icon: const Icon(
-                      Icons.search,
-                    ),
+                  const Padding(
+                    padding: EdgeInsets.only(right: 10.0),
+                    child: Icon(Icons.search),
                   ),
                 ],
               );
             },
           ),
         ),
-        onSubmitted: onSubmitted,
-        onChanged: onChanged,
+        onChanged: (String query) {
+          if (_debounce?.isActive ?? false) _debounce!.cancel();
+          _debounce = Timer(
+            const Duration(milliseconds: 300),
+            () => widget.onChanged(query),
+          );
+        },
+        onTapOutside: (PointerDownEvent event) => widget.focusNode.unfocus(),
       ),
     );
   }

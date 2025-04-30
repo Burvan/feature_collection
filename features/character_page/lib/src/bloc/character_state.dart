@@ -2,57 +2,72 @@ part of 'character_bloc.dart';
 
 class CharacterState extends Equatable {
   final List<Character> characters;
-  final bool isLoading;
+  final bool isPageLoading;
+  final bool isCharactersLoading;
   final bool isEndOfList;
   final AppException? exception;
   final String? query;
   final String? paginationCursor;
+  final Status? status;
 
   const CharacterState({
     required this.characters,
-    required this.isLoading,
+    required this.isPageLoading,
+    required this.isCharactersLoading,
     required this.isEndOfList,
     this.exception,
     this.query,
     this.paginationCursor,
+    this.status,
   });
 
   const CharacterState.initial()
       : characters = const <Character>[],
-        isLoading = false,
+        isPageLoading = false,
+        isCharactersLoading = false,
         isEndOfList = false,
         exception = null,
         query = null,
-        paginationCursor = null;
+        paginationCursor = null,
+        status = null;
 
   bool get hasException => exception != null;
 
+  double get triggerOffset =>
+      1 - (AppConstants.charactersPerLoad / characters.length);
+
   CharacterState copyWith({
     List<Character>? characters,
-    bool? isLoading,
+    bool? isPageLoading,
+    bool? isCharactersLoading,
     bool? isEndOfList,
     AppException? Function()? exception,
     String? Function()? query,
     String? Function()? paginationCursor,
+    Status? Function()? status,
   }) {
     return CharacterState(
       characters: characters ?? this.characters,
-      isLoading: isLoading ?? this.isLoading,
+      isPageLoading: isPageLoading ?? this.isPageLoading,
+      isCharactersLoading: isCharactersLoading ?? this.isCharactersLoading,
       isEndOfList: isEndOfList ?? this.isEndOfList,
       exception: exception != null ? exception() : this.exception,
       query: query != null ? query() : this.query,
       paginationCursor:
           paginationCursor != null ? paginationCursor() : this.paginationCursor,
+      status: status != null ? status() : this.status,
     );
   }
 
   @override
   List<Object?> get props => <Object?>[
         characters,
-        isLoading,
+        isPageLoading,
+        isCharactersLoading,
         isEndOfList,
         exception,
         query,
         paginationCursor,
+        status,
       ];
 }

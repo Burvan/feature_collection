@@ -6,12 +6,16 @@ import 'package:flutter/material.dart';
 class AddCharacterDialog extends StatefulWidget {
   final VoidCallback onCancel;
   final ValueChanged<Character> onAdd;
+  final ValueChanged<Status> onStatusChanged;
   final Widget addButtonChild;
+  final Status selectedStatus;
 
   const AddCharacterDialog({
     required this.onCancel,
     required this.onAdd,
     required this.addButtonChild,
+    required this.onStatusChanged,
+    required this.selectedStatus,
     super.key,
   });
 
@@ -24,7 +28,6 @@ class _AddCharacterDialogState extends State<AddCharacterDialog> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _houseController = TextEditingController();
-  Status _selectedStatus = Status.unknown;
 
   @override
   void dispose() {
@@ -62,10 +65,12 @@ class _AddCharacterDialogState extends State<AddCharacterDialog> {
               const SizedBox(height: 10),
               DropdownButtonFormField2<Status>(
                 isExpanded: true,
-                value: _selectedStatus,
+                value: widget.selectedStatus,
                 decoration: InputDecoration(
                   labelText: LocaleKeys.character_status.watchTr(context),
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
                 items: Status.values.map((Status status) {
                   return DropdownMenuItem<Status>(
@@ -75,22 +80,18 @@ class _AddCharacterDialogState extends State<AddCharacterDialog> {
                 }).toList(),
                 onChanged: (Status? value) {
                   if (value != null) {
-                    setState(() => _selectedStatus = value);
+                    widget.onStatusChanged(value);
                   }
                 },
                 dropdownStyleData: DropdownStyleData(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                   ),
-                )
+                ),
               ),
               CustomTextField(
                 labelText: LocaleKeys.character_dialogHouse.watchTr(context),
                 controller: _houseController,
-                validator: (String? value) => Validators.notEmptyValidator(
-                  value,
-                  context,
-                ),
               ),
               const SizedBox(height: 10),
             ],
@@ -113,8 +114,10 @@ class _AddCharacterDialogState extends State<AddCharacterDialog> {
                   name: _nameController.text,
                   description: _descriptionController.text,
                   imagePath: AppConstants.defaultCharacterImageUrl,
-                  house: _houseController.text,
-                  status: _selectedStatus,
+                  house: _houseController.text.isNotEmpty
+                      ? _houseController.text
+                      : null,
+                  status: widget.selectedStatus,
                 ),
               );
               widget.onCancel();
