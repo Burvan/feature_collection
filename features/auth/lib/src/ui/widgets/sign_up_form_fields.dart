@@ -67,7 +67,7 @@ class _SignUpFormFieldsState extends ConsumerState<SignUpFormFields> {
           onChanged: (String? value) =>
               _formController.update(firstName: value),
         ),
-        const SizedBox(height: AppSize.size25),
+        const SizedBox(height: 25),
         CustomTextField(
           controller: _lastNameController,
           labelText: LocaleKeys.auth_lastName.watchTr(context),
@@ -78,7 +78,7 @@ class _SignUpFormFieldsState extends ConsumerState<SignUpFormFields> {
           ),
           onChanged: (String? value) => _formController.update(lastName: value),
         ),
-        const SizedBox(height: AppSize.size25),
+        const SizedBox(height: 25),
         InkWell(
           onTap: () async {
             final DateTime? picked = await showDatePicker(
@@ -113,9 +113,9 @@ class _SignUpFormFieldsState extends ConsumerState<SignUpFormFields> {
           onChanged: (String? value) =>
               _formController.update(phoneNumber: value),
         ),
-        const SizedBox(height: AppSize.size25),
+        const SizedBox(height: 25),
         const GenderSelector(),
-        const SizedBox(height: AppSize.size25),
+        const SizedBox(height: 25),
         CustomTextField(
           controller: _emailController,
           labelText: LocaleKeys.auth_emailAddress.watchTr(context),
@@ -127,7 +127,7 @@ class _SignUpFormFieldsState extends ConsumerState<SignUpFormFields> {
           ),
           onChanged: (String? value) => _formController.update(email: value),
         ),
-        const SizedBox(height: AppSize.size25),
+        const SizedBox(height: 25),
         CustomTextField(
           controller: _passwordController,
           labelText: LocaleKeys.auth_password.watchTr(context),
@@ -146,7 +146,7 @@ class _SignUpFormFieldsState extends ConsumerState<SignUpFormFields> {
           ),
           onChanged: (String? value) => _formController.update(password: value),
         ),
-        const SizedBox(height: AppSize.size25),
+        const SizedBox(height: 25),
         CustomTextField(
           controller: _confirmPasswordController,
           labelText:
@@ -168,7 +168,7 @@ class _SignUpFormFieldsState extends ConsumerState<SignUpFormFields> {
           onChanged: (String? value) =>
               _formController.update(confirmPassword: value),
         ),
-        const SizedBox(height: AppSize.size25),
+        const SizedBox(height: 25),
       ],
     );
   }

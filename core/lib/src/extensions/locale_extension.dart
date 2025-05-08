@@ -1,5 +1,4 @@
-import 'package:core/core.dart';
-import 'package:flutter/material.dart';
+part of extensions;
 
 extension LocaleObserver on String {
   String watchTr(

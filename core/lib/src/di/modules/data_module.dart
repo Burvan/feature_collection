@@ -11,24 +11,51 @@ abstract class DataModule {
   FirebaseFirestore get firebaseFirestore => FirebaseFirestore.instance;
 
   @lazySingleton
+  ErrorHandler get errorHandler => ErrorHandler();
+
+  @lazySingleton
   AuthProvider authProvider(
     FirebaseAuth firebaseAuth,
     FirebaseFirestore firebaseFirestore,
-  ) =>
-      AuthProvider(
-        firebaseAuth: firebaseAuth,
-        firebaseFirestore: firebaseFirestore,
-      );
+    ErrorHandler errorHandler,
+  ) {
+    return AuthProvider(
+      firebaseAuth: firebaseAuth,
+      firebaseFirestore: firebaseFirestore,
+      errorHandler: errorHandler,
+    );
+  }
+
+  @lazySingleton
+  FirebaseProvider firebaseProvider(
+    FirebaseFirestore firebaseFirestore,
+  ) {
+    return FirebaseProvider(
+      firebaseFirestore: firebaseFirestore,
+      errorHandler: errorHandler,
+    );
+  }
 
   @lazySingleton
   AuthRepository authRepository(
     AuthProvider authProvider,
-  ) =>
-      AuthRepositoryImpl(
-        authProvider: authProvider,
-      );
+  ) {
+    return AuthRepositoryImpl(
+      authProvider: authProvider,
+    );
+  }
 
   @singleton
-  NotificationsRepository notificationsRepository() =>
-      NotificationsRepositoryImpl();
+  NotificationsRepository notificationsRepository() {
+    return NotificationsRepositoryImpl();
+  }
+
+  @lazySingleton
+  CharacterRepository characterRepository(
+    FirebaseProvider firebaseProvider,
+  ) {
+    return CharacterRepositoryImpl(
+      firebaseProvider: firebaseProvider,
+    );
+  }
 }

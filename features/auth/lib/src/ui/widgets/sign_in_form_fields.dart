@@ -48,7 +48,7 @@ class _SignInFormFieldsState extends ConsumerState<SignInFormFields> {
           ),
           onChanged: (String? value) => _formController.update(email: value),
         ),
-        const SizedBox(height: AppSize.size25),
+        const SizedBox(height: 25),
         CustomTextField(
           controller: _passwordController,
           labelText: LocaleKeys.auth_password.watchTr(context),
@@ -67,7 +67,7 @@ class _SignInFormFieldsState extends ConsumerState<SignInFormFields> {
           ),
           onChanged: (String? value) => _formController.update(password: value),
         ),
-        const SizedBox(height: AppSize.size25),
+        const SizedBox(height: 25),
       ],
     );
   }

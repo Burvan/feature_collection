@@ -34,8 +34,6 @@ final class AppException implements Exception {
             LocaleKeys.errors_invalidEmail.tr(),
           FirebaseCodeErrorMessage.wrongPassword =>
             LocaleKeys.errors_wrongPassword.tr(),
-          FirebaseCodeErrorMessage.networkFailed =>
-            LocaleKeys.errors_noInternet.tr(),
           FirebaseCodeErrorMessage.userNotFound =>
             LocaleKeys.errors_noSuchUser.tr(),
           _ => LocaleKeys.errors_unknown.tr(),
@@ -43,10 +41,17 @@ final class AppException implements Exception {
       AppExceptionType.notificationError => switch (_message) {
           FirebaseCodeErrorMessage.channelCreationFailed =>
             LocaleKeys.errors_channelCreationFailed.tr(),
-          FirebaseCodeErrorMessage.notificationPermissionDenied =>
-            LocaleKeys.errors_notificationPermissionDenied.tr(),
-          _ => LocaleKeys.errors_unknown,
-        }
+          _ => LocaleKeys.errors_unknown.tr(),
+        },
+      AppExceptionType.firestoreCodeError => switch (_message) {
+          FirebaseCodeErrorMessage.documentNotFound =>
+            LocaleKeys.errors_documentNotFound.tr(),
+          FirebaseCodeErrorMessage.unavailable =>
+            LocaleKeys.errors_firestoreUnavailable.tr(),
+          _ => LocaleKeys.errors_unknown.tr(),
+        },
+      AppExceptionType.networkError => LocaleKeys.errors_noInternet.tr(),
+      AppExceptionType.permissionDeniedError => LocaleKeys.errors_permissionDenied.tr(),
     };
   }
 
@@ -58,6 +63,9 @@ enum AppExceptionType {
   unknown,
   firebaseAuthCodeError,
   notificationError,
+  firestoreCodeError,
+  networkError,
+  permissionDeniedError,
 }
 
 final class FirebaseCodeErrorMessage {
@@ -67,6 +75,8 @@ final class FirebaseCodeErrorMessage {
   static const String emailInUse = 'email-already-in-use';
   static const String networkFailed = 'network-request-failed';
   static const String userNotFound = 'user-not-found';
-  static const String notificationPermissionDenied = 'permission-denied';
+  static const String permissionDenied = 'permission-denied';
   static const String channelCreationFailed = 'channel-creation-failed';
+  static const String documentNotFound = 'not-found';
+  static const String unavailable = 'unavailable';
 }

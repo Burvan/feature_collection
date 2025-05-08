@@ -1,11 +1,9 @@
-import 'package:core/core.dart';
-import 'package:data/data.dart';
-import 'package:domain/domain.dart';
+part of repositories;
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthProvider _authProvider;
 
-  AuthRepositoryImpl({
+  const AuthRepositoryImpl({
     required AuthProvider authProvider,
   }) : _authProvider = authProvider;
 

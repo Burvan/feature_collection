@@ -16,6 +16,26 @@
     "signUp": "Sign Up",
     "noAccount": "No account?"
   },
+  "home": {
+    "paginationFeature": "Pagination mechanism with search and adding of elements"
+  },
+  "character": {
+    "hpCharacters": "Harry Potter Characters",
+    "search": "Search",
+    "addNewCharacter": "Add new character",
+    "name": "Name",
+    "description": "Description",
+    "status": "Status",
+    "dialogHouse": "House",
+    "characterTileHouse": "House: ",
+    "cancel": "Cancel",
+    "add": "Add",
+    "alive": "Alive",
+    "dead": "Dead",
+    "unknown": "Unknown",
+    "notHogwartsStudent": "Not a Hogwarts student",
+    "noCharacters": "No characters"
+  },
   "errors": {
     "unknown": "Unknown error",
     "emailAlreadyInUse": "Email is already in use",
@@ -25,7 +45,9 @@
     "noInternet": "No internet connection",
     "noSuchUser": "User data not found",
     "channelCreationFailed": "Notification channel creation failed",
-    "notificationPermissionDenied": "Notification permission denied"
+    "permissionDenied": "Permission denied",
+    "documentNotFound": "Document not found",
+    "firestoreUnavailable": "Firestore unavailable"
   },
   "validationErrors": {
     "nameIsRequired": "Name is required",
@@ -40,6 +62,7 @@
     "phoneNumberIsRequired": "Phone number is required",
     "incorrectPhoneNumber": "Incorrect phone number",
     "dateOfBirthIsRequired": "Date of birth is required",
-    "genderIsRequired": "Gender is required"
+    "genderIsRequired": "Gender is required",
+    "fillInTheField": "Fill in the field"
   }
 }

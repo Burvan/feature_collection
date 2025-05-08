@@ -1,9 +1,9 @@
-import 'package:domain/domain.dart';
+part of use_cases;
 
 final class SignOutUseCase implements FutureUseCase<void, NoParams> {
   final AuthRepository _authRepository;
 
-  SignOutUseCase({
+  const SignOutUseCase({
     required AuthRepository authRepository,
   }) : _authRepository = authRepository;
 

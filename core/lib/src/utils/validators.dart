@@ -116,4 +116,15 @@ final class Validators {
 
     return null;
   }
+
+  static String? notEmptyValidator(
+      String? value,
+      BuildContext context,
+      ) {
+    if (value == null || value.isEmpty) {
+      return LocaleKeys.validationErrors_fillInTheField.watchTr(context);
+    }
+
+    return null;
+  }
 }

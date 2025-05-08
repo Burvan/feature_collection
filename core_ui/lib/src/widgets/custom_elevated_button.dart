@@ -13,7 +13,7 @@ class CustomElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MediaQueryData mediaQuery = MediaQuery.of(context);
+    final Size size = MediaQuery.sizeOf(context);
 
     return Container(
       decoration: BoxDecoration(
@@ -27,23 +27,21 @@ class CustomElevatedButton extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(AppBorderRadius.borderRadius18),
+        borderRadius: BorderRadius.circular(18),
       ),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
           padding: WidgetStatePropertyAll<EdgeInsetsGeometry>(
             EdgeInsets.symmetric(
-              horizontal: mediaQuery.size.width * AppScale.scaleZero1,
-              vertical: AppPadding.padding10,
+              horizontal: size.width / 10,
+              vertical: 10,
             ),
           ),
           backgroundColor: const WidgetStatePropertyAll<Color>(AppColors.transparent),
           shape: WidgetStatePropertyAll<OutlinedBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                AppBorderRadius.borderRadius18,
-              ),
+              borderRadius: BorderRadius.circular(18),
             ),
           ),
         ),

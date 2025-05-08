@@ -1,15 +1,17 @@
-import 'package:core/core.dart';
-import 'package:data/data.dart';
+part of providers;
 
-class AuthProvider {
+final class AuthProvider {
   final FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firebaseFirestore;
+  final ErrorHandler _errorHandler;
 
   const AuthProvider({
     required FirebaseAuth firebaseAuth,
     required FirebaseFirestore firebaseFirestore,
+    required ErrorHandler errorHandler,
   })  : _firebaseAuth = firebaseAuth,
-        _firebaseFirestore = firebaseFirestore;
+        _firebaseFirestore = firebaseFirestore,
+        _errorHandler = errorHandler;
 
   Future<UserCredential> signIn({
     required String email,
@@ -20,13 +22,8 @@ class AuthProvider {
         email: email,
         password: password,
       );
-    } on FirebaseAuthException catch (e) {
-      throw AppException(
-        type: AppExceptionType.firebaseAuthCodeError,
-        message: e.code,
-      );
     } catch (e) {
-      throw AppException.unknown(message: e.toString());
+      throw _errorHandler.handleError(e);
     }
   }
 
@@ -39,13 +36,8 @@ class AuthProvider {
         email: email,
         password: password,
       );
-    } on FirebaseAuthException catch (e) {
-      throw AppException(
-        type: AppExceptionType.firebaseAuthCodeError,
-        message: e.code,
-      );
     } catch (e) {
-      throw AppException.unknown(message: e.toString());
+      throw _errorHandler.handleError(e);
     }
   }
 
@@ -79,13 +71,8 @@ class AuthProvider {
       }
 
       return null;
-    } on FirebaseAuthException catch (e) {
-      throw AppException(
-        type: AppExceptionType.firebaseAuthCodeError,
-        message: e.code,
-      );
     } catch (e) {
-      throw AppException.unknown(message: e.toString());
+      throw _errorHandler.handleError(e);
     }
   }
 
@@ -93,7 +80,7 @@ class AuthProvider {
     try {
       await _firebaseAuth.signOut();
     } catch (e) {
-      throw AppException.unknown(message: e.toString());
+      throw _errorHandler.handleError(e);
     }
   }
 }
