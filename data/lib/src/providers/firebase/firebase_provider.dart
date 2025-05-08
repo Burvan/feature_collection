@@ -46,7 +46,7 @@ final class FirebaseProvider {
         return CharacterEntity.fromJson(data);
       }).toList();
     } catch (e) {
-      throw _errorHandler.handleError(e);
+      _errorHandler.handleError(e);
     }
   }
 
@@ -56,7 +56,7 @@ final class FirebaseProvider {
           .collection(DataConstants.characterCollection)
           .add(entity.toJson());
     } catch (e) {
-      throw _errorHandler.handleError(e);
+      _errorHandler.handleError(e);
     }
   }
 }

@@ -22,7 +22,7 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     on<LoadMore>(_onLoadMore);
     on<SearchCharacters>(_onSearchCharacters);
     on<AddCharacter>(_onAddCharacter);
-    on<SetCharacterStatus>(_onSetStatus);
+    on<ChangeCharacterStatus>(_onSetStatus);
     on<ResetSearch>(_onResetSearch);
     on<NavigateToPreviousScreen>(_onNavigateToPreviousScreen);
 
@@ -187,7 +187,7 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
       emit(
         state.copyWith(
           characters: <Character>[event.character, ...state.characters],
-          status: () => null,
+          status: Status.unknown,
         ),
       );
     } on AppException catch (e) {
@@ -202,11 +202,11 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
   }
 
   Future<void> _onSetStatus(
-    SetCharacterStatus event,
+    ChangeCharacterStatus event,
     Emitter<CharacterState> emit,
   ) async {
     emit(
-      state.copyWith(status: () => event.status),
+      state.copyWith(status: event.status),
     );
   }
 

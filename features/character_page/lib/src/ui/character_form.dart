@@ -58,7 +58,9 @@ class _CharacterFormState extends State<CharacterForm> {
       body: BlocBuilder<CharacterBloc, CharacterState>(
         builder: (BuildContext context, CharacterState state) {
           return state.isPageLoading
-              ? const AppProgressIndicator()
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
               : Column(
                   children: <Widget>[
                     SearchField(
@@ -72,44 +74,51 @@ class _CharacterFormState extends State<CharacterForm> {
                       },
                     ),
                     Expanded(
-                      child: (state.hasException)
-                          ? Center(
-                              child: Text(
-                                state.exception!.toLocalizedText(),
-                                style: AppTextTheme.font20Bold,
-                                textAlign: TextAlign.center,
-                              ),
-                            )
-                          : ListView.builder(
-                              controller: _scrollController,
-                              itemCount: state.characters.isEmpty
-                                  ? 1
-                                  : state.characters.length +
-                                      (state.isEndOfList ? 0 : 1),
-                              itemBuilder: (_, int index) {
-                                if (state.characters.isEmpty) {
-                                  return state.isCharactersLoading
-                                      ? const AppProgressIndicator()
-                                      : Center(
-                                          child: Text(
-                                            LocaleKeys.character_noCharacters
-                                                .watchTr(context),
-                                            style: AppTextTheme.font20Bold,
-                                          ),
-                                        );
-                                }
-
-                                if (index >= state.characters.length) {
-                                  return state.isCharactersLoading
-                                      ? const AppProgressIndicator()
-                                      : const SizedBox.shrink();
-                                }
-
-                                return CharacterTile(
-                                  character: state.characters[index],
-                                );
-                              },
+                      child: () {
+                        if (state.hasException) {
+                          return Center(
+                            child: Text(
+                              state.exception!.toLocalizedText(),
+                              style: AppTextTheme.font20Bold,
+                              textAlign: TextAlign.center,
                             ),
+                          );
+                        }
+
+                        if (state.characters.isEmpty) {
+                          return state.isCharactersLoading
+                              ? const Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              : Center(
+                                  child: Text(
+                                    LocaleKeys.character_noCharacters
+                                        .watchTr(context),
+                                    style: AppTextTheme.font20Bold,
+                                  ),
+                                );
+                        }
+
+                        return ListView.builder(
+                          controller: _scrollController,
+                          itemCount: state.characters.length +
+                              (state.isEndOfList ? 0 : 1),
+                          itemBuilder: (_, int index) {
+                            if (index == state.characters.length) {
+                              return const Padding(
+                                padding: EdgeInsets.all(5),
+                                child: Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              );
+                            }
+
+                            return CharacterTile(
+                              character: state.characters[index],
+                            );
+                          },
+                        );
+                      }(),
                     ),
                   ],
                 );
@@ -128,10 +137,10 @@ class _CharacterFormState extends State<CharacterForm> {
                       onCancel: () {
                         bloc.add(const NavigateToPreviousScreen());
                       },
-                      selectedStatus: bloc.state.status ?? Status.unknown,
+                      selectedStatus: bloc.state.status,
                       onStatusChanged: (Status status) {
                         bloc.add(
-                          SetCharacterStatus(status: status),
+                          ChangeCharacterStatus(status: status),
                         );
                       },
                       onAdd: (Character character) {

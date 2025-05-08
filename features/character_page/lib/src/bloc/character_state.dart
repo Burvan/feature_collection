@@ -8,7 +8,7 @@ class CharacterState extends Equatable {
   final AppException? exception;
   final String? query;
   final String? paginationCursor;
-  final Status? status;
+  final Status status;
 
   const CharacterState({
     required this.characters,
@@ -18,7 +18,7 @@ class CharacterState extends Equatable {
     this.exception,
     this.query,
     this.paginationCursor,
-    this.status,
+    this.status = Status.unknown,
   });
 
   const CharacterState.initial()
@@ -29,7 +29,7 @@ class CharacterState extends Equatable {
         exception = null,
         query = null,
         paginationCursor = null,
-        status = null;
+        status = Status.unknown;
 
   bool get hasException => exception != null;
 
@@ -44,7 +44,7 @@ class CharacterState extends Equatable {
     AppException? Function()? exception,
     String? Function()? query,
     String? Function()? paginationCursor,
-    Status? Function()? status,
+    Status? status,
   }) {
     return CharacterState(
       characters: characters ?? this.characters,
@@ -55,7 +55,7 @@ class CharacterState extends Equatable {
       query: query != null ? query() : this.query,
       paginationCursor:
           paginationCursor != null ? paginationCursor() : this.paginationCursor,
-      status: status != null ? status() : this.status,
+      status: status ?? this.status,
     );
   }
 
