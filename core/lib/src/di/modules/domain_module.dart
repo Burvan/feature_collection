@@ -31,4 +31,60 @@ abstract class DomainModule {
   ) {
     return AddCharacterUseCase(characterRepository: characterRepository);
   }
+
+  @lazySingleton
+  ChangeAvatarUseCase changeAvatarUseCase(
+    SettingsRepository settingsRepository,
+  ) {
+    return ChangeAvatarUseCase(settingsRepository: settingsRepository);
+  }
+
+  @lazySingleton
+  DeleteAvatarUseCase deleteAvatarUseCase(
+    SettingsRepository settingsRepository,
+  ) {
+    return DeleteAvatarUseCase(settingsRepository: settingsRepository);
+  }
+
+  @lazySingleton
+  GetAvatarUseCase getAvatarUseCase(
+    SettingsRepository settingsRepository,
+  ) {
+    return GetAvatarUseCase(settingsRepository: settingsRepository);
+  }
+
+  @lazySingleton
+  ChangeThemeUseCase changeThemeUseCase(
+    SettingsRepository settingsRepository,
+  ) {
+    return ChangeThemeUseCase(settingsRepository: settingsRepository);
+  }
+
+  @lazySingleton
+  GetCurrentThemeUseCase getThemeUseCase(
+    SettingsRepository settingsRepository,
+  ) {
+    return GetCurrentThemeUseCase(settingsRepository: settingsRepository);
+  }
+
+  @lazySingleton
+  ChangeLocaleUseCase changeLocaleUseCase(
+    SettingsRepository settingsRepository,
+  ) {
+    return ChangeLocaleUseCase(settingsRepository: settingsRepository);
+  }
+
+  @lazySingleton
+  GetCurrentLocaleUseCase getCurrentLocaleUseCase(
+    SettingsRepository settingsRepository,
+  ) {
+    return GetCurrentLocaleUseCase(settingsRepository: settingsRepository);
+  }
+
+  @lazySingleton
+  ChangeUserDataUseCase changeUserDataUseCase(
+    SettingsRepository settingsRepository,
+  ) {
+    return ChangeUserDataUseCase(settingsRepository: settingsRepository);
+  }
 }

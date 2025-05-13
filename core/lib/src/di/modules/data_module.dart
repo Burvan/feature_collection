@@ -14,11 +14,7 @@ abstract class DataModule {
   ErrorHandler get errorHandler => ErrorHandler();
 
   @lazySingleton
-  AuthProvider authProvider(
-    FirebaseAuth firebaseAuth,
-    FirebaseFirestore firebaseFirestore,
-    ErrorHandler errorHandler,
-  ) {
+  AuthProvider authProvider() {
     return AuthProvider(
       firebaseAuth: firebaseAuth,
       firebaseFirestore: firebaseFirestore,
@@ -27,13 +23,22 @@ abstract class DataModule {
   }
 
   @lazySingleton
-  FirebaseProvider firebaseProvider(
-    FirebaseFirestore firebaseFirestore,
-  ) {
+  FirebaseProvider firebaseProvider() {
     return FirebaseProvider(
       firebaseFirestore: firebaseFirestore,
       errorHandler: errorHandler,
     );
+  }
+
+  @lazySingleton
+  SettingsProvider settingsProvider() {
+    final SettingsProvider settingsProvider =  SettingsProvider(
+      firebaseAuth: firebaseAuth,
+      firebaseFirestore: firebaseFirestore,
+      errorHandler: errorHandler,
+    );
+    settingsProvider.init();
+    return settingsProvider;
   }
 
   @lazySingleton
@@ -56,6 +61,15 @@ abstract class DataModule {
   ) {
     return CharacterRepositoryImpl(
       firebaseProvider: firebaseProvider,
+    );
+  }
+
+  @lazySingleton
+  SettingsRepository settingsRepository(
+    SettingsProvider settingsProvider,
+  ) {
+    return SettingsRepositoryImpl(
+      settingsProvider: settingsProvider,
     );
   }
 }

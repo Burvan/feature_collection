@@ -18,6 +18,7 @@ class UserMapper extends Mapper<UserEntity, domain.User> {
       phoneNumber: entity.phoneNumber,
       email: entity.email,
       password: entity.password,
+      avatar: entity.avatar != null ? base64Decode(entity.avatar!) : null,
     );
   }
 
@@ -35,6 +36,7 @@ class UserMapper extends Mapper<UserEntity, domain.User> {
       phoneNumber: item.phoneNumber,
       email: item.email,
       password: item.password,
+      avatar: item.avatar != null ? base64Encode(item.avatar!) : null,
     );
   }
 }

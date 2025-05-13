@@ -1,0 +1,68 @@
+{
+  "auth": {
+    "featureCollection": "Коллекция фич для стажировки",
+    "hello": "Привет",
+    "pleaseLogin": "Please login to your account",
+    "pleaseSignUp": "Please Sign Up in our application",
+    "alreadyHaveAccount": "Already have an Account",
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "emailAddress": "Эмейл",
+    "password": "Пароль",
+    "phoneNumber": "Phone number",
+    "gender": "Gender",
+    "dateOfBirth": "Date of birth",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "noAccount": "No account?"
+  },
+  "home": {
+    "paginationFeature": "Pagination mechanism with search and adding of elements"
+  },
+  "character": {
+    "hpCharacters": "Harry Potter Characters",
+    "search": "Search",
+    "addNewCharacter": "Add new character",
+    "name": "Name",
+    "description": "Description",
+    "status": "Status",
+    "dialogHouse": "House",
+    "characterTileHouse": "House: ",
+    "cancel": "Cancel",
+    "add": "Add",
+    "alive": "Alive",
+    "dead": "Dead",
+    "unknown": "Unknown",
+    "notHogwartsStudent": "Not a Hogwarts student",
+    "noCharacters": "No characters"
+  },
+  "errors": {
+    "unknown": "Unknown error",
+    "emailAlreadyInUse": "Email is already in use",
+    "invalidCredential": "Invalid email or password",
+    "wrongPassword": "Wrong password",
+    "invalidEmail": "Invalid email",
+    "noInternet": "No internet connection",
+    "noSuchUser": "User data not found",
+    "channelCreationFailed": "Notification channel creation failed",
+    "permissionDenied": "Permission denied",
+    "documentNotFound": "Document not found",
+    "firestoreUnavailable": "Firestore unavailable"
+  },
+  "validationErrors": {
+    "nameIsRequired": "Name is required",
+    "nameLengthRequirements": "Name must be between 2 and 20 characters",
+    "emailRequired": "Email is required",
+    "invalidEmailFormat": "Enter a valid email address",
+    "passwordIsRequired": "Password is required",
+    "passwordLengthRequirements": "Password must be between 8 and 16 characters",
+    "passwordRequirements": "At least one uppercase letter and one special character",
+    "confirmPassword": "Please confirm password",
+    "passwordIsNotConfirmed": "The password has not been confirmed",
+    "phoneNumberIsRequired": "Phone number is required",
+    "incorrectPhoneNumber": "Incorrect phone number",
+    "dateOfBirthIsRequired": "Date of birth is required",
+    "genderIsRequired": "Gender is required",
+    "fillInTheField": "Fill in the field"
+  }
+}
