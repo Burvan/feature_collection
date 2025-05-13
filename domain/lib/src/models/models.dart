@@ -1,5 +1,7 @@
 library models;
 
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 
 part 'auth/gender.dart';
@@ -10,3 +12,6 @@ part 'auth/user.dart';
 part 'character/character.dart';
 part 'character/fetch_characters_params.dart';
 part 'character/status.dart';
+
+part 'settings/app_theme.dart';
+part 'settings/login_payload.dart';

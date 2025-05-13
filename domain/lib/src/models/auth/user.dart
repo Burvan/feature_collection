@@ -10,6 +10,7 @@ final class User {
   final String phoneNumber;
   final String email;
   final String password;
+  final Uint8List? avatar;
 
   const User({
     required this.id,
@@ -21,5 +22,32 @@ final class User {
     required this.phoneNumber,
     required this.email,
     required this.password,
+    this.avatar,
   });
+
+  User copyWith({
+    String? id,
+    String? firstName,
+    String? lastName,
+    DateTime? dateOfBirth,
+    Gender? gender,
+    String? Function()? customGender,
+    String? phoneNumber,
+    String? email,
+    String? password,
+    Uint8List? Function()? avatar,
+  }) {
+    return User(
+      id: id ?? this.id,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      dateOfBirth: dateOfBirth ?? this.dateOfBirth,
+      gender: gender ?? this.gender,
+      customGender: customGender != null ? customGender() : this.customGender,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      email: email ?? this.email,
+      password: password ?? this.password,
+      avatar: avatar != null ? avatar() : this.avatar,
+    );
+  }
 }
