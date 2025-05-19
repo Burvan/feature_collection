@@ -19,6 +19,13 @@ abstract class DomainModule {
   }
 
   @lazySingleton
+  CheckEmailVerificationUseCase checkEmailVerificationUseCase(
+    AuthRepository authRepository,
+  ) {
+    return CheckEmailVerificationUseCase(authRepository: authRepository);
+  }
+
+  @lazySingleton
   FetchCharactersUseCase fetchCharactersUseCase(
     CharacterRepository characterRepository,
   ) {
@@ -33,38 +40,38 @@ abstract class DomainModule {
   }
 
   @lazySingleton
-  ChangeAvatarUseCase changeAvatarUseCase(
+  GetCurrentUserUseCase getCurrentUserUseCase(
     SettingsRepository settingsRepository,
   ) {
-    return ChangeAvatarUseCase(settingsRepository: settingsRepository);
+    return GetCurrentUserUseCase(settingsRepository: settingsRepository);
   }
 
   @lazySingleton
-  DeleteAvatarUseCase deleteAvatarUseCase(
+  ChangeThemeTypeUseCase changeThemeTypeUseCase(
     SettingsRepository settingsRepository,
   ) {
-    return DeleteAvatarUseCase(settingsRepository: settingsRepository);
+    return ChangeThemeTypeUseCase(settingsRepository: settingsRepository);
   }
 
   @lazySingleton
-  GetAvatarUseCase getAvatarUseCase(
+  ChangeThemeModeUseCase changeThemeModeUseCase(
     SettingsRepository settingsRepository,
   ) {
-    return GetAvatarUseCase(settingsRepository: settingsRepository);
+    return ChangeThemeModeUseCase(settingsRepository: settingsRepository);
   }
 
   @lazySingleton
-  ChangeThemeUseCase changeThemeUseCase(
+  GetCurrentThemeTypeUseCase getCurrentThemeTypeUseCase(
     SettingsRepository settingsRepository,
   ) {
-    return ChangeThemeUseCase(settingsRepository: settingsRepository);
+    return GetCurrentThemeTypeUseCase(settingsRepository: settingsRepository);
   }
 
   @lazySingleton
-  GetCurrentThemeUseCase getThemeUseCase(
+  GetCurrentThemeModeUseCase getCurrentThemeModeUseCase(
     SettingsRepository settingsRepository,
   ) {
-    return GetCurrentThemeUseCase(settingsRepository: settingsRepository);
+    return GetCurrentThemeModeUseCase(settingsRepository: settingsRepository);
   }
 
   @lazySingleton

@@ -12,6 +12,7 @@ class AuthController extends _$AuthController {
   late final SignInUseCase _signInUseCase;
   late final SignUpUseCase _signUpUseCase;
   late final SignOutUseCase _signOutUseCase;
+  late final CheckEmailVerificationUseCase _checkEmailVerificationUseCase;
 
   @override
   Future<AuthState> build() async {
@@ -19,6 +20,8 @@ class AuthController extends _$AuthController {
     _signInUseCase = appLocator<SignInUseCase>();
     _signUpUseCase = appLocator<SignUpUseCase>();
     _signOutUseCase = appLocator<SignOutUseCase>();
+    _checkEmailVerificationUseCase =
+        appLocator<CheckEmailVerificationUseCase>();
 
     return const AuthState.initial();
   }
@@ -34,6 +37,9 @@ class AuthController extends _$AuthController {
           password: formState.password,
         ),
       );
+
+      await _checkEmailVerificationUseCase.execute(const NoParams());
+
       state = const AsyncValue<AuthState>.data(AuthState.success());
       await _appRouter.pushAndPopUntil(
         const HomeRoute(),
@@ -41,11 +47,6 @@ class AuthController extends _$AuthController {
       );
     } on AppException catch (e, stackTrace) {
       state = AsyncValue<AuthState>.error(e, stackTrace);
-    } catch (e, stackTrace) {
-      state = AsyncValue<AuthState>.error(
-        AppException.unknown(message: e.toString()),
-        stackTrace,
-      );
     }
   }
 
@@ -66,17 +67,30 @@ class AuthController extends _$AuthController {
         ),
       );
       state = const AsyncValue<AuthState>.data(AuthState.success());
+      await _appRouter.push(
+        const VerificationRequiredRoute(),
+      );
+    } on AppException catch (e, stackTrace) {
+      state = AsyncValue<AuthState>.error(e, stackTrace);
+    }
+  }
+
+  Future<void> checkVerification() async {
+    state = const AsyncValue<AuthState>.loading();
+
+    try {
+      await _checkEmailVerificationUseCase.execute(
+        const NoParams(),
+      );
+
+      state = const AsyncValue<AuthState>.data(AuthState.success());
+
       await _appRouter.pushAndPopUntil(
         const HomeRoute(),
         predicate: (_) => false,
       );
     } on AppException catch (e, stackTrace) {
       state = AsyncValue<AuthState>.error(e, stackTrace);
-    } catch (e, stackTrace) {
-      state = AsyncValue<AuthState>.error(
-        AppException.unknown(message: e.toString()),
-        stackTrace,
-      );
     }
   }
 
@@ -92,22 +106,16 @@ class AuthController extends _$AuthController {
       );
     } on AppException catch (e, stackTrace) {
       state = AsyncValue<AuthState>.error(e, stackTrace);
-    } catch (e, stackTrace) {
-      state = AsyncValue<AuthState>.error(
-        AppException.unknown(message: e.toString()),
-        stackTrace,
-      );
     }
   }
 
   Future<void> navigateToSignUp() async {
+    state = const AsyncValue<AuthState>.data(AuthState.initial());
     await _appRouter.push(const SignUpRoute());
   }
 
   Future<void> navigateToSignIn() async {
-    await _appRouter.pushAndPopUntil(
-      const SignInRoute(),
-      predicate: (_) => false,
-    );
+    state = const AsyncValue<AuthState>.data(AuthState.initial());
+    await _appRouter.push(const SignInRoute());
   }
 }

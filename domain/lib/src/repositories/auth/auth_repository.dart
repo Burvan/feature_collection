@@ -1,7 +1,9 @@
 part of repositories;
 
 abstract interface class AuthRepository {
-  Future<User> signUp(SignUpPayload payload);
-  Future<User> signIn(SignInPayload payload);
+  Future<void> signUp(SignUpPayload payload);
+  Future<void> signIn(SignInPayload payload);
   Future<void> signOut();
+  Future<void> sendEmailVerification();
+  Future<void> checkEmailVerification();
 }

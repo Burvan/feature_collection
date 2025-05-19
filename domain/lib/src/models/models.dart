@@ -12,6 +12,3 @@ part 'auth/user.dart';
 part 'character/character.dart';
 part 'character/fetch_characters_params.dart';
 part 'character/status.dart';
-
-part 'settings/app_theme.dart';
-part 'settings/login_payload.dart';

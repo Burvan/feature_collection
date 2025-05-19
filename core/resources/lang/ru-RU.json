@@ -1,0 +1,80 @@
+{
+  "auth": {
+    "featureCollection": "Коллекция фич для стажировки",
+    "hello": "Привет!",
+    "pleaseLogin": "Пожалуйста, войдите в свою учетную запись",
+    "pleaseSignUp": "Пожалуйста, зарегистрируйтесь в приложении",
+    "alreadyHaveAccount": "Уже есть аккаунт?",
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "emailAddress": "Эмейл",
+    "password": "Пароль",
+    "phoneNumber": "Номер телефона",
+    "gender": "Пол",
+    "dateOfBirth": "Дата рождения",
+    "signIn": "Войти",
+    "signUp": "Зарегистрироваться",
+    "noAccount": "Нет аккаунта?",
+    "emailVerification": "Подтверждение почты",
+    "pleaseVerifyEmail": "Мы отправили вам письмо на почту. Пожалуйста верифицуруйтесь и затем войдите"
+  },
+  "home": {
+    "paginationFeature": "Пагинационный механизм с поиском и добавлением элементов",
+    "settingsFeature": "Настройки"
+  },
+  "character": {
+    "hpCharacters": "Персонажи Гарри Поттера",
+    "search": "Поиск",
+    "addNewCharacter": "Добавить нового персонажа",
+    "name": "Имя",
+    "description": "Описание",
+    "status": "Статус",
+    "dialogHouse": "Школа",
+    "characterTileHouse": "Школа: ",
+    "cancel": "Отменить",
+    "add": "Добавить",
+    "alive": "Живой",
+    "dead": "Мёртвый",
+    "unknown": "Неизвестно",
+    "notHogwartsStudent": "Не студент хогвартса",
+    "noCharacters": "Нет персонажей"
+  },
+  "settings": {
+    "userSettings": "Настройки пользователя",
+    "customTheme": "Использовать пользовательскую тему",
+    "systemTheme": "Использовать системную тему",
+    "selectLanguage": "Выбрать язык",
+    "changeAvatar": "Изменить фото профиля",
+    "editUserData": "Редактировать данные пользователя"
+  },
+  "errors": {
+    "unknown": "Неизвестная ошибка",
+    "emailAlreadyInUse": "Эмейл уже используется",
+    "invalidCredential": "Некорректный эмейл или пароль",
+    "wrongPassword": "Неправильный пароль",
+    "invalidEmail": "Неправильный эмейл",
+    "noInternet": "Нет интернет соединения",
+    "noSuchUser": "Пользователь не найден",
+    "channelCreationFailed": "Ошибка при создании канала уведомлений",
+    "permissionDenied": "В разрешении отказано",
+    "documentNotFound": "Документ не найден",
+    "firestoreUnavailable": "Firestore не доступен",
+    "emailNotVerified": "Почта не верифицирована"
+  },
+  "validationErrors": {
+    "nameIsRequired": "Имя обязательно",
+    "nameLengthRequirements": "Длина имени от 2 до 20 символов!",
+    "emailRequired": "Эмайл обязателен",
+    "invalidEmailFormat": "Введите корректный адрес почты",
+    "passwordIsRequired": "Пароль обязателен",
+    "passwordLengthRequirements": "Длина пароля от 8 до 16 символов!",
+    "passwordRequirements": "Минимум одна заглавная буква и специальный символ",
+    "confirmPassword": "Пожалуйста, подтвердите пароль",
+    "passwordIsNotConfirmed": "Пароль не подтверждён",
+    "phoneNumberIsRequired": "Номер телефона обязателен",
+    "incorrectPhoneNumber": "Некорректный номер телефона",
+    "dateOfBirthIsRequired": "Дата рождения обязательна",
+    "genderIsRequired": "Пол обязателен",
+    "fillInTheField": "Заполните поле"
+  }
+}
