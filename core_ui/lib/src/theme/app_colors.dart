@@ -12,7 +12,10 @@ class AppColors {
   static const Color darkGrey = Color.fromRGBO(105, 105, 105, 1);
   static const Color skyBlue = Color.fromRGBO(150, 206, 250, 1);
   static const Color indigo = Color.fromRGBO(115, 150, 255, 1);
-  static const Color black = Color.fromRGBO(50, 50, 50, 1);
+  static const Color black = Color.fromRGBO(0, 0, 0, 1);
   static const Color red = Color.fromRGBO(252, 15, 1, 1);
   static const Color green = Color.fromRGBO(1, 250, 5, 1);
+  static const Color yellow = Color.fromRGBO(230, 242, 94, 1);
+  static const Color turquoise = Color.fromRGBO(135, 199, 201, 1);
+  static const Color paleTurquoise = Color.fromRGBO(135, 199, 201, 0.8);
 }

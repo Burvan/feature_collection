@@ -17,12 +17,13 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
+    final ThemeData themeData = Theme.of(context);
     final AsyncValue<AuthState> authState = ref.watch(authControllerProvider);
 
     return Container(
       width: size.width / 1.2,
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: themeData.scaffoldBackgroundColor,
         borderRadius: BorderRadius.circular(12),
       ),
       child: SingleChildScrollView(
@@ -30,9 +31,13 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             const SizedBox(height: 10),
-            Text(
-              LocaleKeys.auth_pleaseSignUp.watchTr(context),
-              style: AppTextTheme.font20.copyWith(color: AppColors.lightGrey),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              child: Text(
+                LocaleKeys.auth_pleaseSignUp.watchTr(context),
+                style: AppTextTheme.font20.copyWith(color: AppColors.lightGrey),
+                textAlign: TextAlign.center,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(10),

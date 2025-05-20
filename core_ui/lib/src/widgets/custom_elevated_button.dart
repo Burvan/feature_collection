@@ -19,9 +19,8 @@ class CustomElevatedButton extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: <Color>[
-            AppColors.brightPink,
-            AppColors.gentlyPink,
-            AppColors.pinkSherbet,
+            AppColors.indigo,
+            AppColors.turquoise,
             AppColors.skyBlue,
           ],
           begin: Alignment.topLeft,
@@ -38,7 +37,8 @@ class CustomElevatedButton extends StatelessWidget {
               vertical: 10,
             ),
           ),
-          backgroundColor: const WidgetStatePropertyAll<Color>(AppColors.transparent),
+          backgroundColor:
+              const WidgetStatePropertyAll<Color>(AppColors.transparent),
           shape: WidgetStatePropertyAll<OutlinedBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(18),

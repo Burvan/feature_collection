@@ -23,7 +23,7 @@ final class AuthProvider {
         password: password,
       );
     } catch (e) {
-      throw _errorHandler.handleError(e);
+      _errorHandler.handleError(e);
     }
   }
 
@@ -37,7 +37,33 @@ final class AuthProvider {
         password: password,
       );
     } catch (e) {
-      throw _errorHandler.handleError(e);
+      _errorHandler.handleError(e);
+    }
+  }
+
+  Future<void> sendEmailVerification() async {
+    try {
+      if (_firebaseAuth.currentUser != null) {
+        await _firebaseAuth.currentUser?.sendEmailVerification();
+      }
+    } catch (e) {
+      _errorHandler.handleError(e);
+    }
+  }
+
+  Future<bool> checkEmailVerification() async {
+    try {
+      await _firebaseAuth.currentUser?.reload();
+
+      final bool isVerified = _firebaseAuth.currentUser?.emailVerified ?? false;
+
+      if (!isVerified) {
+        throw AppException(type: AppExceptionType.emailNotVerified);
+      }
+
+      return isVerified;
+    } catch (e) {
+      _errorHandler.handleError(e);
     }
   }
 
@@ -47,13 +73,8 @@ final class AuthProvider {
           .collection(DataConstants.userCollection)
           .doc(user.id)
           .set(user.toJson());
-    } on FirebaseAuthException catch (e) {
-      throw AppException(
-        type: AppExceptionType.firebaseAuthCodeError,
-        message: e.code,
-      );
     } catch (e) {
-      throw AppException.unknown(message: e.toString());
+      _errorHandler.handleError(e);
     }
   }
 
@@ -72,7 +93,7 @@ final class AuthProvider {
 
       return null;
     } catch (e) {
-      throw _errorHandler.handleError(e);
+      _errorHandler.handleError(e);
     }
   }
 
@@ -80,7 +101,7 @@ final class AuthProvider {
     try {
       await _firebaseAuth.signOut();
     } catch (e) {
-      throw _errorHandler.handleError(e);
+      _errorHandler.handleError(e);
     }
   }
 }
