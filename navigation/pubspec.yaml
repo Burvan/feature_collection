@@ -17,6 +17,10 @@ dependencies:
     path: ../features/auth
   character_page:
     path: ../features/character_page
+  settings_page:
+    path: ../features/settings_page
+  user_profile:
+    path: ../features/user_profile
 
   auto_route: ^9.3.0+1
 

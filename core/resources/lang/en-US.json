@@ -45,7 +45,12 @@
     "systemTheme": "Use system theme",
     "selectLanguage": "Select language",
     "changeAvatar": "Change the profile photo",
-    "editUserData": "Edit user data"
+    "editUserData": "Edit user data",
+    "emailVerificationMessage": "Email has not been verified. We have sent you an email",
+    "logOut": "Log out"
+  },
+  "userProfile": {
+    "profile": "Profile"
   },
   "errors": {
     "unknown": "Unknown error",

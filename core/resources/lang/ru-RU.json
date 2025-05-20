@@ -45,7 +45,12 @@
     "systemTheme": "Использовать системную тему",
     "selectLanguage": "Выбрать язык",
     "changeAvatar": "Изменить фото профиля",
-    "editUserData": "Редактировать данные пользователя"
+    "editUserData": "Редактировать данные пользователя",
+    "emailVerificationMessage": "Эмейл не подтверждён. Мы отправили вам письмо на почту",
+    "logOut": "Выйти"
+  },
+  "userProfile": {
+    "profile": "Профиль"
   },
   "errors": {
     "unknown": "Неизвестная ошибка",
