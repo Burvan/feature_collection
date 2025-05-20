@@ -1,6 +1,6 @@
 part of use_cases;
 
-final class ChangeUserDataUseCase implements FutureUseCase<void, LoginPayload> {
+final class ChangeUserDataUseCase implements FutureUseCase<void, User> {
   final SettingsRepository _settingsRepository;
 
   const ChangeUserDataUseCase({
@@ -8,7 +8,7 @@ final class ChangeUserDataUseCase implements FutureUseCase<void, LoginPayload> {
   }) : _settingsRepository = settingsRepository;
 
   @override
-  Future<void> execute(LoginPayload input) async {
+  Future<void> execute(User input) async {
     await _settingsRepository.changeUserData(input);
   }
 }

@@ -1,50 +1,63 @@
 part of repositories;
 
 class SettingsRepositoryImpl implements SettingsRepository {
-  final SettingsProvider _settingsProvider;
+  final SharedPreferencesProvider _sharedPreferencesProvider;
+  final FirebaseProvider _firebaseProvider;
 
   SettingsRepositoryImpl({
-    required SettingsProvider settingsProvider,
-  }) : _settingsProvider = settingsProvider;
+    required SharedPreferencesProvider sharedPreferencesProvider,
+    required FirebaseProvider firebaseProvider,
+  })  : _sharedPreferencesProvider = sharedPreferencesProvider,
+        _firebaseProvider = firebaseProvider;
 
   @override
   Future<void> changeLocale(Locale locale) async {
-    await _settingsProvider.saveLocale(locale);
+    await _sharedPreferencesProvider.saveLocale(locale);
   }
 
   @override
   Future<Locale> getCurrentLocale() async {
-    return _settingsProvider.getLocale();
+    return _sharedPreferencesProvider.getLocale();
   }
 
   @override
-  Future<void> changeTheme(AppTheme theme) async {
-    await _settingsProvider.saveTheme(theme);
+  Future<User> getCurrentUser() async {
+    final UserEntity entity = await _firebaseProvider.getCurrentUser();
+    return MapperFactory.userMapper.fromEntity(entity);
   }
 
   @override
-  Future<AppTheme> getCurrentTheme() async {
-    return _settingsProvider.getTheme();
+  Future<void> changeUserData(User user) async {
+    await _firebaseProvider.changeUserData(user);
   }
 
   @override
-  Future<void> changeAvatar(Uint8List imageBytes) async {
-    final String avatar = base64Encode(imageBytes);
-    await _settingsProvider.changeAvatar(avatar);
+  Future<bool> checkEmailConsistency() {
+    return _firebaseProvider.checkEmailConsistency();
   }
 
   @override
-  Future<void> deleteAvatar() async {
-    await _settingsProvider.deleteAvatar();
+  Future<void> changeThemeMode({
+    required bool isDark,
+  }) async {
+    await _sharedPreferencesProvider.saveThemeMode(isDark: isDark);
   }
 
   @override
-  Future<String?> getAvatar() async {
-    return _settingsProvider.getAvatar();
+  Future<void> changeThemeType({
+    required bool isSystemTheme,
+  }) async {
+    await _sharedPreferencesProvider.saveThemeType(
+        isSystemTheme: isSystemTheme);
   }
 
   @override
-  Future<void> changeUserData(LoginPayload payload) async {
-    await _settingsProvider.changeUserData(payload);
+  Future<bool> getThemeMode() async {
+    return _sharedPreferencesProvider.getThemeMode();
+  }
+
+  @override
+  Future<bool> getThemeType() async {
+    return _sharedPreferencesProvider.getThemeType();
   }
 }

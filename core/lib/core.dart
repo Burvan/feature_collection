@@ -12,6 +12,7 @@ export 'package:flutter_local_notifications/flutter_local_notifications.dart';
 export 'package:flutter_riverpod/flutter_riverpod.dart';
 export 'package:freezed_annotation/freezed_annotation.dart';
 export 'package:get_it/get_it.dart';
+export 'package:image_picker/image_picker.dart';
 export 'package:injectable/injectable.dart';
 export 'package:riverpod_annotation/riverpod_annotation.dart';
 export 'package:shared_preferences/shared_preferences.dart';
@@ -26,4 +27,3 @@ export 'src/firebase_options/firebase_options.dart';
 export 'src/local_logging/app_logger.dart';
 export 'src/localization/localization.dart';
 export 'src/utils/validators.dart';
-

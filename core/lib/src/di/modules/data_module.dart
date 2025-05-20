@@ -26,19 +26,17 @@ abstract class DataModule {
   FirebaseProvider firebaseProvider() {
     return FirebaseProvider(
       firebaseFirestore: firebaseFirestore,
+      firebaseAuth: firebaseAuth,
       errorHandler: errorHandler,
     );
   }
 
   @lazySingleton
-  SettingsProvider settingsProvider() {
-    final SettingsProvider settingsProvider =  SettingsProvider(
-      firebaseAuth: firebaseAuth,
-      firebaseFirestore: firebaseFirestore,
-      errorHandler: errorHandler,
-    );
-    settingsProvider.init();
-    return settingsProvider;
+  SharedPreferencesProvider sharedPreferencesProvider() {
+    final SharedPreferencesProvider sharedPreferencesProvider =
+        SharedPreferencesProvider();
+    sharedPreferencesProvider.init();
+    return sharedPreferencesProvider;
   }
 
   @lazySingleton
@@ -66,10 +64,12 @@ abstract class DataModule {
 
   @lazySingleton
   SettingsRepository settingsRepository(
-    SettingsProvider settingsProvider,
+    SharedPreferencesProvider sharedPreferencesProvider,
+    FirebaseProvider firebaseProvider,
   ) {
     return SettingsRepositoryImpl(
-      settingsProvider: settingsProvider,
+      sharedPreferencesProvider: sharedPreferencesProvider,
+      firebaseProvider: firebaseProvider,
     );
   }
 }

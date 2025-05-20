@@ -94,4 +94,11 @@ abstract class DomainModule {
   ) {
     return ChangeUserDataUseCase(settingsRepository: settingsRepository);
   }
+
+  @lazySingleton
+  CheckEmailConsistencyUseCase checkEmailConsistencyUseCase(
+    SettingsRepository settingsRepository,
+  ) {
+    return CheckEmailConsistencyUseCase(settingsRepository: settingsRepository);
+  }
 }

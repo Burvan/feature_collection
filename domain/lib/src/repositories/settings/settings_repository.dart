@@ -1,15 +1,15 @@
 part of repositories;
 
 abstract interface class SettingsRepository {
-  Future<void> changeUserData(LoginPayload payload);
-
   Future<void> changeLocale(Locale locale);
   Future<Locale> getCurrentLocale();
 
-  Future<void> changeTheme(AppTheme theme);
-  Future<AppTheme> getCurrentTheme();
+  Future<void> changeThemeType({required bool isSystemTheme});
+  Future<void> changeThemeMode({required bool isDark});
+  Future<bool> getThemeType();
+  Future<bool> getThemeMode();
 
-  Future<String?> getAvatar();
-  Future<void> changeAvatar(Uint8List imageBytes);
-  Future<void> deleteAvatar();
+  Future<void> changeUserData(User user);
+  Future<User> getCurrentUser();
+  Future<bool> checkEmailConsistency();
 }

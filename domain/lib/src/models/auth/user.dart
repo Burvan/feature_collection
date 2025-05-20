@@ -25,6 +25,18 @@ final class User {
     this.avatar,
   });
 
+  User.empty()
+      : id = '',
+        firstName = '',
+        lastName = '',
+        dateOfBirth = DateTime.now(),
+        gender = Gender.other,
+        customGender = null,
+        phoneNumber = '',
+        email = '',
+        password = '',
+        avatar = null;
+
   User copyWith({
     String? id,
     String? firstName,

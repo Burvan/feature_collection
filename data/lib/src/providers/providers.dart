@@ -9,4 +9,4 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
 part 'auth/auth_provider.dart';
 part 'firebase/firebase_provider.dart';
-part 'settings/settings_provider.dart';
+part 'local_providers/shared_preferences_provider.dart';
