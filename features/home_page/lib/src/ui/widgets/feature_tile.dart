@@ -13,6 +13,8 @@ class FeatureTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Material(
@@ -23,7 +25,7 @@ class FeatureTile extends StatelessWidget {
           child: Ink(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              color: AppColors.gentlyPink,
+              color: isDark ? AppColors.lightGrey : AppColors.turquoise,
             ),
             padding: const EdgeInsets.all(10),
             child: Text(

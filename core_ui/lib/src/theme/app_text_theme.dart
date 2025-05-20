@@ -32,8 +32,11 @@ class AppTextTheme {
     fontSize: 16,
   );
 
+  static const TextStyle font18 = TextStyle(
+    fontSize: 18,
+  );
+
   static const TextStyle font20 = TextStyle(
     fontSize: 20,
   );
-
 }
