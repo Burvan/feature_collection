@@ -16,6 +16,10 @@ dependencies:
     path: core
   navigation:
     path: navigation
+  settings_page:
+    path: features/settings_page
+  domain:
+    path: domain
 
   cupertino_icons: ^1.0.8
 

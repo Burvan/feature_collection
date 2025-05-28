@@ -1,5 +1,8 @@
 library mappers;
 
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:data/data.dart';
 import 'package:domain/domain.dart' as domain;
 

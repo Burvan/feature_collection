@@ -10,15 +10,14 @@ abstract class DataModule {
   @lazySingleton
   FirebaseFirestore get firebaseFirestore => FirebaseFirestore.instance;
 
+  @preResolve
+  Future<SharedPreferences> get prefs async => SharedPreferences.getInstance();
+
   @lazySingleton
   ErrorHandler get errorHandler => ErrorHandler();
 
   @lazySingleton
-  AuthProvider authProvider(
-    FirebaseAuth firebaseAuth,
-    FirebaseFirestore firebaseFirestore,
-    ErrorHandler errorHandler,
-  ) {
+  AuthProvider authProvider() {
     return AuthProvider(
       firebaseAuth: firebaseAuth,
       firebaseFirestore: firebaseFirestore,
@@ -27,13 +26,17 @@ abstract class DataModule {
   }
 
   @lazySingleton
-  FirebaseProvider firebaseProvider(
-    FirebaseFirestore firebaseFirestore,
-  ) {
+  FirebaseProvider firebaseProvider() {
     return FirebaseProvider(
       firebaseFirestore: firebaseFirestore,
+      firebaseAuth: firebaseAuth,
       errorHandler: errorHandler,
     );
+  }
+
+  @preResolve
+  Future<SharedPreferencesProvider> sharedPreferencesProvider() async {
+    return SharedPreferencesProvider(prefs: await prefs);
   }
 
   @lazySingleton
@@ -55,6 +58,17 @@ abstract class DataModule {
     FirebaseProvider firebaseProvider,
   ) {
     return CharacterRepositoryImpl(
+      firebaseProvider: firebaseProvider,
+    );
+  }
+
+  @lazySingleton
+  SettingsRepository settingsRepository(
+    SharedPreferencesProvider sharedPreferencesProvider,
+    FirebaseProvider firebaseProvider,
+  ) {
+    return SettingsRepositoryImpl(
+      sharedPreferencesProvider: sharedPreferencesProvider,
       firebaseProvider: firebaseProvider,
     );
   }

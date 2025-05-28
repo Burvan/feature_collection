@@ -17,12 +17,13 @@ class _SignInFormState extends ConsumerState<SignInForm> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
+    final ThemeData themeData = Theme.of(context);
     final AsyncValue<AuthState> authState = ref.watch(authControllerProvider);
 
     return Container(
       width: size.width / 1.2,
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: themeData.scaffoldBackgroundColor,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Padding(
@@ -37,7 +38,9 @@ class _SignInFormState extends ConsumerState<SignInForm> {
             Text(
               LocaleKeys.auth_pleaseLogin.watchTr(context),
               style: AppTextTheme.font20.copyWith(color: AppColors.lightGrey),
+              textAlign: TextAlign.center,
             ),
+            const SizedBox(height: 10),
             Form(
               key: _formKey,
               child: const SignInFormFields(),

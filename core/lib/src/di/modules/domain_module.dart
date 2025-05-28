@@ -19,6 +19,13 @@ abstract class DomainModule {
   }
 
   @lazySingleton
+  CheckEmailVerificationUseCase checkEmailVerificationUseCase(
+    AuthRepository authRepository,
+  ) {
+    return CheckEmailVerificationUseCase(authRepository: authRepository);
+  }
+
+  @lazySingleton
   FetchCharactersUseCase fetchCharactersUseCase(
     CharacterRepository characterRepository,
   ) {
@@ -30,5 +37,68 @@ abstract class DomainModule {
     CharacterRepository characterRepository,
   ) {
     return AddCharacterUseCase(characterRepository: characterRepository);
+  }
+
+  @lazySingleton
+  FetchCurrentUserUseCase getCurrentUserUseCase(
+    SettingsRepository settingsRepository,
+  ) {
+    return FetchCurrentUserUseCase(settingsRepository: settingsRepository);
+  }
+
+  @lazySingleton
+  ChangeThemeTypeUseCase changeThemeTypeUseCase(
+    SettingsRepository settingsRepository,
+  ) {
+    return ChangeThemeTypeUseCase(settingsRepository: settingsRepository);
+  }
+
+  @lazySingleton
+  ChangeThemeModeUseCase changeThemeModeUseCase(
+    SettingsRepository settingsRepository,
+  ) {
+    return ChangeThemeModeUseCase(settingsRepository: settingsRepository);
+  }
+
+  @lazySingleton
+  FetchCurrentThemeTypeUseCase getCurrentThemeTypeUseCase(
+    SettingsRepository settingsRepository,
+  ) {
+    return FetchCurrentThemeTypeUseCase(settingsRepository: settingsRepository);
+  }
+
+  @lazySingleton
+  FetchCurrentThemeModeUseCase getCurrentThemeModeUseCase(
+    SettingsRepository settingsRepository,
+  ) {
+    return FetchCurrentThemeModeUseCase(settingsRepository: settingsRepository);
+  }
+
+  @lazySingleton
+  ChangeLocaleUseCase changeLocaleUseCase(
+    SettingsRepository settingsRepository,
+  ) {
+    return ChangeLocaleUseCase(settingsRepository: settingsRepository);
+  }
+
+  @lazySingleton
+  FetchCurrentLocaleUseCase getCurrentLocaleUseCase(
+    SettingsRepository settingsRepository,
+  ) {
+    return FetchCurrentLocaleUseCase(settingsRepository: settingsRepository);
+  }
+
+  @lazySingleton
+  ChangeUserDataUseCase changeUserDataUseCase(
+    SettingsRepository settingsRepository,
+  ) {
+    return ChangeUserDataUseCase(settingsRepository: settingsRepository);
+  }
+
+  @lazySingleton
+  CheckEmailConsistencyUseCase checkEmailConsistencyUseCase(
+    SettingsRepository settingsRepository,
+  ) {
+    return CheckEmailConsistencyUseCase(settingsRepository: settingsRepository);
   }
 }

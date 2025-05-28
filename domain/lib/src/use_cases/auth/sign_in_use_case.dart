@@ -1,6 +1,6 @@
 part of use_cases;
 
-final class SignInUseCase implements FutureUseCase<User, SignInPayload> {
+final class SignInUseCase implements FutureUseCase<void, SignInPayload> {
   final AuthRepository _authRepository;
 
   const SignInUseCase({
@@ -8,7 +8,7 @@ final class SignInUseCase implements FutureUseCase<User, SignInPayload> {
   }) : _authRepository = authRepository;
 
   @override
-  Future<User> execute(SignInPayload input) async {
-    return _authRepository.signIn(input);
+  Future<void> execute(SignInPayload input) async {
+    await _authRepository.signIn(input);
   }
 }

@@ -48,11 +48,11 @@ class _SignInFormFieldsState extends ConsumerState<SignInFormFields> {
           ),
           onChanged: (String? value) => _formController.update(email: value),
         ),
-        const SizedBox(height: 25),
+        const SizedBox(height: 20),
         CustomTextField(
           controller: _passwordController,
           labelText: LocaleKeys.auth_password.watchTr(context),
-          obscureText: formState.showPassword,
+          obscureText: !formState.showPassword,
           icon: IconButton(
             onPressed: _formController.togglePasswordVisibility,
             icon: Icon(
@@ -67,7 +67,7 @@ class _SignInFormFieldsState extends ConsumerState<SignInFormFields> {
           ),
           onChanged: (String? value) => _formController.update(password: value),
         ),
-        const SizedBox(height: 25),
+        const SizedBox(height: 20),
       ],
     );
   }

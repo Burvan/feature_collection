@@ -67,7 +67,7 @@ class _SignUpFormFieldsState extends ConsumerState<SignUpFormFields> {
           onChanged: (String? value) =>
               _formController.update(firstName: value),
         ),
-        const SizedBox(height: 25),
+        const SizedBox(height: 20),
         CustomTextField(
           controller: _lastNameController,
           labelText: LocaleKeys.auth_lastName.watchTr(context),
@@ -78,7 +78,7 @@ class _SignUpFormFieldsState extends ConsumerState<SignUpFormFields> {
           ),
           onChanged: (String? value) => _formController.update(lastName: value),
         ),
-        const SizedBox(height: 25),
+        const SizedBox(height: 20),
         InkWell(
           onTap: () async {
             final DateTime? picked = await showDatePicker(
@@ -101,6 +101,7 @@ class _SignUpFormFieldsState extends ConsumerState<SignUpFormFields> {
             child: Text(_dateOfBirthController.text),
           ),
         ),
+        const SizedBox(height: 20),
         CustomTextField(
           controller: _phoneNumberController,
           labelText: LocaleKeys.auth_phoneNumber.watchTr(context),
@@ -113,9 +114,9 @@ class _SignUpFormFieldsState extends ConsumerState<SignUpFormFields> {
           onChanged: (String? value) =>
               _formController.update(phoneNumber: value),
         ),
-        const SizedBox(height: 25),
+        const SizedBox(height: 20),
         const GenderSelector(),
-        const SizedBox(height: 25),
+        const SizedBox(height: 20),
         CustomTextField(
           controller: _emailController,
           labelText: LocaleKeys.auth_emailAddress.watchTr(context),
@@ -127,11 +128,11 @@ class _SignUpFormFieldsState extends ConsumerState<SignUpFormFields> {
           ),
           onChanged: (String? value) => _formController.update(email: value),
         ),
-        const SizedBox(height: 25),
+        const SizedBox(height: 20),
         CustomTextField(
           controller: _passwordController,
           labelText: LocaleKeys.auth_password.watchTr(context),
-          obscureText: formState.showPassword,
+          obscureText: !formState.showPassword,
           icon: IconButton(
             onPressed: _formController.togglePasswordVisibility,
             icon: Icon(
@@ -146,12 +147,12 @@ class _SignUpFormFieldsState extends ConsumerState<SignUpFormFields> {
           ),
           onChanged: (String? value) => _formController.update(password: value),
         ),
-        const SizedBox(height: 25),
+        const SizedBox(height: 20),
         CustomTextField(
           controller: _confirmPasswordController,
           labelText:
               LocaleKeys.validationErrors_confirmPassword.watchTr(context),
-          obscureText: formState.showPassword,
+          obscureText: !formState.showPassword,
           icon: IconButton(
             onPressed: _formController.togglePasswordVisibility,
             icon: Icon(
@@ -168,7 +169,7 @@ class _SignUpFormFieldsState extends ConsumerState<SignUpFormFields> {
           onChanged: (String? value) =>
               _formController.update(confirmPassword: value),
         ),
-        const SizedBox(height: 25),
+        const SizedBox(height: 20),
       ],
     );
   }

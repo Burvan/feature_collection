@@ -13,6 +13,7 @@ class UserEntity {
   final String phoneNumber;
   final String email;
   final String password;
+  final String? avatar;
 
   const UserEntity({
     required this.id,
@@ -24,6 +25,7 @@ class UserEntity {
     required this.phoneNumber,
     required this.email,
     required this.password,
+    this.avatar,
   });
 
   factory UserEntity.fromJson(Map<String, dynamic> json) {
