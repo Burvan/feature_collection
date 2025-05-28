@@ -17,9 +17,8 @@ class DataConstants {
   static const String localeKey = 'locale';
   static const String themeModeKey = 'theme_mode';
   static const String themeTypeKey = 'theme_type';
-  static const String firstNameKey = 'firstName';
-  static const String lastNameKey = 'lastName';
+  static const String firstNameKey = 'first_name';
+  static const String lastNameKey = 'last_name';
   static const String emailKey = 'email';
   static const String avatarKey = 'avatar';
-  static const String defaultLocale = 'en_US';
 }

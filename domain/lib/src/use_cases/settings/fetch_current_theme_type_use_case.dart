@@ -1,15 +1,15 @@
 part of use_cases;
 
-final class GetCurrentThemeTypeUseCase
+final class FetchCurrentThemeTypeUseCase
     implements FutureUseCase<bool, NoParams> {
   final SettingsRepository _settingsRepository;
 
-  const GetCurrentThemeTypeUseCase({
+  const FetchCurrentThemeTypeUseCase({
     required SettingsRepository settingsRepository,
   }) : _settingsRepository = settingsRepository;
 
   @override
   Future<bool> execute(NoParams input) async {
-    return _settingsRepository.getThemeType();
+    return _settingsRepository.fetchThemeType();
   }
 }

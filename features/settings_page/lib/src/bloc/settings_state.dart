@@ -1,6 +1,6 @@
 part of 'settings_bloc.dart';
 
-class SettingsState {
+final class SettingsState {
   final bool isPageLoading;
   final ThemeData themeData;
   final bool isSystemTheme;

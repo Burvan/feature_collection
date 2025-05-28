@@ -13,7 +13,7 @@ class UserProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<UserProfileBloc>(
       create: (_) => UserProfileBloc(
-        getCurrentUserUseCase: appLocator.get<GetCurrentUserUseCase>(),
+        getCurrentUserUseCase: appLocator.get<FetchCurrentUserUseCase>(),
       ),
       child: const UserProfileForm(),
     );

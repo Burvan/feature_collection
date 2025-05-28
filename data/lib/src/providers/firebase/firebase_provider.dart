@@ -63,7 +63,7 @@ final class FirebaseProvider {
     }
   }
 
-  Future<UserEntity> getCurrentUser() async {
+  Future<UserEntity> fetchCurrentUser() async {
     try {
       final firebase_auth.User? user = _firebaseAuth.currentUser;
 
@@ -95,7 +95,6 @@ final class FirebaseProvider {
         await currentUser?.verifyBeforeUpdateEmail(entity.email);
       }
     } catch (e) {
-      AppLogger.error(e.toString());
       _errorHandler.handleError(e);
     }
   }

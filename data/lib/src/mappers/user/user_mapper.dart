@@ -18,7 +18,7 @@ class UserMapper extends Mapper<UserEntity, domain.User> {
       phoneNumber: entity.phoneNumber,
       email: entity.email,
       password: entity.password,
-      avatar: entity.avatar != null ? base64Decode(entity.avatar!) : null,
+      avatar: entity.avatar != null ? base64Decode(entity.avatar ?? '') : null,
     );
   }
 
@@ -30,13 +30,14 @@ class UserMapper extends Mapper<UserEntity, domain.User> {
       lastName: item.lastName,
       dateOfBirth: item.dateOfBirth,
       gender: item.gender.label,
-      customGender: item.gender == domain.Gender.other
-          ? item.customGender
-          : null,
+      customGender:
+          item.gender == domain.Gender.other ? item.customGender : null,
       phoneNumber: item.phoneNumber,
       email: item.email,
       password: item.password,
-      avatar: item.avatar != null ? base64Encode(item.avatar!) : null,
+      avatar: item.avatar != null
+          ? base64Encode(item.avatar ?? Uint8List(0))
+          : null,
     );
   }
 }

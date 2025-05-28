@@ -1,10 +1,10 @@
 part of repositories;
 
-class SettingsRepositoryImpl implements SettingsRepository {
+final class SettingsRepositoryImpl implements SettingsRepository {
   final SharedPreferencesProvider _sharedPreferencesProvider;
   final FirebaseProvider _firebaseProvider;
 
-  SettingsRepositoryImpl({
+  const SettingsRepositoryImpl({
     required SharedPreferencesProvider sharedPreferencesProvider,
     required FirebaseProvider firebaseProvider,
   })  : _sharedPreferencesProvider = sharedPreferencesProvider,
@@ -16,13 +16,13 @@ class SettingsRepositoryImpl implements SettingsRepository {
   }
 
   @override
-  Future<Locale> getCurrentLocale() async {
+  Future<Locale> fetchCurrentLocale() async {
     return _sharedPreferencesProvider.getLocale();
   }
 
   @override
-  Future<User> getCurrentUser() async {
-    final UserEntity entity = await _firebaseProvider.getCurrentUser();
+  Future<User> fetchCurrentUser() async {
+    final UserEntity entity = await _firebaseProvider.fetchCurrentUser();
     return MapperFactory.userMapper.fromEntity(entity);
   }
 
@@ -52,12 +52,12 @@ class SettingsRepositoryImpl implements SettingsRepository {
   }
 
   @override
-  Future<bool> getThemeMode() async {
-    return _sharedPreferencesProvider.getThemeMode();
+  Future<bool> fetchThemeMode() async {
+    return _sharedPreferencesProvider.themeMode;
   }
 
   @override
-  Future<bool> getThemeType() async {
-    return _sharedPreferencesProvider.getThemeType();
+  Future<bool> fetchThemeType() async {
+    return _sharedPreferencesProvider.themeType;
   }
 }

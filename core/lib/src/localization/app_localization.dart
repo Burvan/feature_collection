@@ -10,6 +10,11 @@ abstract final class AppLocalization {
 
   static Locale get fallbackLocale => enLocale;
 
+  static Locale get startLocale =>
+      supportedLocales.contains(PlatformDispatcher.instance.locale)
+          ? PlatformDispatcher.instance.locale
+          : fallbackLocale;
+
   static const Locale enLocale = Locale('en', 'US');
   static const Locale ruLocale = Locale('ru', 'RU');
 

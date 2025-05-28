@@ -5,10 +5,10 @@ part 'user_profile_event.dart';
 part 'user_profile_state.dart';
 
 class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
-  final GetCurrentUserUseCase _getCurrentUserUseCase;
+  final FetchCurrentUserUseCase _getCurrentUserUseCase;
 
   UserProfileBloc({
-    required GetCurrentUserUseCase getCurrentUserUseCase,
+    required FetchCurrentUserUseCase getCurrentUserUseCase,
   })  : _getCurrentUserUseCase = getCurrentUserUseCase,
         super(UserProfileState.initial()) {
     on<InitUserProfile>(_onInitUserProfile);

@@ -12,15 +12,6 @@ class VerificationRequiredScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final AsyncValue<AuthState> authState = ref.watch(authControllerProvider);
 
-    Widget buildAuthButton() {
-      return CustomElevatedButton(
-        onPressed: () {
-          ref.read(authControllerProvider.notifier).checkVerification();
-        },
-        buttonText: LocaleKeys.auth_signIn.watchTr(context),
-      );
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: Text(LocaleKeys.auth_emailVerification.watchTr(context)),
@@ -42,7 +33,14 @@ class VerificationRequiredScreen extends ConsumerWidget {
                 loading: () => const CircularProgressIndicator(),
                 error: (Object error, StackTrace stackTrace) => Column(
                   children: <Widget>[
-                    buildAuthButton(),
+                    CustomElevatedButton(
+                      onPressed: () {
+                        ref
+                            .read(authControllerProvider.notifier)
+                            .checkVerification();
+                      },
+                      buttonText: LocaleKeys.auth_signIn.watchTr(context),
+                    ),
                     const SizedBox(height: 10),
                     Text(
                       (error as AppException).toLocalizedText(),
@@ -50,7 +48,14 @@ class VerificationRequiredScreen extends ConsumerWidget {
                     ),
                   ],
                 ),
-                data: (AuthState state) => buildAuthButton(),
+                data: (AuthState state) => CustomElevatedButton(
+                  onPressed: () {
+                    ref
+                        .read(authControllerProvider.notifier)
+                        .checkVerification();
+                  },
+                  buttonText: LocaleKeys.auth_signIn.watchTr(context),
+                ),
               ),
             ],
           ),

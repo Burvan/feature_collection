@@ -14,24 +14,24 @@ part 'settings_state.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   final ChangeThemeTypeUseCase _changeThemeTypeUseCase;
-  final GetCurrentThemeTypeUseCase _getCurrentThemeTypeUseCase;
+  final FetchCurrentThemeTypeUseCase _getCurrentThemeTypeUseCase;
   final ChangeThemeModeUseCase _changeThemeModeUseCase;
-  final GetCurrentThemeModeUseCase _getCurrentThemeModeUseCase;
+  final FetchCurrentThemeModeUseCase _getCurrentThemeModeUseCase;
   final ChangeLocaleUseCase _changeLocaleUseCase;
-  final GetCurrentLocaleUseCase _getCurrentLocaleUseCase;
-  final GetCurrentUserUseCase _getCurrentUserUseCase;
+  final FetchCurrentLocaleUseCase _getCurrentLocaleUseCase;
+  final FetchCurrentUserUseCase _getCurrentUserUseCase;
   final ChangeUserDataUseCase _changeUserDataUseCase;
   final CheckEmailConsistencyUseCase _checkEmailConsistencyUseCase;
   final AppRouter _appRouter;
 
   SettingsBloc({
     required ChangeThemeTypeUseCase changeThemeTypeUseCase,
-    required GetCurrentThemeTypeUseCase getCurrentThemeTypeUseCase,
+    required FetchCurrentThemeTypeUseCase getCurrentThemeTypeUseCase,
     required ChangeThemeModeUseCase changeThemeModeUseCase,
-    required GetCurrentThemeModeUseCase getCurrentThemeModeUseCase,
+    required FetchCurrentThemeModeUseCase getCurrentThemeModeUseCase,
     required ChangeLocaleUseCase changeLocaleUseCase,
-    required GetCurrentLocaleUseCase getCurrentLocaleUseCase,
-    required GetCurrentUserUseCase getCurrentUserUseCase,
+    required FetchCurrentLocaleUseCase getCurrentLocaleUseCase,
+    required FetchCurrentUserUseCase getCurrentUserUseCase,
     required ChangeUserDataUseCase changeUserDataUseCase,
     required CheckEmailConsistencyUseCase checkEmailConsistencyUseCase,
     required AppRouter appRouter,

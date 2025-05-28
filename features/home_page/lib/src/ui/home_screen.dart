@@ -43,7 +43,7 @@ class HomeScreen extends ConsumerWidget {
           final AppFeatures feature = AppFeatures.values[index];
           final AppRouter appRouter = appLocator.get<AppRouter>();
           return FeatureTile(
-            featureName: feature.featureName.watchTr(context),
+            featureName: feature.name(context),
             onTap: () => appRouter.push(feature.route),
           );
         },

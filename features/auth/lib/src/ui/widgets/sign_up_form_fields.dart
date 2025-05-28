@@ -152,7 +152,7 @@ class _SignUpFormFieldsState extends ConsumerState<SignUpFormFields> {
           controller: _confirmPasswordController,
           labelText:
               LocaleKeys.validationErrors_confirmPassword.watchTr(context),
-          obscureText: formState.showPassword,
+          obscureText: !formState.showPassword,
           icon: IconButton(
             onPressed: _formController.togglePasswordVisibility,
             icon: Icon(

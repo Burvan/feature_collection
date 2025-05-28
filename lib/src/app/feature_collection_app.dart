@@ -14,18 +14,19 @@ class FeatureCollectionApp extends StatelessWidget {
     return EasyLocalization(
       path: AppLocalization.langFolderPath,
       supportedLocales: AppLocalization.supportedLocales,
+      startLocale: AppLocalization.startLocale,
       fallbackLocale: AppLocalization.fallbackLocale,
       child: BlocProvider<SettingsBloc>(
         create: (_) => SettingsBloc(
           changeThemeTypeUseCase: appLocator.get<ChangeThemeTypeUseCase>(),
           getCurrentThemeTypeUseCase:
-              appLocator.get<GetCurrentThemeTypeUseCase>(),
+              appLocator.get<FetchCurrentThemeTypeUseCase>(),
           changeThemeModeUseCase: appLocator.get<ChangeThemeModeUseCase>(),
           getCurrentThemeModeUseCase:
-              appLocator.get<GetCurrentThemeModeUseCase>(),
+              appLocator.get<FetchCurrentThemeModeUseCase>(),
           changeLocaleUseCase: appLocator.get<ChangeLocaleUseCase>(),
-          getCurrentLocaleUseCase: appLocator.get<GetCurrentLocaleUseCase>(),
-          getCurrentUserUseCase: appLocator.get<GetCurrentUserUseCase>(),
+          getCurrentLocaleUseCase: appLocator.get<FetchCurrentLocaleUseCase>(),
+          getCurrentUserUseCase: appLocator.get<FetchCurrentUserUseCase>(),
           changeUserDataUseCase: appLocator.get<ChangeUserDataUseCase>(),
           checkEmailConsistencyUseCase:
               appLocator.get<CheckEmailConsistencyUseCase>(),

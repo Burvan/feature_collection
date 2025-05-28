@@ -10,6 +10,9 @@ abstract class DataModule {
   @lazySingleton
   FirebaseFirestore get firebaseFirestore => FirebaseFirestore.instance;
 
+  @preResolve
+  Future<SharedPreferences> get prefs async => SharedPreferences.getInstance();
+
   @lazySingleton
   ErrorHandler get errorHandler => ErrorHandler();
 
@@ -31,12 +34,9 @@ abstract class DataModule {
     );
   }
 
-  @lazySingleton
-  SharedPreferencesProvider sharedPreferencesProvider() {
-    final SharedPreferencesProvider sharedPreferencesProvider =
-        SharedPreferencesProvider();
-    sharedPreferencesProvider.init();
-    return sharedPreferencesProvider;
+  @preResolve
+  Future<SharedPreferencesProvider> sharedPreferencesProvider() async {
+    return SharedPreferencesProvider(prefs: await prefs);
   }
 
   @lazySingleton

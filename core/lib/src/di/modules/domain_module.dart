@@ -40,10 +40,10 @@ abstract class DomainModule {
   }
 
   @lazySingleton
-  GetCurrentUserUseCase getCurrentUserUseCase(
+  FetchCurrentUserUseCase getCurrentUserUseCase(
     SettingsRepository settingsRepository,
   ) {
-    return GetCurrentUserUseCase(settingsRepository: settingsRepository);
+    return FetchCurrentUserUseCase(settingsRepository: settingsRepository);
   }
 
   @lazySingleton
@@ -61,17 +61,17 @@ abstract class DomainModule {
   }
 
   @lazySingleton
-  GetCurrentThemeTypeUseCase getCurrentThemeTypeUseCase(
+  FetchCurrentThemeTypeUseCase getCurrentThemeTypeUseCase(
     SettingsRepository settingsRepository,
   ) {
-    return GetCurrentThemeTypeUseCase(settingsRepository: settingsRepository);
+    return FetchCurrentThemeTypeUseCase(settingsRepository: settingsRepository);
   }
 
   @lazySingleton
-  GetCurrentThemeModeUseCase getCurrentThemeModeUseCase(
+  FetchCurrentThemeModeUseCase getCurrentThemeModeUseCase(
     SettingsRepository settingsRepository,
   ) {
-    return GetCurrentThemeModeUseCase(settingsRepository: settingsRepository);
+    return FetchCurrentThemeModeUseCase(settingsRepository: settingsRepository);
   }
 
   @lazySingleton
@@ -82,10 +82,10 @@ abstract class DomainModule {
   }
 
   @lazySingleton
-  GetCurrentLocaleUseCase getCurrentLocaleUseCase(
+  FetchCurrentLocaleUseCase getCurrentLocaleUseCase(
     SettingsRepository settingsRepository,
   ) {
-    return GetCurrentLocaleUseCase(settingsRepository: settingsRepository);
+    return FetchCurrentLocaleUseCase(settingsRepository: settingsRepository);
   }
 
   @lazySingleton
