@@ -51,7 +51,10 @@ final class AppException implements Exception {
           _ => LocaleKeys.errors_unknown.tr(),
         },
       AppExceptionType.networkError => LocaleKeys.errors_noInternet.tr(),
-      AppExceptionType.permissionDeniedError => LocaleKeys.errors_permissionDenied.tr(),
+      AppExceptionType.permissionDeniedError =>
+        LocaleKeys.errors_permissionDenied.tr(),
+      AppExceptionType.emailNotVerified =>
+        LocaleKeys.errors_emailNotVerified.tr(),
     };
   }
 
@@ -66,6 +69,7 @@ enum AppExceptionType {
   firestoreCodeError,
   networkError,
   permissionDeniedError,
+  emailNotVerified,
 }
 
 final class FirebaseCodeErrorMessage {

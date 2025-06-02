@@ -2,12 +2,15 @@ part of providers;
 
 final class FirebaseProvider {
   final FirebaseFirestore _firebaseFirestore;
+  final FirebaseAuth _firebaseAuth;
   final ErrorHandler _errorHandler;
 
   const FirebaseProvider({
     required FirebaseFirestore firebaseFirestore,
+    required FirebaseAuth firebaseAuth,
     required ErrorHandler errorHandler,
   })  : _firebaseFirestore = firebaseFirestore,
+        _firebaseAuth = firebaseAuth,
         _errorHandler = errorHandler;
 
   Future<List<CharacterEntity>> fetchCharacters(
@@ -58,5 +61,54 @@ final class FirebaseProvider {
     } catch (e) {
       _errorHandler.handleError(e);
     }
+  }
+
+  Future<UserEntity> fetchCurrentUser() async {
+    try {
+      final firebase_auth.User? user = _firebaseAuth.currentUser;
+
+      final DocumentSnapshot<Map<String, dynamic>> doc =
+          await _firebaseFirestore
+              .collection(DataConstants.userCollection)
+              .doc(user?.uid)
+              .get();
+
+      final UserEntity entity = UserEntity.fromJson(doc.data()!);
+
+      return entity;
+    } catch (e) {
+      _errorHandler.handleError(e);
+    }
+  }
+
+  Future<void> changeUserData(User user) async {
+    try {
+      final UserEntity entity = MapperFactory.userMapper.toEntity(user);
+      final firebase_auth.User? currentUser = _firebaseAuth.currentUser;
+
+      await _firebaseFirestore
+          .collection(DataConstants.userCollection)
+          .doc(currentUser?.uid)
+          .update(entity.toJson());
+
+      if (currentUser?.email != entity.email) {
+        await currentUser?.verifyBeforeUpdateEmail(entity.email);
+      }
+    } catch (e) {
+      _errorHandler.handleError(e);
+    }
+  }
+
+  Future<bool> checkEmailConsistency() async {
+    final firebase_auth.User? user = _firebaseAuth.currentUser;
+
+    final DocumentSnapshot<Map<String, dynamic>> doc = await _firebaseFirestore
+        .collection(DataConstants.userCollection)
+        .doc(user?.uid)
+        .get();
+
+    final String storedEmail = doc.data()?[DataConstants.emailKey];
+
+    return user?.email == storedEmail;
   }
 }

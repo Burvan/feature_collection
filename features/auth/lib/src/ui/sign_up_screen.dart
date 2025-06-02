@@ -20,28 +20,30 @@ class SignUpScreen extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: <Color>[
-              AppColors.brightPink,
-              AppColors.gentlyPink,
-              AppColors.pinkSherbet,
+              AppColors.indigo,
+              AppColors.turquoise,
               AppColors.skyBlue,
             ],
           ),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SizedBox(
               height: size.height / 5,
             ),
-            Text(
-              LocaleKeys.auth_featureCollection.watchTr(context),
-              style: AppTextTheme.font25Bold.copyWith(color: AppColors.white),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text(
+                LocaleKeys.auth_featureCollection.watchTr(context),
+                textAlign: TextAlign.center,
+                style: AppTextTheme.font25Bold.copyWith(color: AppColors.white),
+              ),
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 20),
             const Expanded(
               child: SignUpForm(),
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 20),
           ],
         ),
       ),

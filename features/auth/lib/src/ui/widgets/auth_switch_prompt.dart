@@ -29,7 +29,7 @@ class AuthSwitchPrompt extends StatelessWidget {
           child: Text(
             buttonText,
             style: AppTextTheme.font16.copyWith(
-              color: AppColors.gentlyPink,
+              color: AppColors.turquoise,
             ),
           ),
         ),

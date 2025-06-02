@@ -10,7 +10,7 @@ final GetIt appLocator = GetIt.instance;
   asExtension: false,
 )
 Future<void> configureDependencies() async {
-  $initGetIt(appLocator);
+  await $initGetIt(appLocator);
   await appLocator<NotificationsRepository>().initialize();
 
   ///Only for testing

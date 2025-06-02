@@ -20,11 +20,10 @@ class HomeScreen extends ConsumerWidget {
       appBar: AppBar(
         title: Text(
           LocaleKeys.auth_featureCollection.watchTr(context),
-          style: AppTextTheme.font16WhiteBold,
+          style: AppTextTheme.font18Bold,
         ),
         centerTitle: true,
         automaticallyImplyLeading: false,
-        backgroundColor: AppColors.brightPink,
         actions: <Widget>[
           IconButton(
             onPressed: () async {
@@ -44,7 +43,7 @@ class HomeScreen extends ConsumerWidget {
           final AppFeatures feature = AppFeatures.values[index];
           final AppRouter appRouter = appLocator.get<AppRouter>();
           return FeatureTile(
-            featureName: feature.featureName.watchTr(context),
+            featureName: feature.name(context),
             onTap: () => appRouter.push(feature.route),
           );
         },

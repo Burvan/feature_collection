@@ -40,7 +40,10 @@ class _AddCharacterDialogState extends State<AddCharacterDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(LocaleKeys.character_addNewCharacter.watchTr(context)),
+      title: Text(
+        LocaleKeys.character_addNewCharacter.watchTr(context),
+        textAlign: TextAlign.center,
+      ),
       content: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -54,6 +57,7 @@ class _AddCharacterDialogState extends State<AddCharacterDialog> {
                   context,
                 ),
               ),
+              const SizedBox(height: 10),
               CustomTextField(
                 labelText: LocaleKeys.character_description.watchTr(context),
                 controller: _descriptionController,
@@ -89,6 +93,7 @@ class _AddCharacterDialogState extends State<AddCharacterDialog> {
                   ),
                 ),
               ),
+              const SizedBox(height: 10),
               CustomTextField(
                 labelText: LocaleKeys.character_dialogHouse.watchTr(context),
                 controller: _houseController,

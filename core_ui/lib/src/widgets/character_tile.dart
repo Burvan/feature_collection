@@ -15,19 +15,23 @@ class CharacterTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
+    final ThemeData themeData = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 10,
+        vertical: 16,
+      ),
       child: Container(
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(18),
-          color: AppColors.lightGrey,
-          boxShadow: const <BoxShadow>[
+          color: themeData.cardColor,
+          boxShadow: <BoxShadow>[
             BoxShadow(
               blurRadius: 12,
-              color: AppColors.black,
-              offset: Offset(0, 2),
+              color: themeData.highlightColor,
+              offset: const Offset(0, 1),
             ),
           ],
         ),

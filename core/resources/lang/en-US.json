@@ -14,10 +14,13 @@
     "dateOfBirth": "Date of birth",
     "signIn": "Sign In",
     "signUp": "Sign Up",
-    "noAccount": "No account?"
+    "noAccount": "No account?",
+    "emailVerification": "Email verification",
+    "pleaseVerifyEmail": "We have sent you an email. Please verify your email and then Sign in"
   },
   "home": {
-    "paginationFeature": "Pagination mechanism with search and adding of elements"
+    "paginationFeature": "Pagination mechanism with search and adding of elements",
+    "settingsFeature": "Settings"
   },
   "character": {
     "hpCharacters": "Harry Potter Characters",
@@ -36,6 +39,19 @@
     "notHogwartsStudent": "Not a Hogwarts student",
     "noCharacters": "No characters"
   },
+  "settings": {
+    "userSettings": "User settings",
+    "customTheme": "Use custom theme",
+    "systemTheme": "Use system theme",
+    "selectLanguage": "Select language",
+    "changeAvatar": "Change the profile photo",
+    "editUserData": "Edit user data",
+    "emailVerificationMessage": "Email has not been verified. We have sent you an email",
+    "logOut": "Log out"
+  },
+  "userProfile": {
+    "profile": "Profile"
+  },
   "errors": {
     "unknown": "Unknown error",
     "emailAlreadyInUse": "Email is already in use",
@@ -47,7 +63,8 @@
     "channelCreationFailed": "Notification channel creation failed",
     "permissionDenied": "Permission denied",
     "documentNotFound": "Document not found",
-    "firestoreUnavailable": "Firestore unavailable"
+    "firestoreUnavailable": "Firestore unavailable",
+    "emailNotVerified": "Email is not verified"
   },
   "validationErrors": {
     "nameIsRequired": "Name is required",

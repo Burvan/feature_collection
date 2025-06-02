@@ -8,23 +8,11 @@ class AuthRepositoryImpl implements AuthRepository {
   }) : _authProvider = authProvider;
 
   @override
-  Future<User> signIn(SignInPayload payload) async {
-    final UserCredential userCredential = await _authProvider.signIn(
+  Future<void> signIn(SignInPayload payload) async {
+    await _authProvider.signIn(
       email: payload.email,
       password: payload.password,
     );
-
-    final UserEntity? userEntity =
-        await _authProvider.fetchUserData(userId: userCredential.user!.uid);
-
-    if (userEntity == null) {
-      throw AppException(
-        type: AppExceptionType.firebaseAuthCodeError,
-        message: FirebaseCodeErrorMessage.userNotFound,
-      );
-    }
-
-    return MapperFactory.userMapper.fromEntity(userEntity);
   }
 
   @override
@@ -33,7 +21,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<User> signUp(SignUpPayload payload) async {
+  Future<void> signUp(SignUpPayload payload) async {
     final UserCredential userCredential = await _authProvider.signUp(
       email: payload.email,
       password: payload.password,
@@ -51,6 +39,15 @@ class AuthRepositoryImpl implements AuthRepository {
     );
 
     await _authProvider.saveUserData(userEntity);
-    return MapperFactory.userMapper.fromEntity(userEntity);
+  }
+
+  @override
+  Future<void> sendEmailVerification() async {
+    await _authProvider.sendEmailVerification();
+  }
+
+  @override
+  Future<void> checkEmailVerification() async {
+    await _authProvider.checkEmailVerification();
   }
 }

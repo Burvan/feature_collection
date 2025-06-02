@@ -11,7 +11,14 @@ class DataConstants {
   static const String fcmNotInitializedError =
       'NotificationsRepository.initialize() should be called before using FCM';
 
-
   static const String name = 'name';
   static const String idKey = 'id';
+
+  static const String localeKey = 'locale';
+  static const String themeModeKey = 'theme_mode';
+  static const String themeTypeKey = 'theme_type';
+  static const String firstNameKey = 'first_name';
+  static const String lastNameKey = 'last_name';
+  static const String emailKey = 'email';
+  static const String avatarKey = 'avatar';
 }
