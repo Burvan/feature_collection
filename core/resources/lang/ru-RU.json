@@ -20,7 +20,8 @@
   },
   "home": {
     "paginationFeature": "Пагинационный механизм с поиском и добавлением элементов",
-    "settingsFeature": "Настройки"
+    "settingsFeature": "Настройки",
+    "chatFeature": "Чат"
   },
   "character": {
     "hpCharacters": "Персонажи Гарри Поттера",
@@ -81,5 +82,13 @@
     "dateOfBirthIsRequired": "Дата рождения обязательна",
     "genderIsRequired": "Пол обязателен",
     "fillInTheField": "Заполните поле"
+  },
+  "chat": {
+    "edit": "Редактировать",
+    "search": "Поиск сообщений или пользователей",
+    "startChatting": "Начать общение в чате",
+    "chats": "Чаты",
+    "allUsers": "Все пользователи",
+    "message": "Сообщение"
   }
 }

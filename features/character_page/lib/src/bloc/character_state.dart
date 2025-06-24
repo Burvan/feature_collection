@@ -34,7 +34,7 @@ class CharacterState extends Equatable {
   bool get hasException => exception != null;
 
   double get triggerOffset =>
-      1 - (AppConstants.charactersPerLoad / characters.length);
+      1 - (AppConstants.itemsPerLoad / characters.length);
 
   CharacterState copyWith({
     List<Character>? characters,

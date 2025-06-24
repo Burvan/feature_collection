@@ -10,5 +10,10 @@ part 'auth/sign_up_payload.dart';
 part 'auth/user.dart';
 
 part 'character/character.dart';
-part 'character/fetch_characters_params.dart';
+part 'pagination/pagination_payload.dart';
 part 'character/status.dart';
+
+part 'chat/chat_message.dart';
+part 'chat/chat_overview.dart';
+part 'chat/chat_overview_payload.dart';
+part 'chat/chat_with_user_payload.dart';

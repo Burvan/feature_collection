@@ -21,6 +21,8 @@ dependencies:
     path: ../features/settings_page
   user_profile:
     path: ../features/user_profile
+  chat:
+    path: ../features/chat
 
   auto_route: ^9.3.0+1
 

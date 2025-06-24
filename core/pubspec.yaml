@@ -21,6 +21,8 @@ dependencies:
     path: ../features/character_page
   settings_page:
     path: ../features/settings_page
+  chat:
+    path: ../features/chat
 
   injectable: ^2.5.0
   get_it: ^8.0.3

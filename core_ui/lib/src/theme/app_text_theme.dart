@@ -8,6 +8,22 @@ class AppTextTheme {
     color: AppColors.white,
   );
 
+  static const TextStyle font11 = TextStyle(
+    fontSize: 11,
+  );
+
+  static const TextStyle font14 = TextStyle(
+    fontSize: 14,
+  );
+
+  static const TextStyle font15 = TextStyle(
+    fontSize: 15,
+  );
+
+  static const TextStyle font17 = TextStyle(
+    fontSize: 17,
+  );
+
   static const TextStyle font18Bold = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.bold,

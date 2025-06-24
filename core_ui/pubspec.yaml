@@ -16,6 +16,7 @@ dependencies:
 
   cached_network_image: ^3.4.1
   dropdown_button2: ^2.3.9
+  chat_bubbles: ^1.6.0
 
 dev_dependencies:
   flutter_test:

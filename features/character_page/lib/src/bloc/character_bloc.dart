@@ -43,13 +43,13 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
 
     try {
       final List<Character> characters = await _fetchCharactersUseCase.execute(
-        const FetchCharactersParams.initial(),
+        const PaginationPayload.initial(),
       );
 
       emit(
         state.copyWith(
           characters: characters,
-          isEndOfList: characters.length < AppConstants.charactersPerLoad,
+          isEndOfList: characters.length < AppConstants.itemsPerLoad,
           paginationCursor: () =>
               characters.isNotEmpty ? characters.last.id.toString() : null,
         ),
@@ -75,7 +75,7 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     try {
       final List<Character> newCharacters =
           await _fetchCharactersUseCase.execute(
-        FetchCharactersParams.initial(
+        PaginationPayload<String>.initial(
           query: state.query,
           paginationCursor: state.paginationCursor,
         ),
@@ -120,15 +120,15 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
 
     try {
       final List<Character> characters = await _fetchCharactersUseCase.execute(
-        FetchCharactersParams.initial(query: state.query),
+        PaginationPayload<String>.initial(query: state.query),
       );
 
       emit(
         state.copyWith(
           characters: characters,
-          isEndOfList: characters.length < AppConstants.charactersPerLoad,
+          isEndOfList: characters.length < AppConstants.itemsPerLoad,
           paginationCursor: () =>
-          characters.isNotEmpty ? characters.last.id.toString() : null,
+              characters.isNotEmpty ? characters.last.id.toString() : null,
         ),
       );
     } on AppException catch (e) {
@@ -140,7 +140,6 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     } finally {
       emit(state.copyWith(isCharactersLoading: false));
     }
-
   }
 
   Future<void> _onResetSearch(
@@ -153,15 +152,15 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
       emit(state.copyWith(isCharactersLoading: true));
 
       final List<Character> characters = await _fetchCharactersUseCase.execute(
-        FetchCharactersParams.initial(query: state.query),
+        PaginationPayload<String>.initial(query: state.query),
       );
 
       emit(
         state.copyWith(
           characters: characters,
-          isEndOfList: characters.length < AppConstants.charactersPerLoad,
+          isEndOfList: characters.length < AppConstants.itemsPerLoad,
           paginationCursor: () =>
-          characters.isNotEmpty ? characters.last.id.toString() : null,
+              characters.isNotEmpty ? characters.last.id.toString() : null,
         ),
       );
     } on AppException catch (e) {
@@ -173,7 +172,6 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     } finally {
       emit(state.copyWith(isCharactersLoading: false));
     }
-
   }
 
   Future<void> _onAddCharacter(

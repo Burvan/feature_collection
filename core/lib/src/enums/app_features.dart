@@ -1,4 +1,5 @@
 import 'package:character_page/character_page.dart';
+import 'package:chat/chat.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
@@ -6,7 +7,8 @@ import 'package:settings_page/settings_page.dart';
 
 enum AppFeatures {
   paginationMechanism(CharacterRoute()),
-  settings(SettingsRoute());
+  settings(SettingsRoute()),
+  chat(ChatListRoute());
 
   final PageRouteInfo route;
 
@@ -16,6 +18,7 @@ enum AppFeatures {
     return switch (this) {
       paginationMechanism => LocaleKeys.home_paginationFeature.watchTr(context),
       settings => LocaleKeys.home_settingsFeature.watchTr(context),
+      chat => LocaleKeys.home_chatFeature.watchTr(context),
     };
   }
 }

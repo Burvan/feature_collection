@@ -101,4 +101,39 @@ abstract class DomainModule {
   ) {
     return CheckEmailConsistencyUseCase(settingsRepository: settingsRepository);
   }
+
+  @lazySingleton
+  FetchChatOverviewsUseCase fetchChatOverviewsUseCase(
+    ChatRepository chatRepository,
+  ) {
+    return FetchChatOverviewsUseCase(chatRepository: chatRepository);
+  }
+
+  @lazySingleton
+  FetchRecentMessagesUseCase fetchRecentMessagesUseCase(
+    ChatRepository chatRepository,
+  ) {
+    return FetchRecentMessagesUseCase(chatRepository: chatRepository);
+  }
+
+  @lazySingleton
+  FetchOldMessagesUseCase fetchOldMessagesUseCase(
+    ChatRepository chatRepository,
+  ) {
+    return FetchOldMessagesUseCase(chatRepository: chatRepository);
+  }
+
+  @lazySingleton
+  SendMessageUseCase sendMessageUseCase(
+    ChatRepository chatRepository,
+  ) {
+    return SendMessageUseCase(chatRepository: chatRepository);
+  }
+
+  @lazySingleton
+  FetchUsersUseCase fetchUsersUseCase(
+    ChatRepository chatRepository,
+  ) {
+    return FetchUsersUseCase(chatRepository: chatRepository);
+  }
 }

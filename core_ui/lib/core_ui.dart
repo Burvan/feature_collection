@@ -1,5 +1,6 @@
 library core_ui;
 
+export 'package:chat_bubbles/chat_bubbles.dart';
 export 'package:dropdown_button2/dropdown_button2.dart';
 
 export 'src/theme/app_colors.dart';

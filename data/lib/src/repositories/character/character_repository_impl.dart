@@ -15,7 +15,7 @@ final class CharacterRepositoryImpl implements CharacterRepository {
   }
 
   @override
-  Future<List<Character>> fetchCharacters(FetchCharactersParams params) async {
+  Future<List<Character>> fetchCharacters(PaginationPayload params) async {
     final List<CharacterEntity> entities =
         await _firebaseProvider.fetchCharacters(params);
 

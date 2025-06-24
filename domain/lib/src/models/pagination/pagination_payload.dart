@@ -1,18 +1,18 @@
 part of models;
 
-final class FetchCharactersParams {
+final class PaginationPayload<T> {
   final int limit;
-  final String? paginationCursor;
+  final T? paginationCursor;
   final String? query;
 
-  const FetchCharactersParams({
+  const PaginationPayload({
     required this.limit,
     this.paginationCursor,
     this.query,
   });
 
-  const FetchCharactersParams.initial({
+  const PaginationPayload.initial({
     this.paginationCursor,
     this.query,
-  }) : limit = 10;
+  }) : limit = 20;
 }

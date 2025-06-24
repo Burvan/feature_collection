@@ -11,8 +11,7 @@ final class AppTheme {
       highlightColor: AppColors.black,
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.turquoise,
-        titleTextStyle: AppTextTheme.font18Bold,
-        iconTheme: IconThemeData(color: AppColors.white),
+        iconTheme: IconThemeData(color: AppColors.black),
       ),
       progressIndicatorTheme: const ProgressIndicatorThemeData(
         color: AppColors.turquoise,

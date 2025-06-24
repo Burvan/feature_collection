@@ -72,4 +72,13 @@ abstract class DataModule {
       firebaseProvider: firebaseProvider,
     );
   }
+
+  @lazySingleton
+  ChatRepository chatRepository(
+    FirebaseProvider firebaseProvider,
+  ) {
+    return ChatRepositoryImpl(
+      firebaseProvider: firebaseProvider,
+    );
+  }
 }

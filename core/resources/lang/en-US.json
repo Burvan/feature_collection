@@ -20,7 +20,8 @@
   },
   "home": {
     "paginationFeature": "Pagination mechanism with search and adding of elements",
-    "settingsFeature": "Settings"
+    "settingsFeature": "Settings",
+    "chatFeature": "Chat"
   },
   "character": {
     "hpCharacters": "Harry Potter Characters",
@@ -81,5 +82,13 @@
     "dateOfBirthIsRequired": "Date of birth is required",
     "genderIsRequired": "Gender is required",
     "fillInTheField": "Fill in the field"
+  },
+  "chat": {
+    "edit": "Edit",
+    "search": "Search for messages or users",
+    "startChatting": "Start chatting",
+    "chats": "Chats",
+    "allUsers": "All users",
+    "message": "Message"
   }
 }

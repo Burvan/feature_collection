@@ -12,6 +12,12 @@ part 'auth/sign_up_use_case.dart';
 part 'character/add_character_use_case.dart';
 part 'character/fetch_characters_use_case.dart';
 
+part 'chat/fetch_chat_overviews_use_case.dart';
+part 'chat/fetch_old_messages_use_case.dart';
+part 'chat/fetch_recent_messages_use_case.dart';
+part 'chat/fetch_users_use_case.dart';
+part 'chat/send_message_use_case.dart';
+
 part 'settings/change_locale_use_case.dart';
 part 'settings/change_theme_mode_use_case.dart';
 part 'settings/change_theme_type_use_case.dart';

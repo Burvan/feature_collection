@@ -1,7 +1,7 @@
 part of use_cases;
 
 final class FetchCharactersUseCase
-    implements FutureUseCase<List<Character>, FetchCharactersParams> {
+    implements FutureUseCase<List<Character>, PaginationPayload> {
   final CharacterRepository _characterRepository;
 
   const FetchCharactersUseCase({
@@ -9,7 +9,7 @@ final class FetchCharactersUseCase
   }) : _characterRepository = characterRepository;
 
   @override
-  Future<List<Character>> execute(FetchCharactersParams input) async {
+  Future<List<Character>> execute(PaginationPayload input) async {
     return _characterRepository.fetchCharacters(input);
   }
 }

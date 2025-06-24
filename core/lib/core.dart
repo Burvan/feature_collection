@@ -26,4 +26,5 @@ export 'src/extensions/extensions.dart';
 export 'src/firebase_options/firebase_options.dart';
 export 'src/local_logging/app_logger.dart';
 export 'src/localization/localization.dart';
+export 'src/utils/time_formatter.dart';
 export 'src/utils/validators.dart';
